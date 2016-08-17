@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TIDIIT Seller Site</title>
+    <title><?php echo strtoupper('retailershangout.com');?> Seller Site</title>
     <!--<meta name="msapplication-TileColor" content="#5bc0de" />
     <meta name="msapplication-TileImage" content="assets/images/metis-tile.png" />-->
     <link href="<?php echo SiteCSSURL?>jquery-ui.css" rel="stylesheet" type="text/css">

@@ -46,7 +46,7 @@
                 <div class="col-md-2">
                     <div class="get_tidiit">
                         <p class="mbl_img"><img src="<?php echo SiteImagesURL; ?>get_tdt.png" /></p>
-                        <span>Get Tidiit on your mobile</span>
+                        <span>Get retailershangout on your mobile</span>
                         <a href="#">Find out how &nbsp;<i class="fa fa-caret-right"></i></a>
                     </div>
                 </div>
@@ -54,14 +54,14 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <ul class="fotr_menu">
-                                <h6>Tidiit Inc. Ltd.</h6>
+                                <h6>retailershangout Inc. Ltd.</h6>
                                 <li><a href="<?php echo BASE_URL.'content/careers/Ng==/';?>">Careers</a></li>
                                 <li><a href="#http://blog.retailershangout.com">Blog</a></li>
                                 <li><a href="<?php echo BASE_URL.'content/press/Nw==/';?>">Press</a></li>
                                 <h6>Community</h6>
-                                <li><a href="#">Tidiit Facebook</a></li>
-                                <li><a href="#">Tidiit Twitter</a></li>
-                                <li><a href="#">Tidiit LinkedIn</a></li>
+                                <li><a href="#">retailershangout Facebook</a></li>
+                                <li><a href="#">retailershangout Twitter</a></li>
+                                <li><a href="#">retailershangout LinkedIn</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
@@ -72,7 +72,7 @@
                                 <li><a href="<?php echo BASE_URL.'index/track-order/';?>">Tracking Your Items</a></li>
                                 <h6>Refund & Return</h6>
                                 <li><a href="<?php echo BASE_URL.'content/refund-and-return-process/MTA=/';?>">Refund & Return Process</a></li>
-                                <li><a href="<?php echo BASE_URL.'content/retailershangout-resolution-center/MTE=/';?>">Tidiit Resolution Center</a></li>
+                                <li><a href="<?php echo BASE_URL.'content/retailershangout-resolution-center/MTE=/';?>">retailershangout Resolution Center</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
@@ -117,7 +117,7 @@
                     <li><a href="<?php echo BASE_URL.'top-search/';?>">Top Searches</a></li>
                     <?php /*<li><a href="<?php echo BASE_URL.'reviews/';?>">Reviews</a></li>*/?>
                 </ul>
-                <p>Copyright Notice &copy; <?php echo date('Y');?> Tiditt Inc. Ltd. All rights reserved.</p>
+                <p>Copyright Notice &copy; <?php echo date('Y');?> Retailershangout Pvt. Ltd. All rights reserved.</p>
             </div>
         </div>
     </div>

@@ -56,7 +56,7 @@
                             <ul class="fotr_menu">
                                 <h6>Tidiit Inc. Ltd.</h6>
                                 <li><a href="<?php echo BASE_URL.'content/careers/Ng==/';?>">Careers</a></li>
-                                <li><a href="#http://blog.tidiit.com">Blog</a></li>
+                                <li><a href="#http://blog.retailershangout.com">Blog</a></li>
                                 <li><a href="<?php echo BASE_URL.'content/press/Nw==/';?>">Press</a></li>
                                 <h6>Community</h6>
                                 <li><a href="#">Tidiit Facebook</a></li>
@@ -72,7 +72,7 @@
                                 <li><a href="<?php echo BASE_URL.'index/track-order/';?>">Tracking Your Items</a></li>
                                 <h6>Refund & Return</h6>
                                 <li><a href="<?php echo BASE_URL.'content/refund-and-return-process/MTA=/';?>">Refund & Return Process</a></li>
-                                <li><a href="<?php echo BASE_URL.'content/tidiit-resolution-center/MTE=/';?>">Tidiit Resolution Center</a></li>
+                                <li><a href="<?php echo BASE_URL.'content/retailershangout-resolution-center/MTE=/';?>">Tidiit Resolution Center</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
@@ -113,7 +113,7 @@
                     <li><a href="<?php echo BASE_URL.'content/kenya-wholesale/';?>">Kenya Wholesale</a></li>
                     <li><a href="<?php echo BASE_URL.'content/kenya-manufacturers/';?>">Kenya Manufacturers</a></li>
                     <?php endif */?>
-                    <li><a href="http://seller.tidiit.com">Seller home</a></li>
+                    <li><a href="http://seller.retailershangout.com">Seller home</a></li>
                     <li><a href="<?php echo BASE_URL.'top-search/';?>">Top Searches</a></li>
                     <?php /*<li><a href="<?php echo BASE_URL.'reviews/';?>">Reviews</a></li>*/?>
                 </ul>
@@ -133,12 +133,12 @@
                 <div class="col-md-5 col-sm-5 col-md-push-1">
                     <div class="contact-form popLeftForm">
                         <div id="login_form">
-                            <form class="contact_form" action="#" method="post" name="tidiit_user_login_form" id="tidiit_user_login_form">
+                            <form class="contact_form" action="#" method="post" name="retailershangout_user_login_form" id="retailershangout_user_login_form">
                                 <h1>Login Into Your Account</h1>
 
                                 <div class="form-group">
                                     <div class="input-group col-md-8"> 
-                                        <input id="userName" name="userName" type="text" placeholder="user@tidiit.com" class="form-control email" required >
+                                        <input id="userName" name="userName" type="text" placeholder="user@retailershangout.com" class="form-control email" required >
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                     <label id="userName-error" class="error" for="userName"></label>
@@ -178,11 +178,11 @@
 
 
                         <div id="forgot_form" style="display:none;">
-                            <form class="contact_form" action="#" method="post" name="tidiit_user_forgot_form" id="tidiit_user_forgot_form">
+                            <form class="contact_form" action="#" method="post" name="retailershangout_user_forgot_form" id="retailershangout_user_forgot_form">
                                 <h1>Forgot Password</h1>
                                 <div class="form-group">
                                     <div class="input-group col-md-8"> 
-                                        <input id="userForgotPasswordEmail" name="userForgotPasswordEmail" type="email" placeholder="user@tidiit.com" class="form-control email" required >
+                                        <input id="userForgotPasswordEmail" name="userForgotPasswordEmail" type="email" placeholder="user@retailershangout.com" class="form-control email" required >
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                     </div>
                                     <label id="userEmail-error" class="error" for="userEmail"></label>
@@ -200,7 +200,7 @@
                 <div class="col-md-5 col-sm-5 col-md-push-1">
                     <div class="contact-form">
                         <div id="login_form ">
-                            <form class="contact_form" action="#" method="post" name="tidiit_user_register_form" id="tidiit_user_register_form" novalidate="novalidate">
+                            <form class="contact_form" action="#" method="post" name="retailershangout_user_register_form" id="retailershangout_user_register_form" novalidate="novalidate">
                                 <h1>Signup for New Account</h1>
                                 <ul>
                                     <div class="form-group">

@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 padng_right_none">
-                    <div class="logo"><a href="<?php echo BASE_URL;?>"><img src="<?php echo SiteImagesURL;?>logo.png" /></a></div>
+                    <div class="logo" style="padding:0px !important;"><a href="<?php echo BASE_URL;?>"><img src="<?php echo SiteImagesURL;?>logo.png" style="height: 145px !important;"/></a></div>
                 </div>
                 <div class="col-md-9 padng_left_none">
                     <div class="header_right_sectn">
@@ -105,7 +105,7 @@
                     </div>
                     <div class="col-md-6 col-sm-8">
                         <ul class="main_menu">
-                            <li><a href="<?php echo BASE_URL.'content/tidiit-payment-policy/MjA=';?>">Tidiit Payment Policy</a></li>
+                            <li><a href="<?php echo BASE_URL.'content/retailershangout-payment-policy/MjA=';?>">Retailershangout Payment Policy</a></li>
                             <li><a href="<?php echo BASE_URL.'new-arrivals';?>">New Arrivals</a></li>
                             <li><a href="<?php echo BASE_URL.'brand-zone';?>">Brand Zone</a></li>
                             <li><a href="<?php echo BASE_URL.'customer-service';?>">Customer service</a></li>

@@ -7,7 +7,7 @@
         <meta name="author" content="">
         <link rel="shortcut icon" href="<?php echo SiteImagesURL;?>favicon.ico" type="image/x-icon">
         <link rel="icon" href="<?php echo SiteImagesURL;?>favicon.ico" type="image/x-icon">
-        <title>Tidiit</title>
+        <title><?php echo strtoupper('retailershangout.com');?></title>
         
         <!-- Bootstrap core CSS -->
     	<link href="<?php echo SiteCSSURL;?>bootstrap.min.css" rel="stylesheet">

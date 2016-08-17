@@ -271,7 +271,7 @@
                 <div class="col-md-4 col-sm-4">
                     <div class="abot_box">
                         <img src="<?php echo SiteImagesURL;?>about_img.png" />
-                        <a href="<?php echo BASE_URL.'content/about-us/'.  base64_encode(1);?>"><h3>About Tidiit</h3></a>
+                        <a href="<?php echo BASE_URL.'content/about-us/'.  base64_encode(1);?>"><h3>About retailershangout</h3></a>
                         <?php /*<p>&nbsp;</p>
                         <p><a href="<?php echo BASE_URL.'content/about-us/'.  base64_encode(1);?>">Learn More..</a></p> */?>
                     </div>

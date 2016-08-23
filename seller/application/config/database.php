@@ -49,10 +49,10 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'tidiit_cto';
-$db['default']['password'] = 'H=*r_XI+TSmU'; //secret
-$db['default']['database'] = 'tidiit';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['username'] = 'breehal';
+$db['default']['password'] = 'BreeH@L312';
+$db['default']['database'] = 'retailershangout';
+$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;

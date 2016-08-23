@@ -322,7 +322,7 @@ class CI_Loader {
 	 * @return	object
 	 */
 	public function database($params = '', $return = FALSE, $active_record = NULL)
-	{ die($params);
+	{ 
 		// Grab the super object
 		$CI =& get_instance();
 

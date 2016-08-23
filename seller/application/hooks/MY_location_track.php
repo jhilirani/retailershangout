@@ -25,7 +25,7 @@ class MY_location_track
         $this->CI->load->library('session');
         $userLocation="";
         $userLocation=$this->CI->session->userdata('FE_SESSION_USER_LOCATION_VAR');
-        if(!defined($userLocation)){
+        if(!defined($userLocation) || $userLocation=='undefined'){
             $userLocation="";
         }
         if($userLocation==""){

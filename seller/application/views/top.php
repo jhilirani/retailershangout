@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span> 
               </button>
               <a href="<?php echo BASE_URL;?>" class="navbar-brand">
-                <img src="<?php echo SiteImagesURL;?>logo.png" alt="">
+                  <img src="<?php echo SiteImagesURL;?>logo.png" alt="" height="60px">
               </a> 
             </header>
             <div class="topnav">              

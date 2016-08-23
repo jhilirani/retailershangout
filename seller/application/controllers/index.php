@@ -13,9 +13,7 @@ class Index extends MY_Controller {
     }
 
     function index() {
-        echo ('index calling');
         if ($this->_is_loged_in() == FALSE) {
-            die('redireacting for login');
             //$this->session->set_flashdata('Message', 'Please login to access admin section');
             redirect(base_url() . 'index/login');
         } else {
@@ -61,7 +59,6 @@ class Index extends MY_Controller {
     }
 
     function login() {
-        die('index/login calling');
         $this->load->model('Country');
         $data = $this->_get_tobe_login_template();
         $data['CountryDataArr'] = $this->Country->get_all1();

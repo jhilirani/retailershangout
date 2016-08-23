@@ -8,7 +8,7 @@
    <div class="row">
     <div class="col-md-6 col-md-offset-3 well">   
       <div class="text-center">
-        <img src="<?php echo SiteImagesURL;?>logo.png" alt="Metis Logo">
+          <img src="<?php echo SiteImagesURL;?>logo.png" alt="Metis Logo" height="150px">
       </div>
       <hr>
       <div class="tab-content">

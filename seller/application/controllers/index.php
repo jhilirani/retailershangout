@@ -13,8 +13,9 @@ class Index extends MY_Controller {
     }
 
     function index() {
-        die('index calling');
+        echo ('index calling');
         if ($this->_is_loged_in() == FALSE) {
+            die('redireacting for login');
             //$this->session->set_flashdata('Message', 'Please login to access admin section');
             redirect(base_url() . 'index/login');
         } else {

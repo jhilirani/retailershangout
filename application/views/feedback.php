@@ -40,9 +40,9 @@
         myJsMain.commonFunction.hidePleaseWait();
         $('#feedBackSubmit').prop('disabled',false);
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
         }else if(resultData.result=='good'){
-            myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
             $('#tidiitFeedback')[0].reset();
             myJsMain.commonFunction.GeneratNewImage(); 
         }

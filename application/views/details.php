@@ -80,11 +80,11 @@ jQuery(document).ready(function(){
     jQuery('#add-cart-button-id').click(function(){
         var productPriceIdData=jQuery('input:radio[name=selectPackege]:checked').val();
         if(productPriceIdData==undefined){
-            myJsMain.commonFunction.tidiitAlert('Tidiit Validate System',"Please select price for the product.",140);
+            myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System',"Please select price for the product.",140);
             $('.multiselect-modal-sm').modal('hide');
         }else{
             if(!is_loged_in){
-                myJsMain.commonFunction.tidiitAlert('Tidiit Validate System',"Please sign in or sign up first for buy this product.",140);
+                myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System',"Please sign in or sign up first for buy this product.",140);
                 $('.multiselect-modal-sm').modal('hide');
                 $( "a.signIn" ).trigger( "click" );
                 return false;
@@ -115,16 +115,16 @@ jQuery(document).ready(function(){
                 /*else if(data.contents=="0"){
                     /// show error message
                     if(order_type=='single'){
-                        myJsMain.commonFunction.tidiitAlert('Tidiit Validate System','Your had selected last uncompleted order is "Buying Club Order".So you can not process "Single Order" Now.Set the item to your wish list and process teh order latter.',140);
+                        myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System','Your had selected last uncompleted order is "Buying Club Order".So you can not process "Single Order" Now.Set the item to your wish list and process teh order latter.',140);
                     }else{
-                        myJsMain.commonFunction.tidiitAlert('Tidiit Validate System','your last "Buying Club Order" is yet not completd.So you can not process "Buying Club Order" Now.Set the item to your wish list and process teh order latter.',140);
+                        myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System','your last "Buying Club Order" is yet not completd.So you can not process "Buying Club Order" Now.Set the item to your wish list and process teh order latter.',140);
                     }
                 }else if(data.contents=="2"){ 
                     /// show error message
-                    myJsMain.commonFunction.tidiitAlert('Tidiit Validate System','Your "Single Order" yet not completed.So you can not process "Buying Club Order" Now.Set the item to your wish list and process teh order latter.',140);
+                    myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System','Your "Single Order" yet not completed.So you can not process "Buying Club Order" Now.Set the item to your wish list and process teh order latter.',140);
                 }*/
                 else if(data.contents=="-1"){
-                    myJsMain.commonFunction.tidiitAlert('Tidiit Validate System',"Please sign in or sign up first for buy this product.",140);
+                    myJsMain.commonFunction.tidiitAlert('Retailershangout Validate System',"Please sign in or sign up first for buy this product.",140);
                     $('.multiselect-modal-sm').modal('hide');
                     $( "a.signIn" ).trigger( "click" );
                     return false;

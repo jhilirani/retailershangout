@@ -290,7 +290,7 @@
                 <div class="col-md-4 col-sm-4">
                     <div class="abot_box">
                         <img src="<?php echo SiteImagesURL;?>about_img.png" />
-                        <a href="<?php echo BASE_URL.'content/about-us/'.  base64_encode(1);?>"><h3>About Tidiit</h3></a>
+                        <a href="<?php echo BASE_URL.'content/about-us/'.  base64_encode(1);?>"><h3>About Retailershangout</h3></a>
                         <p>Lorem Ipsum is simply dummy text of the printing and type setting industry.</p>
                         <p><a href="<?php echo BASE_URL.'content/about-us/'.  base64_encode(1);?>">Learn More..</a></p>
                     </div>
@@ -375,7 +375,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Logistics Tidiit Sign ID</td>
+                                        <td>Logistics Retailershangout Sign ID</td>
                                         <td>:</td>
                                         <td><input id="logisticsId" name="logisticsId" type="text" class="form-control" required >
                                             <div>
@@ -447,7 +447,7 @@
         jQuery('#outForDeliveryForm').submit(function(e) { 
             e.preventDefault();
             if (jQuery(this).valid()) {
-                askBeforeSubmitOutForDelivery('Tidiit out for deliery','Are you sure to submit the data ?',200,jQuery(this),myJsMain.baseURL+'ajax/submit_out_for_delivery',outForDeliveryFormCallback);;
+                askBeforeSubmitOutForDelivery('Retailershangout out for deliery','Are you sure to submit the data ?',200,jQuery(this),myJsMain.baseURL+'ajax/submit_out_for_delivery',outForDeliveryFormCallback);;
             }
         });
         
@@ -455,7 +455,7 @@
         jQuery('#orderId').on('blur',function(){
             jqOut=jQuery(this);
             if(jqOut.val().trim()==''){
-                myJsMain.commonFunction.tidiitAlert('Tidiit Out For Delivery','Please enter the value for order id',200);
+                myJsMain.commonFunction.tidiitAlert('Retailershangout Out For Delivery','Please enter the value for order id',200);
                 return false;
             }
             myJsMain.commonFunction.showPleaseWait();
@@ -465,7 +465,7 @@
             function(data){
                 myJsMain.commonFunction.hidePleaseWait();
                 if(data.result=='bad'){
-                    myJsMain.commonFunction.tidiitAlert('Tidiit Out For Delivery',data.msg,200);
+                    myJsMain.commonFunction.tidiitAlert('Retailershangout Out For Delivery',data.msg,200);
                     jqOut.val('');
                 }
             }, 'json' );
@@ -473,7 +473,7 @@
 		jQuery('#logisticsId').on('blur',function(){
             jqOut=jQuery(this);
             if(jqOut.val().trim()==''){
-                myJsMain.commonFunction.tidiitAlert('Tidiit Out For Delivery','Please enter the value for Logistics Tidiit Sign ID',200);
+                myJsMain.commonFunction.tidiitAlert('Retailershangout Out For Delivery','Please enter the value for Logistics Tidiit Sign ID',200);
                 return false;
             }
             myJsMain.commonFunction.showPleaseWait();
@@ -483,7 +483,7 @@
             function(data){
                 myJsMain.commonFunction.hidePleaseWait();
                 if(data.result=='bad'){
-                    myJsMain.commonFunction.tidiitAlert('Tidiit Out For Delivery',data.msg,200);
+                    myJsMain.commonFunction.tidiitAlert('Retailershangout Out For Delivery',data.msg,200);
                     jqOut.val('');
                 }
             }, 'json' );
@@ -518,13 +518,13 @@
     function outForDeliveryFormCallback(resultData){
         myJsMain.commonFunction.hidePleaseWait();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
         }else if(resultData.result=='good'){
             userMsg=resultData.msg;
             if(resultData.paymentType=='settlementOnDelivery'){
                 userMsg=userMsg+" Please confirm payment before delivery.";
             }
-            myJsMain.commonFunction.tidiitAlert('Tidiit System Message',userMsg,200);
+            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',userMsg,200);
             location.href='<?php echo BASE_URL;?>';
         }
     }

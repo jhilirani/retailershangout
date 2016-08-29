@@ -4,7 +4,7 @@
 <table cellspacing=5 cellpadding=5 width=90% border=0 >
   
   <tr id="PageHeading">
-    <td class="PageHeading" >Tidiit Commission Manager</td>
+    <td class="PageHeading" >Retailershangout.commission Manager</td>
   </tr>
 
   
@@ -85,10 +85,10 @@
   </tr>
  
   <tr>
-    <td><form name="AdminEdit" id="AdminEdit" method="post" action="<?=base_url()?>webadmin/tidiit_commission/edit/">
+    <td><form name="AdminEdit" id="AdminEdit" method="post" action="<?=base_url()?>webadmin/Retailershangout.commission/edit/">
 <table width="70%" border="0" align="center" cellpadding="0" cellspacing="0" id="EditBox" style="display:none;">
   <tr>
-    <th colspan="4"><span class="PageHeading">Update Tidiit Commission</span></th>
+    <th colspan="4"><span class="PageHeading">Update Retailershangout.commission</span></th>
   </tr>
   <tr>
     <td align="left" valign="top" height="40px;">&nbsp;</td>

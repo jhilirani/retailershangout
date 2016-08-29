@@ -15,7 +15,7 @@
                                 <thead>
                                 <tr class="active">
                                     <th>
-                                        <a href="javascript://">Order #TIDIIT-OD-<?=$order->orderId?></a>
+                                        <a href="javascript://">Order #RH-OD-<?=$order->orderId?></a>
                                         <?php if($order->status == 5):?><a class="btn btn-info btn-xs pull-right no-print" data-oid="<?=base64_encode($order->orderId*226201);?>"><i class="fa fa-file-text-o"></i> View Invoice </a><?php endif;?>
                                         <?php if($order->status == 5):?><a class="btn btn-info btn-xs pull-right no-print changeOrderStateDelivered" data-orderid="<?=$order->orderId?>" style="margin-right:10px;"><i class="fa fa-file-text-o"></i> Set As Delivered</a><?php endif;?>
                                     </th>
@@ -47,7 +47,7 @@
                                         <tbody>
                                         </tbody>
                                         <tr>
-                                            <td>Order #TIDIIT-OD-<?=$order->orderId?></td>
+                                            <td>Order #RH-OD-<?=$order->orderId?></td>
                                             <td><?=$order->orderType=='GROUP'?'Buyer Club':'Self'?></td>
                                             <td><i class="fa fa-rupee"></i><?=$order->subTotalAmount?></td>
                                             <td><?php echo ($order->paymentType=='settlementOnDelivery')?'Settlement On Delivery':'Paid';?></td>
@@ -172,7 +172,7 @@
                                         </tbody>
                                         <tr>
                                             <td align='middle'>
-                                                <span id='btnPrint' style='cursor: pointer;' data-text="Tidiit.com - Order Information - TIDIIT-OD-<?=$order->orderId;?>"><i class="fa fa-print"></i><br>
+                                                <span id='btnPrint' style='cursor: pointer;' data-text="Retailershangout.com - Order Information - RH-OD-<?=$order->orderId;?>"><i class="fa fa-print"></i><br>
                                                     PRINT ORDER</span>
                                             </td>
                                             <td align='middle'><?php if($order->status == 5):?><a data-oid="<?=base64_encode($order->orderId*226201);?>"><i class="fa fa-envelope"></i><br>EMAIL INVOICE</a><?php endif;?></td>
@@ -214,7 +214,7 @@
                      myJsMain.commonFunction.hideWebAdminPleaseWait();
                      if(data.result=='good'){
                          jqout.html("");
-                         myJsMain.commonFunction.tidiitAlert('Tidiit Order Update System','Select order update as delivered successfully.',200);
+                         myJsMain.commonFunction.tidiitAlert('Retailershangout Order Update System','Select order update as delivered successfully.',200);
                          location.href=myJsMain.baseURL+'order/viewlist';
                      }
                  }, 'json' );

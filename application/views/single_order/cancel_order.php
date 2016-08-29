@@ -41,7 +41,7 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                                                 <div class="col-md-12">
                                                     <div class="panel panel-info">
                                                        <div class="panel-heading">
-                                                         <h3 class="panel-title">TIDIIT-OD-<?=$order->orderId?></h3>
+                                                         <h3 class="panel-title">RH-OD-<?=$order->orderId?></h3>
                                                         </div>
                                                         <div class="panel-body">
                                                             <div class="row">

@@ -6,7 +6,7 @@
           <tr>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td width="200"><a href= "<?php echo $MainSiteBaseURL;?>" target="_blank"><img src="<?php echo $MainSiteImagesURL;?>logo.png" title="Tidiit Inc Ltd" width="200px" height="100" border="0" alt=""/></a></td>
+                  <td width="200"><a href= "<?php echo $MainSiteBaseURL;?>" target="_blank"><img src="<?php echo $MainSiteImagesURL;?>logo.png" title="Dailyplaza Online Pvt Ltd" width="200px" height="100" border="0" alt=""/></a></td>
                   <td width="1"></td>
                   <td width="393"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
@@ -47,7 +47,7 @@
                           <td align="left" valign="top" style="background-color:#FFFFFF;display:block;clear:both;padding:20px 20px 0 20px;" bgcolor=""><table border="0" cellspacing="0" cellpadding="0" width="100%" style="">
                               <tbody>
                                 <tr>
-                                  <td colspan="4" width="100%" align="middle" valign="top"><p style="padding:0;color:#565656;line-height:22px;font-size:13px;">You have completed the payment for order <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">TIDIIT-OD-<?php echo $single_order_success['TEMPLATE_ORDER_SUCCESS_ORDER_ID'];?></span></a> before delivery</p>
+                                  <td colspan="4" width="100%" align="middle" valign="top"><p style="padding:0;color:#565656;line-height:22px;font-size:13px;">You have completed the payment for order <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">RH-OD-<?php echo $single_order_success['TEMPLATE_ORDER_SUCCESS_ORDER_ID'];?></span></a> before delivery</p>
                                     <br>
                                   </td>
                                 </tr>
@@ -110,7 +110,7 @@
                   <td width="80%" align="left" valign="top"><br />
                     <br />
                     <font style="font-family: Verdana, Geneva, sans-serif; color:#666766; font-size:13px; line-height:21px"> Regards<br />
-                    The Tidiit Team </font> </td>
+                    The Retailershangout Team </font> </td>
                   <td width="10%">&nbsp;</td>
                 </tr>
                 <tr>
@@ -156,7 +156,7 @@
             <td>&nbsp;</td>
           </tr>
           <tr>
-            <td align="center"><font style="font-family:'Myriad Pro', Helvetica, Arial, sans-serif; color:#231f20; font-size:8px"><strong>Head Office &amp; Registered Office | Tidiit Inc. Ltd, Adress Line, Company Street, City, State, Zip Code | Tel: 123 555 555 | <a href= "mailto:customercare@tidiit.com" style="color:#010203; text-decoration:none">customercare@tidiit.com</a></strong></font></td>
+            <td align="center"><font style="font-family:'Myriad Pro', Helvetica, Arial, sans-serif; color:#231f20; font-size:8px"><strong>Head Office &amp; Registered Office | Dailyplaza Online Pvt Ltd, Adress Line, Company Street, City, State, Zip Code | Tel: 123 555 555 | <a href= "mailto:customercare@retailershangout.com" style="color:#010203; text-decoration:none">customercare@retailershangout.com</a></strong></font></td>
           </tr>
           <tr>
             <td>&nbsp;</td>

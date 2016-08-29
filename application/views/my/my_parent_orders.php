@@ -48,7 +48,7 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                                                 $porder = $this->Order_model->get_parent_order($order->orderId);
                                                 ?>
                                                 <tr class="" id="not-<?=base64_encode($order->orderId*226201);?>">
-                                                    <td scope="row"><span class="label label-success">TIDIIT-OD-<?=$order->orderId?></span></td>
+                                                    <td scope="row"><span class="label label-success">RH-OD-<?=$order->orderId?></span></td>
                                                     <td>
                                                         <a href="<?php echo BASE_URL.'product/details/'.base64_encode($order->productId);?>" class="" target="_blank"><img src="<?=PRODUCT_DEAILS_SMALL.$pimage?>" alt="..." class="img-thumbnail img-responsive"/></a>
                                                         <p class="text-center"><a href="<?php echo BASE_URL.'product/details/'.base64_encode($order->productId);?>" class="" target="_blank"><?=$ptitle;?></a></p></td>

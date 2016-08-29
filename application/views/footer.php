@@ -383,7 +383,7 @@
     myJsMain.forgot_password();
     $(document).ready(function () {
         //alert(myJsMain.baseURL);
-        //myJsMain.commonFunction.tidiitConfirm('Tidiit System','Are you sure  ?','silent','',180);
+        //myJsMain.commonFunction.tidiitConfirm('Retailershangout System','Are you sure  ?','silent','',180);
         //myJsMain.commonFunction.tidiitAlert('Tidiit System','returning ',180);
         <?php 
         if($this->session->userdata('FE_SESSION_VAR')):?>

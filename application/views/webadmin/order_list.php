@@ -126,7 +126,7 @@ jQuery('body').on("click",'.viewOrderDetails',function(){
          jQuery('#modal_order_details').html(data.content);
          /*if(data.result=='good'){
              jqout.html("");
-             myJsMain.commonFunction.tidiitAlert('Tidiit Order Update System','Select order update as delivered successfully.',200);
+             myJsMain.commonFunction.tidiitAlert('Retailershangout Order Update System','Select order update as delivered successfully.',200);
          }*/
      }, 'json' );
  });

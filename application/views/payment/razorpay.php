@@ -20,7 +20,7 @@
                                     data-buttontext="Pay with Razorpay"
                                     data-name="Tidiit Internet Pvt Ltd"
                                     data-description="Purchase Description"
-                                    data-image="http://www.tidiit.com/resources/images/logo.png"
+                                    data-image="http://www.Retailershangout.com/resources/images/logo.png"
                                     data-prefill.name="<?php echo $userData->firstName.' '.$userData->lastName;?>"
                                     data-prefill.email="<?php echo $userData->email;?>"
                                     data-prefill.contact="<?php echo ($userData->contactNo=="") ? $userData->mobile : $userData->contactNo;?>"

@@ -104,7 +104,7 @@
                     </div>
                     <div class="col-md-6 col-sm-8">
                         <ul class="main_menu">
-                            <li><a href="<?php echo BASE_URL.'content/retailershangout-payment-policy/MjA=';?>">retailershangout Payment Policy</a></li>
+                            <li><a href="<?php echo BASE_URL.'content/retailershangout-payment-policy/MjA=';?>">Payment Policy</a></li>
                             <li><a href="<?php echo BASE_URL.'new-arrivals';?>">New Arrivals</a></li>
                             <li><a href="<?php echo BASE_URL.'brand-zone';?>">Brand Zone</a></li>
                             <li><a href="<?php echo BASE_URL.'customer-service';?>">Customer service</a></li>

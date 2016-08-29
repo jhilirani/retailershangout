@@ -108,7 +108,7 @@
                                                 <td><?=isset($orderinfo['pdetail']->productId)?$orderinfo['pdetail']->productId:''?></td>
                                                 <td>
                                                     <?php if(isset($orderinfo['pimage']->image)):?>
-                                                    <a href="<?php echo $MainSiteBaseURL.'product/details/'.base64_encode($order->productId);?>" class="" target="_blank"><img src="<?=SiteResourcesURL.'product/100X100/'.$orderinfo['pimage']->image?>" alt="..." class="img-thumbnail img-responsive"/></a>
+                                                    <a href="<?php echo $MainSiteBaseURL.'product/details/'.base64_encode($order->productId);?>" class="" target="_blank"><img src="<?=PRODUCT_DEAILS_SMALL.'product/100X100/'.$orderinfo['pimage']->image?>" alt="..." class="img-thumbnail img-responsive"/></a>
                                                 <?php endif;?>
                                                     <a href="<?php echo $MainSiteBaseURL.'product/details/'.base64_encode($order->productId);?>" class="" target="_blank"><?=isset($orderinfo['pdetail']->title)?$orderinfo['pdetail']->title:''?></a></td>
                                                 <td><?=isset($orderinfo['pdetail']->model)?$orderinfo['pdetail']->model:''?></td>

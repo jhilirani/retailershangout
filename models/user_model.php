@@ -1075,8 +1075,7 @@ class User_model extends CI_Model {
         if($userId!=""){
             //$rs=$this->db->get_where($this->_table,array('userId = ','$userId'))->result();
             $rs=$this->db->from($this->_table)->where('userId',$userId)->get()->result();
-            pre($rs);die;
-            if($rs[0]->contactNo!="" || $rs[0]->mobile!="" || $rs[0]->DOB!="" || $rs[0]->aboutMe!=""){
+            if($rs[0]->contactNo!="" || $rs[0]->mobile!="" || $rs[0]->aboutMe!=""){
                 return TRUE;
             }else{
                 return FALSE;

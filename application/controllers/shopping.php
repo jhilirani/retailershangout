@@ -328,7 +328,7 @@ class Shopping extends MY_Controller{
                         $data['nMessage'] .= "Want to process the order ? <br>";
                         $data['nMessage'] .= "<a href='".BASE_URL."shopping/group-order-decline/".base64_encode($orderId*226201)."' class='btn btn-danger btn-lg'>Decline</a>  or <a href='".BASE_URL."shopping/group-order-accept-process/".base64_encode($orderId*226201)."' class='btn btn-success btn-lg'>Accept</a><br>";
                         $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
-                        $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                        $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                         $data['orderId'] =$orderId;
                         $data['productId'] =$orderinfo['priceinfo']->productId;
                         $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -344,7 +344,7 @@ class Shopping extends MY_Controller{
 
                         $mail_template_view_data=$this->load_default_resources();
                         $mail_template_view_data['group_order_start']=$mail_template_data;
-                        $this->_global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Tidiit Inc Ltd", $mail_template_view_data,'group_order_start');
+                        $this->_global_tidiit_mail($recv_email, "New Buying Club Order Invitation at retailershangout.com", $mail_template_view_data,'group_order_start');
                         //pre($data);die;
                         $this->User_model->notification_add($data);
 
@@ -370,7 +370,7 @@ class Shopping extends MY_Controller{
                             $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                             $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                             $data['nMessage'] .= "Order item is ".$orderinfo['pdetail']->title."<br /><br />";
-                            $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                            $data['nMessage'] .= "Thanks <br> retailershangout.com.";
 
                             $data['isRead'] = 0;
                             $data['status'] = 1;
@@ -382,11 +382,11 @@ class Shopping extends MY_Controller{
 
                             $mail_template_view_data=$this->load_default_resources();
                             $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                            $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                            $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailershangout , Ltd.", $mail_template_view_data,'group_order_group_member_payment');
                             $this->User_model->notification_add($data);
 
                             /// sendin SMS to allmember
-                            $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
+                            $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
                                 'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                                 'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                             send_sms_notification($sms_data);
@@ -398,7 +398,7 @@ class Shopping extends MY_Controller{
                     $data['nTitle'] = 'Your Buying Club['.$group->groupTitle.'] order continue by <b>'.$me->firstName.' '.$me->lastName.'</b>';
                     $data['nMessage'] = "Hi, <br> I have paid Rs. ".$order->orderAmount." /- for the quantity ".$order->productQty." of this Buying Club[".$group->groupTitle."].<br>";
                     $data['nMessage'] .= 'Order item is '.$orderinfo['pdetail']->title."<br /><br/>";
-                    $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                    $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                     $data['isRead'] = 0;
                     $data['status'] = 1;
                     $data['createDate'] = date('Y-m-d H:i:s');
@@ -413,11 +413,11 @@ class Shopping extends MY_Controller{
                         $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                     }
                     $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                    $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                    $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailershangout , Ltd.", $mail_template_view_data,'group_order_group_member_payment');
 
                     $this->User_model->notification_add($data);
 
-                    $sms_data=array('nMessage'=>$me->firstName.' '.$me->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
+                    $sms_data=array('nMessage'=>$me->firstName.' '.$me->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
                         'receiverMobileNumber'=>$group->admin->mobile,'senderId'=>'','receiverId'=>$data['receiverId'],
                         'senderMobileNumber'=>$me->mobile,'nType'=>"BUYING-CLUB-ORDER-INVITED-MEMBER-COMPLETE");
                     send_sms_notification($sms_data);
@@ -870,12 +870,12 @@ class Shopping extends MY_Controller{
                     $data['senderId'] = $this->session->userdata('FE_SESSION_VAR');
                     $data['receiverId'] = $usr->userId;
                     $data['nType'] = 'BUYING-CLUB-ORDER-DECLINE';
-                    $data['nTitle'] = 'Buying Club order [TIDIIT-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
+                    $data['nTitle'] = 'Buying Club order [RH-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
                     $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID']=$order->orderId;
                     $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ADMIN_NAME']=$me->firstName.' '.$me->lastName;
                     $data['nMessage'] = "Hi, <br> Sorry! I can not process this Buying Club order right now.<br>";
                     $data['nMessage'] .= "";
-                    $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                    $data['nMessage'] .= "Thanks <br> retailershangout.com.";
 
                     $data['isRead'] = 0;
                     $data['status'] = 1;
@@ -886,7 +886,7 @@ class Shopping extends MY_Controller{
                     $sender_email = $me->email;
                     $mail_template_view_data=$this->load_default_resources();
                     $mail_template_view_data['group_order_decline']=$mail_template_data;
-                    $this->_global_tidiit_mail($recv_email, "Buying Club order decline at Tidiit Inc Ltd", $mail_template_view_data,'group_order_decline',$usr->firstName.' '.$usr->lastName);
+                    $this->_global_tidiit_mail($recv_email, "Buying Club order decline at retailershangout.com", $mail_template_view_data,'group_order_decline',$usr->firstName.' '.$usr->lastName);
 
                     $this->User_model->notification_add($data);
                 endif;
@@ -898,13 +898,13 @@ class Shopping extends MY_Controller{
             $mail_template_data=array();
             $data['senderId'] = $this->session->userdata('FE_SESSION_VAR');
             $data['nType'] = 'BUYING-CLUB-ORDER-DECLINE';
-            $data['nTitle'] = 'Buying Club order [TIDIIT-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
+            $data['nTitle'] = 'Buying Club order [RH-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID']=$order->orderId;
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ADMIN_NAME']=$me->firstName.' '.$me->lastName;
             $data['nMessage'] = "Hi, <br> Sorry! I can not process this order right now.<br>";
             $data['nMessage'] .= "<a href='".BASE_URL."shopping/group-re-order-process/".base64_encode($orderId*226201)."' class='btn btn-warning btn-lg'>Re-order now</a><br><br>";
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID1']=$orderId;
-            $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+            $data['nMessage'] .= "Thanks <br> retailershangout.com.";
             $data['isRead'] = 0;
             $data['status'] = 1;
             $data['createDate'] = date('Y-m-d H:i:s');
@@ -913,11 +913,11 @@ class Shopping extends MY_Controller{
             $sender_email = $me->email;
             $mail_template_view_data=$this->load_default_resources();
             $mail_template_view_data['group_order_decline']=$mail_template_data;
-            $this->_global_tidiit_mail($recv_email, "Buying Club order decline at Tidiit Inc Ltd", $mail_template_view_data,'group_order_decline_admin',$group->admin->firstName.' '.$group->admin->lastName);
+            $this->_global_tidiit_mail($recv_email, "Buying Club order decline at retailershangout.com", $mail_template_view_data,'group_order_decline_admin',$group->admin->firstName.' '.$group->admin->lastName);
             $this->User_model->notification_add($data);
 
             /// sendin SMS to Leader
-            $smsMsg='Buying Club['.$group->groupTitle.']  member['.$usr->firstName.' '.$usr->lastName.'] has decline the invitation Tidiit order TIDIIT-OD-'.$order->orderId.'.';
+            $smsMsg='Buying Club['.$group->groupTitle.']  member['.$usr->firstName.' '.$usr->lastName.'] has decline the invitation Retailershangout order RH-OD-'.$order->orderId.'.';
             $sms_data=array('nMessage'=>$smsMsg,'receiverMobileNumber'=>$orderInfo['group']->admin->mobile,'senderId'=>'','receiverId'=>$orderInfo["group"]->admin->userId,
                 'senderMobileNumber'=>'','nType'=>$data['nType']);
             send_sms_notification($sms_data);
@@ -1297,7 +1297,7 @@ class Shopping extends MY_Controller{
                     $this->Order_model->add_payment(array('orderId'=>$kOrder['orderId'],'paymentType'=>'settlementOnDelivery','settlementOnDeliveryId'=>$settlementOnDeliveryId,'orderType'=>'single'));
                     $mail_template_view_data=$this->load_default_resources();
                     $mail_template_view_data['single_order_success']=$mail_template_data;
-                    $this->_global_tidiit_mail($recv_email, "Your Tidiit order - TIDIIT-OD-".$kOrder['orderId'].' has placed successfully', $mail_template_view_data,'single_order_success');
+                    $this->_global_tidiit_mail($recv_email, "Your Retailershangout order - RH-OD-".$kOrder['orderId'].' has placed successfully', $mail_template_view_data,'single_order_success');
                     $this->_sent_single_order_complete_mail($kOrder['orderId']);
                 endif;
             endif;
@@ -1417,9 +1417,9 @@ class Shopping extends MY_Controller{
             $adminMailData['orderParrentId']=$order->parrentOrderID;
             $adminMailData['userFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
             //pre($adminMailData);die;
-            $this->_global_tidiit_mail($orderInfoDataArr['group']->admin->email, "Your  Buying Club order - TIDIIT-OD-".$order->parrentOrderID.' has placed successfully.', $adminMailData,'group_order_success',$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName);
+            $this->_global_tidiit_mail($orderInfoDataArr['group']->admin->email, "Your  Buying Club order - RH-OD-".$order->parrentOrderID.' has placed successfully.', $adminMailData,'group_order_success',$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName);
 
-            $sms_data=array('nMessage'=>'Your Tidiit Buying Club['.$orderInfoDataArr['group']->groupTitle.'] order TIDIIT-OD-'.$orderDetails[0]->orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.BASE_URL,
+            $sms_data=array('nMessage'=>'Your Retailers Hangout['.$orderInfoDataArr['group']->groupTitle.'] order RH-OD-'.$orderDetails[0]->orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.BASE_URL,
                 'receiverMobileNumber'=>$orderInfoDataArr['group']->admin->mobile,'senderId'=>'','receiverId'=>$orderInfoDataArr['group']->admin->userId,
                 'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-PLACED');
             send_sms_notification($sms_data);
@@ -1428,16 +1428,16 @@ class Shopping extends MY_Controller{
             /// for seller
             $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
             $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
-            $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - TIDIIT-OD-".$order->parrentOrderID.' has placed from Tidiit Inc Ltd', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+            $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - RH-OD-".$order->parrentOrderID.' has placed from retailershangout.com', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
             /// for support
-            $adminMailData['userFullName']='Tidiit Inc Support';
+            $adminMailData['userFullName']='Retailershangout  Support';
             $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
             $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
             $this->load->model('Siteconfig_model','siteconfig');
             //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
             $supportEmail='judhisahoo@gmail.com';
-            $this->_global_tidiit_mail($supportEmail, "Buying Club order no - TIDIIT-OD-".$order->parrentOrderID.' has placed from Tidiit Inc Ltd', $adminMailData,'support_group_order_success','Tidiit Inc Support');
+            $this->_global_tidiit_mail($supportEmail, "Buying Club order no - RH-OD-".$order->parrentOrderID.' has placed from retailershangout.com', $adminMailData,'support_group_order_success','Retailershangout  Support');
             //die;
             $this->Order_model->update(array('status'=>2),$order->parrentOrderID);
             ///mail to Buyer CLub
@@ -1463,9 +1463,9 @@ class Shopping extends MY_Controller{
                 }
                 //echo '<br>$order id '.$k->orderId.'<br>';
                 $adminMailData['userFullName']=$userFullName;
-                $this->_global_tidiit_mail($email, "Your Buying Club Tidiit order TIDIIT-OD-".$k->orderId.' has placed successfully', $adminMailData,'group_order_success',$userFullName);
+                $this->_global_tidiit_mail($email, "Your Buying Club Retailershangout order RH-OD-".$k->orderId.' has placed successfully', $adminMailData,'group_order_success',$userFullName);
 
-                $sms_data=array('nMessage'=>'Your Tidiit Buying Club['.$orderInfoDataArr['group']->groupTitle.'] order TIDIIT-OD-'.$k->orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.BASE_URL,
+                $sms_data=array('nMessage'=>'Your Retailers Hangout['.$orderInfoDataArr['group']->groupTitle.'] order RH-OD-'.$k->orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.BASE_URL,
                     'receiverMobileNumber'=>$mobileNumber,'senderId'=>'','receiverId'=>$orderDetails[0]->userId,
                     'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-PLACED');
                 send_sms_notification($sms_data);
@@ -1474,17 +1474,17 @@ class Shopping extends MY_Controller{
                 /// for seller
                 $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
                 $adminMailData['buyerFullName']=$userFullName;
-                $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - TIDIIT-OD-".$k->orderId.' has placed from Tidiit Inc Ltd', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+                $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - RH-OD-".$k->orderId.' has placed from retailershangout.com', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
                 //echo '<br>$order id '.$k->orderId.'<br>';
                 /// for support
-                $adminMailData['userFullName']='Tidiit Inc Support';
+                $adminMailData['userFullName']='Retailershangout  Support';
                 $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
                 $adminMailData['buyerFullName']=$userFullName;
                 $this->load->model('Siteconfig_model','siteconfig');
                 //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
                 $supportEmail='judhisahoo@gmail.com';
-                $this->_global_tidiit_mail($supportEmail, "Buying Club order no - TIDIIT-OD-".$k->orderId.' has placed from Tidiit Inc Ltd', $adminMailData,'support_group_order_success','Tidiit Inc Support');
+                $this->_global_tidiit_mail($supportEmail, "Buying Club order no - RH-OD-".$k->orderId.' has placed from retailershangout.com', $adminMailData,'support_group_order_success','Retailershangout  Support');
             }
         }
         return TRUE;
@@ -1501,18 +1501,18 @@ class Shopping extends MY_Controller{
         /// for seller
         $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName;
-        $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "A new order no - TIDIIT-OD-".$orderId.' has placed from Tidiit Inc Ltd', $adminMailData,'seller_single_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+        $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "A new order no - RH-OD-".$orderId.' has placed from retailershangout.com', $adminMailData,'seller_single_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
         /// for support
-        $adminMailData['userFullName']='Tidiit Inc Support';
+        $adminMailData['userFullName']='Retailershangout  Support';
         $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Order no - TIDIIT-OD-".$orderId.' has placed by '.$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName, $adminMailData,'support_single_order_success','Tidiit Inc Support');
+        $this->_global_tidiit_mail($supportEmail, "Order no - RH-OD-".$orderId.' has placed by '.$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName, $adminMailData,'support_single_order_success','Retailershangout  Support');
         //die;
-        $sms_data=array('nMessage'=>'Your Tidiit order TIDIIT-OD-'.$orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.BASE_URL,
+        $sms_data=array('nMessage'=>'Your Retailershangout order RH-OD-'.$orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.BASE_URL,
             'receiverMobileNumber'=>$orderDetails[0]->buyerMobileNo,'senderId'=>'','receiverId'=>$orderDetails[0]->userId,
             'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-CONFIRM');
         send_sms_notification($sms_data);
@@ -1730,7 +1730,7 @@ class Shopping extends MY_Controller{
                     $data['nMessage'] .= "Want to process the order ? <br>";
                     $data['nMessage'] .= "<a href='".BASE_URL."shopping/group-order-decline/".base64_encode($orderId*226201)."' class='btn btn-danger btn-lg'>Decline</a>  or <a href='".BASE_URL."shopping/group-order-accept-process/".base64_encode($orderId*226201)."' class='btn btn-success btn-lg'>Accept</a><br>";
                     $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
-                    $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                    $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                     $data['orderId'] =$orderId;
                     $data['productId'] =$orderinfo['priceinfo']->productId;
                     $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -1745,7 +1745,7 @@ class Shopping extends MY_Controller{
 
                     $mail_template_view_data=$this->load_default_resources();
                     $mail_template_view_data['group_order_start']=$mail_template_data;
-                    $this->_global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Tidiit Inc Ltd", $mail_template_view_data,'group_order_start');
+                    $this->_global_tidiit_mail($recv_email, "New Buying Club Order Invitation at retailershangout.com", $mail_template_view_data,'group_order_start');
                     $this->User_model->notification_add($data);
                     /// sendin SMS to allmember
                     $sms_data=array('nMessage'=>'You have invited to Buying Club['.$group->groupTitle.'] by '.$group->admin->firstName.' '.$group->admin->lastName.'.More details about this notifiaction,Check '.BASE_URL,
@@ -1769,7 +1769,7 @@ class Shopping extends MY_Controller{
                         $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                         $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                         $data['nMessage'] .= "";
-                        $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                        $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                         $data['orderId'] =$orderId;
                         $data['productId'] =$orderinfo['priceinfo']->productId;
                         $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -1784,11 +1784,11 @@ class Shopping extends MY_Controller{
 
                         $mail_template_view_data=$this->load_default_resources();
                         $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                        $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                        $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailershangout , Ltd.", $mail_template_view_data,'group_order_group_member_payment');
                         $this->User_model->notification_add($data);
 
                         /// sendin SMS to allmember
-                        $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
+                        $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
                             'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                             'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                         send_sms_notification($sms_data);
@@ -1806,10 +1806,10 @@ class Shopping extends MY_Controller{
                     $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                 }
                 $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailershangout , Ltd.", $mail_template_view_data,'group_order_group_member_payment');
                 $this->User_model->notification_add($data);
                 /// sendin SMS to allmember
-                $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
+                $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
                     'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                     'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                 send_sms_notification($sms_data);
@@ -1876,7 +1876,7 @@ class Shopping extends MY_Controller{
                     $data['nMessage'] .= "Want to process the order ? <br>";
                     $data['nMessage'] .= "<a href='".BASE_URL."shopping/group-order-decline/".base64_encode($orderId*226201)."' class='btn btn-danger btn-lg'>Decline</a>  or <a href='".BASE_URL."shopping/group-order-accept-process/".base64_encode($orderId*226201)."' class='btn btn-success btn-lg'>Accept</a><br>";
                     $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
-                    $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                    $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                     $data['orderId'] =$orderId;
                     $data['productId'] =$orderinfo['priceinfo']->productId;
                     $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -1891,7 +1891,7 @@ class Shopping extends MY_Controller{
 
                     $mail_template_view_data=$this->load_default_resources();
                     $mail_template_view_data['group_order_start']=$mail_template_data;
-                    $this->_global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Tidiit Inc Ltd", $mail_template_view_data,'group_order_start');
+                    $this->_global_tidiit_mail($recv_email, "New Buying Club Order Invitation at retailershangout.com", $mail_template_view_data,'group_order_start');
                     $this->User_model->notification_add($data);
                     /// sendin SMS to allmember
                     $sms_data=array('nMessage'=>'You have invited to Buying Club['.$group->groupTitle.'] by '.$group->admin->firstName.' '.$group->admin->lastName.'.More details about this notifiaction,Check '.BASE_URL,
@@ -1915,7 +1915,7 @@ class Shopping extends MY_Controller{
                         $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                         $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                         $data['nMessage'] .= "";
-                        $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                        $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                         $data['orderId'] =$orderId;
                         $data['productId'] =$orderinfo['priceinfo']->productId;
                         $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -1930,11 +1930,11 @@ class Shopping extends MY_Controller{
 
                         $mail_template_view_data=$this->load_default_resources();
                         $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                        $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                        $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailershangout , Ltd.", $mail_template_view_data,'group_order_group_member_payment');
                         $this->User_model->notification_add($data);
 
                         /// sendin SMS to allmember
-                        $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
+                        $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
                             'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                             'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                         send_sms_notification($sms_data);
@@ -1951,10 +1951,10 @@ class Shopping extends MY_Controller{
                     $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                 }
                 $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                $this->_global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailershangout , Ltd.", $mail_template_view_data,'group_order_group_member_payment');
                 $this->User_model->notification_add($data);
                 /// sendin SMS to allmember
-                $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
+                $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.BASE_URL,
                     'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                     'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                 send_sms_notification($sms_data);
@@ -2004,7 +2004,7 @@ class Shopping extends MY_Controller{
 
             $mail_template_view_data=$this->load_default_resources();
             $mail_template_view_data['single_order_success']=$mail_template_data;
-            $this->_global_tidiit_mail($recv_email, "Your Tidiit order no - TIDIIT-OD-".$v.' has placed successfully', $mail_template_view_data,'single_order_success');
+            $this->_global_tidiit_mail($recv_email, "Your Retailershangout order no - RH-OD-".$v.' has placed successfully', $mail_template_view_data,'single_order_success');
             $this->_sent_single_order_complete_mail($v);
         endforeach;
         unset($_SESSION['PaymentData']);
@@ -2033,7 +2033,7 @@ class Shopping extends MY_Controller{
 
             $mail_template_view_data=$this->load_default_resources();
             $mail_template_view_data['single_order_success']=$mail_template_data;
-            $this->_global_tidiit_mail($recv_email, "Your Tidiit order no - TIDIIT-OD-".$v.' has placed successfully', $mail_template_view_data,'single_order_success');
+            $this->_global_tidiit_mail($recv_email, "Your Retailershangout order no - RH-OD-".$v.' has placed successfully', $mail_template_view_data,'single_order_success');
             $this->_sent_single_order_complete_mail($v);
         endforeach;
         $this->session->unset_userdata('razorpayPaymentId');
@@ -2096,7 +2096,7 @@ class Shopping extends MY_Controller{
         $this->Product_model->update_product_quantity($order->productId,$order->productQty,'+');
         $this->single_order_cancel_mail($order,$reason,$comments);
         /// sendin SMS to cancel the order
-        $sms_data_msg='Your cancelation request for Tidiit Order TIDIIT-OD-'.$orderId.' has placed successfully.';
+        $sms_data_msg='Your cancelation request for Retailershangout order RH-OD-'.$orderId.' has placed successfully.';
         if($reason != "Other Reasons"){
             $sms_data_msg .='Cancelation request due to "'.$reason.'".';
         }else{
@@ -2130,17 +2130,17 @@ class Shopping extends MY_Controller{
         $adminMailData['buyerFullName']=$buyerFullName;
 
         // for buyer
-        $this->_global_tidiit_mail($orderDetails[0]->buyerEmail,'Your Tidiit order TIDIIT-OD-'.$order->orderId.' has canceled successfully',$adminMailData,'single_order_canceled',$buyerFullName);
+        $this->_global_tidiit_mail($orderDetails[0]->buyerEmail,'Your Retailershangout order RH-OD-'.$order->orderId.' has canceled successfully',$adminMailData,'single_order_canceled',$buyerFullName);
 
         /// for seller
-        $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Tidiit order TIDIIT-OD-".$order->orderId.' has canceled by '.$buyerFullName, $adminMailData,'seller_single_order_canceled',$sellerFullName);
+        $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Retailershangout order RH-OD-".$order->orderId.' has canceled by '.$buyerFullName, $adminMailData,'seller_single_order_canceled',$sellerFullName);
 
         /// for support
-        $adminMailData['userFullName']='Tidiit Inc Support';
+        $adminMailData['userFullName']='Retailershangout  Support';
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Tidiit Order TIDIIT-OD-".$order->orderId.' has canceled by '.$buyerFullName, $adminMailData,'support_single_order_canceled','Tidiit Inc Support');
+        $this->_global_tidiit_mail($supportEmail, "Retailershangout order RH-OD-".$order->orderId.' has canceled by '.$buyerFullName, $adminMailData,'support_single_order_canceled','Retailershangout  Support');
         return TRUE;
     }
 
@@ -2208,7 +2208,7 @@ class Shopping extends MY_Controller{
         $user = $this->_get_current_user_details();
         $recv_email = $user->email;
         $recv_name=$user->firstName.' '.$user->lastName;
-        $tidiitStr='TIDIIT-OD-';
+        $tidiitStr='RH-OD-';
         $logisticsData=$PaymentDataArr['logisticsData'];
 
         if($order->parrentOrderID == 0):
@@ -2226,7 +2226,7 @@ class Shopping extends MY_Controller{
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERAMT']=$order->orderAmount;;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERQTY']=$order->productQty;
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                 $data['orderId'] =$orderId;
                 $data['productId'] =$orderinfo['priceinfo']->productId;
                 $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -2259,7 +2259,7 @@ class Shopping extends MY_Controller{
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                 $data['nMessage'] .= "";
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                 $data['orderId'] =$orderId;
                 $data['productId'] =$orderinfo['priceinfo']->productId;
                 $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -2274,7 +2274,7 @@ class Shopping extends MY_Controller{
 
                 $mail_template_view_data=$this->load_default_resources();
                 $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                $this->_global_tidiit_mail($recv_email,"Payment submited for Tidiit Buying Club order  before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment');
+                $this->_global_tidiit_mail($recv_email,"Payment submited for Retailers Hangout order  before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment');
                 if($me->userId != $usr->userId):
                     $this->User_model->notification_add($data);
                 endif;
@@ -2292,14 +2292,14 @@ class Shopping extends MY_Controller{
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
             }
             $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-            $this->_global_tidiit_mail($recv_email,"Payment has submited for Tidiit Buying Club order before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment',$leaderName);
+            $this->_global_tidiit_mail($recv_email,"Payment has submited for Retailers Hangout order before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment',$leaderName);
             $this->User_model->notification_add($data);
         endif;
 
         if(!empty($logisticsData) && array_key_exists('deliveryStaffContactNo', $logisticsData)):
             $logisticMobileNo=$logisticsData['deliveryStaffContactNo'];
             if($logisticMobileNo!=""):
-                $sms=$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
+                $sms=$recv_name.' has completed the payment for Retailershangout order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
                 /// sendin SMS to allmember
                 $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$logisticMobileNo,'senderId'=>'','receiverId'=>'',
                     'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LOGISTICS');
@@ -2308,14 +2308,14 @@ class Shopping extends MY_Controller{
         endif;
 
         /// SMS to payer
-        $sms='Thanks for the payment.We have received for Tidiit Buying Club['.$group->groupTitle.'] order '.$tidiitStr.'-'.$orderId.'.';
+        $sms='Thanks for the payment.We have received for Retailers Hangout['.$group->groupTitle.'] order '.$tidiitStr.'-'.$orderId.'.';
         $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$user->mobile,'senderId'=>'','receiverId'=>$user->userId,
             'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-PAYER');
         send_sms_notification($sms_data);
 
         if($user->userId!=$group->admin->userId){
             /// SMS to group admin
-            $sms='Your Tidiit Buying Club['.$group->groupTitle.'] member['.$user->firstName.' '.$user->lastName.'] has completed payment for order '.$tidiitStr.'-'.$orderId.'.';
+            $sms='Your Retailers Hangout['.$group->groupTitle.'] member['.$user->firstName.' '.$user->lastName.'] has completed payment for order '.$tidiitStr.'-'.$orderId.'.';
             $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$group->admin->mobile,'senderId'=>'','receiverId'=>$group->admin->userId,
                 'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LEADER');
             send_sms_notification($sms_data);
@@ -2325,11 +2325,11 @@ class Shopping extends MY_Controller{
         $mPesaId=$this->Order_model->add_mpesa($mpesaArr);
         $this->Order_model->edit_payment(array('paymentType'=>'mPesa','mPesaId'=>$mPesaId),$orderId);
         $logisticMobileNo=$PaymentDataArr['logisticsData']['deliveryStaffContactNo'];
-        $sms="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].'. '.$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
+        $sms="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].'. '.$recv_name.' has completed the payment for Retailershangout order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
 
         /// here send mail to logistic partner
-        $mailBody="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'-'.$orderId.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Tidiit Team.';
-        $this->_global_tidiit_mail($PaymentDataArr['logisticsData']['deliveryStaffEmail'],'Tidiit payment completed for Order '.$tidiitStr.'-'.$orderId,$mailBody,'',$recv_name);
+        $mailBody="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Retailershangout payment for Order <b>".$tidiitStr.'-'.$orderId.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>retailershangout.com.';
+        $this->_global_tidiit_mail($PaymentDataArr['logisticsData']['deliveryStaffEmail'],'Retailershangout payment completed for Order '.$tidiitStr.'-'.$orderId,$mailBody,'',$recv_name);
 
         $this->_sent_order_complete_mail_sod_final_payment1($this->Order_model->get_single_order_by_id($orderId));
 
@@ -2359,7 +2359,7 @@ class Shopping extends MY_Controller{
         $user = $this->_get_current_user_details();
         $recv_email = $user->email;
         $recv_name=$user->firstName.' '.$user->lastName;
-        $tidiitStr='TIDIIT-OD-';
+        $tidiitStr='RH-OD-';
         $logisticsData=$PaymentDataArr['logisticsData'];
         
         $data['senderId'] = $this->session->userdata('FE_SESSION_VAR');
@@ -2378,7 +2378,7 @@ class Shopping extends MY_Controller{
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERAMT']=$order->orderAmount;;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERQTY']=$order->productQty;
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                 $data['orderId'] =$orderId;
                 $data['productId'] =$orderinfo['priceinfo']->productId;
                 $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -2409,7 +2409,7 @@ class Shopping extends MY_Controller{
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                 $data['nMessage'] .= "";
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                 $data['orderId'] =$orderId;
                 $data['productId'] =$orderinfo['priceinfo']->productId;
                 $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -2424,7 +2424,7 @@ class Shopping extends MY_Controller{
 
                 $mail_template_view_data=$this->load_default_resources();
                 $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                $this->_global_tidiit_mail($recv_email,"Payment submited for Tidiit Buying Club order  before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment');
+                $this->_global_tidiit_mail($recv_email,"Payment submited for Retailers Hangout order  before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment');
                 if($me->userId != $usr->userId):
                     $this->User_model->notification_add($data);
                 endif;
@@ -2442,14 +2442,14 @@ class Shopping extends MY_Controller{
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
             }
             $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-            $this->_global_tidiit_mail($recv_email,"Payment has submited for Tidiit Buying Club order before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment',$leaderName);
+            $this->_global_tidiit_mail($recv_email,"Payment has submited for Retailers Hangout order before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment',$leaderName);
             $this->User_model->notification_add($data);
         endif;
 
         if(!empty($logisticsData) && array_key_exists('deliveryStaffContactNo', $logisticsData)):
             $logisticMobileNo=$logisticsData['deliveryStaffContactNo'];
             if($logisticMobileNo!=""):
-                $sms=$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
+                $sms=$recv_name.' has completed the payment for Retailershangout order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
                 /// sendin SMS to allmember
                 $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$logisticMobileNo,'senderId'=>'','receiverId'=>'',
                     'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LOGISTICS');
@@ -2458,14 +2458,14 @@ class Shopping extends MY_Controller{
         endif;
 
         /// SMS to payer
-        $sms='Thanks for the payment.We have received for Tidiit Buying Club['.$group->groupTitle.'] order '.$tidiitStr.'-'.$orderId.'.';
+        $sms='Thanks for the payment.We have received for Retailers Hangout['.$group->groupTitle.'] order '.$tidiitStr.'-'.$orderId.'.';
         $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$user->mobile,'senderId'=>'','receiverId'=>$user->userId,
             'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-PAYER');
         send_sms_notification($sms_data);
 
         if($user->userId!=$group->admin->userId){
             /// SMS to group admin
-            $sms='Your Tidiit Buying Club['.$group->groupTitle.'] member['.$user->firstName.' '.$user->lastName.'] has completed payment for order '.$tidiitStr.'-'.$orderId.'.';
+            $sms='Your Retailers Hangout['.$group->groupTitle.'] member['.$user->firstName.' '.$user->lastName.'] has completed payment for order '.$tidiitStr.'-'.$orderId.'.';
             $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$group->admin->mobile,'senderId'=>'','receiverId'=>$group->admin->userId,
                 'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LEADER');
             send_sms_notification($sms_data);
@@ -2474,11 +2474,11 @@ class Shopping extends MY_Controller{
         $rajorpayDataArr=$this->Order_model->get_rajorpay_id_by_rajorpay_pament_id($this->session->userdata('razorpayPaymentId'));
         $this->Order_model->edit_payment(array('paymentType'=>'razorpay','razorpayId'=>$rajorpayDataArr[0]->razorpayId),$orderId);
         $logisticMobileNo=$PaymentDataArr['logisticsData']['deliveryStaffContactNo'];
-        $sms="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].'. '.$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
+        $sms="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].'. '.$recv_name.' has completed the payment for Retailershangout order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
 
         /// here send mail to logistic partner
-        $mailBody="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'-'.$orderId.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Tidiit Team.';
-        $this->_global_tidiit_mail($PaymentDataArr['logisticsData']['deliveryStaffEmail'],'Tidiit payment completed for Order '.$tidiitStr.'-'.$orderId,$mailBody,'',$recv_name);
+        $mailBody="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Retailershangout payment for Order <b>".$tidiitStr.'-'.$orderId.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>retailershangout.com.';
+        $this->_global_tidiit_mail($PaymentDataArr['logisticsData']['deliveryStaffEmail'],'Retailershangout payment completed for Order '.$tidiitStr.'-'.$orderId,$mailBody,'',$recv_name);
 
         $this->_sent_order_complete_mail_sod_final_payment1($this->Order_model->get_single_order_by_id($orderId));
         $this->session->unset_userdata('razorpayPaymentId');
@@ -2490,7 +2490,7 @@ class Shopping extends MY_Controller{
 
     function process_mpesa_success_single_order_final($PaymentDataArr,$mPessaReturnDataArr){
         $orderId=0;
-        $tidiitStrChr='TIDIIT-OD';
+        $tidiitStrChr='RH-OD';
         $tidiitStr='';
         //Send Email message
         $user = $this->_get_current_user_details();
@@ -2514,7 +2514,7 @@ class Shopping extends MY_Controller{
 
             $mail_template_view_data=$this->load_default_resources();
             $mail_template_view_data['single_order_success']=$mail_template_data;
-            $this->_global_tidiit_mail($recv_email, "Payment has completed for your Tidiit order TIDIIT-OD-".$v, $mail_template_view_data,'single_order_success_sod_final_payment',$recv_name);
+            $this->_global_tidiit_mail($recv_email, "Payment has completed for your Retailershangout order RH-OD-".$v, $mail_template_view_data,'single_order_success_sod_final_payment',$recv_name);
             $this->_sent_single_order_complete_mail_sod_final_payment($v);
         endforeach;
         /// here to preocess SMS to logistics partner
@@ -2522,7 +2522,7 @@ class Shopping extends MY_Controller{
         if(!empty($logisticsData) && array_key_exists('deliveryStaffContactNo', $logisticsData)):
             $logisticMobileNo=$logisticsData['deliveryStaffContactNo'];
             if($logisticMobileNo!=""):
-                $sms=$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.' please process the delivery.';
+                $sms=$recv_name.' has completed the payment for Retailershangout order '.$tidiitStr.' please process the delivery.';
                 /// sendin SMS to allmember
                 $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$logisticMobileNo,'senderId'=>'','receiverId'=>'',
                     'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LOGISTICS');
@@ -2531,14 +2531,14 @@ class Shopping extends MY_Controller{
         endif;
 
         /// SMS to payer
-        $sms='Thanks for the payment.We have received for Tidiit order '.$tidiitStr.'.';
+        $sms='Thanks for the payment.We have received for Retailershangout order '.$tidiitStr.'.';
         $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$user->mobile,'senderId'=>'','receiverId'=>$user->userId,
             'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-PAYER');
         send_sms_notification($sms_data);
 
         /// here send mail to logistic partner
-        $mailBody="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Tidiit Team.';
-        $this->_global_tidiit_mail($PaymentDataArr['logisticsData']['deliveryStaffEmail'],'Tidiit payment submited  for Order '.$tidiitStr,$mailBody,'',$recv_name);
+        $mailBody="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Retailershangout payment for Order <b>".$tidiitStr.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>retailershangout.com.';
+        $this->_global_tidiit_mail($PaymentDataArr['logisticsData']['deliveryStaffEmail'],'Retailershangout payment submited  for Order '.$tidiitStr,$mailBody,'',$recv_name);
         unset($_SESSION['PaymentData']);
         $this->session->set_flashdata('message','Thanks for the payment before order is Out for delivery');
         redirect(BASE_URL.'my-orders/');
@@ -2546,7 +2546,7 @@ class Shopping extends MY_Controller{
 
     function process_razorpay_success_single_order_final($PaymentDataArr){
         $orderId=0;
-        $tidiitStrChr='TIDIIT-OD';
+        $tidiitStrChr='RH-OD';
         $tidiitStr='';
         //Send Email message
         $user = $this->_get_current_user_details();
@@ -2569,7 +2569,7 @@ class Shopping extends MY_Controller{
 
             $mail_template_view_data=$this->load_default_resources();
             $mail_template_view_data['single_order_success']=$mail_template_data;
-            $this->_global_tidiit_mail($recv_email, "Payment has completed for your Tidiit order TIDIIT-OD-".$v, $mail_template_view_data,'single_order_success_sod_final_payment',$recv_name);
+            $this->_global_tidiit_mail($recv_email, "Payment has completed for your Retailershangout order RH-OD-".$v, $mail_template_view_data,'single_order_success_sod_final_payment',$recv_name);
             $this->_sent_single_order_complete_mail_sod_final_payment($v);
         endforeach;
         /// here to preocess SMS to logistics partner
@@ -2577,7 +2577,7 @@ class Shopping extends MY_Controller{
         if(!empty($logisticsData) && array_key_exists('deliveryStaffContactNo', $logisticsData)):
             $logisticMobileNo=$logisticsData['deliveryStaffContactNo'];
             if($logisticMobileNo!=""):
-                $sms=$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.' please process the delivery.';
+                $sms=$recv_name.' has completed the payment for Retailershangout order '.$tidiitStr.' please process the delivery.';
                 /// sendin SMS to allmember
                 $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$logisticMobileNo,'senderId'=>'','receiverId'=>'',
                     'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LOGISTICS');
@@ -2586,14 +2586,14 @@ class Shopping extends MY_Controller{
         endif;
 
         /// SMS to payer
-        $sms='Thanks for the payment.We have received for Tidiit order '.$tidiitStr.'.';
+        $sms='Thanks for the payment.We have received for Retailershangout order '.$tidiitStr.'.';
         $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$user->mobile,'senderId'=>'','receiverId'=>$user->userId,
             'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-PAYER');
         send_sms_notification($sms_data);
 
         /// here send mail to logistic partner
-        $mailBody="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Tidiit Team.';
-        $this->_global_tidiit_mail($PaymentDataArr['logisticsData']['deliveryStaffEmail'],'Tidiit payment submited  for Order '.$tidiitStr,$mailBody,'',$recv_name);
+        $mailBody="Hi ".$PaymentDataArr['logisticsData']['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Retailershangout payment for Order <b>".$tidiitStr.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>retailershangout.com.';
+        $this->_global_tidiit_mail($PaymentDataArr['logisticsData']['deliveryStaffEmail'],'Retailershangout payment submited  for Order '.$tidiitStr,$mailBody,'',$recv_name);
         unset($_SESSION['PaymentData']);
         unset($_SESSION['TempPaymentData']);
         $this->session->set_flashdata('message','Thanks for the payment before order is Out for delivery');
@@ -2612,16 +2612,16 @@ class Shopping extends MY_Controller{
         $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $buyerFullName=$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName;
         $adminMailData['buyerFullName']=$buyerFullName;
-        $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment has submited for Tidiit order TIDIIT-OD-".$orderId.' before delivery', $adminMailData,'seller_single_order_success_sod_final_payment',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+        $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment has submited for Retailershangout order RH-OD-".$orderId.' before delivery', $adminMailData,'seller_single_order_success_sod_final_payment',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
         /// for support
-        $adminMailData['userFullName']='Tidiit Inc Support';
+        $adminMailData['userFullName']='Retailershangout  Support';
         $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Payment has submited for Tidiit Order TIDIIT-OD-".$orderId.' before delivery', $adminMailData,'support_single_order_success_sod_final_payment','Tidiit Inc Support');
+        $this->_global_tidiit_mail($supportEmail, "Payment has submited for Retailershangout order RH-OD-".$orderId.' before delivery', $adminMailData,'support_single_order_success_sod_final_payment','Retailershangout  Support');
         //die;
 
         return TRUE;
@@ -2643,21 +2643,21 @@ class Shopping extends MY_Controller{
         $adminMailData['orderParrentId']=$order->parrentOrderID;
         $adminMailData['userFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
         //pre($adminMailData);die;
-        $this->_global_tidiit_mail($orderInfoDataArr['group']->admin->email, "Payment has submited for Tiidit Buying Club order - TIDIIT-OD-".$order->orderId.' before delivery.', $adminMailData,'group_order_success_sod_final_payment',$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName);
+        $this->_global_tidiit_mail($orderInfoDataArr['group']->admin->email, "Payment has submited for Tiidit Buying Club order - RH-OD-".$order->orderId.' before delivery.', $adminMailData,'group_order_success_sod_final_payment',$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName);
 
         /// for seller
         $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
-        $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment submited for the Buying Club order TIDIIT-OD-".$order->orderId.' before delivery.', $adminMailData,'seller_group_order_success_sod_final_payment',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+        $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment submited for the Buying Club order RH-OD-".$order->orderId.' before delivery.', $adminMailData,'seller_group_order_success_sod_final_payment',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
         /// for support
-        $adminMailData['userFullName']='Tidiit Inc Support';
+        $adminMailData['userFullName']='Retailershangout  Support';
         $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Payment has submited for Tidiit Buying Club order TIDIIT-OD-".$order->orderId.' before delivery.', $adminMailData,'support_group_order_success_sod_final_payment','Tidiit Inc Support');
+        $this->_global_tidiit_mail($supportEmail, "Payment has submited for Retailers Hangout order RH-OD-".$order->orderId.' before delivery.', $adminMailData,'support_group_order_success_sod_final_payment','Retailershangout  Support');
     }
 
     function _sent_order_complete_mail_sod_final_payment($order){
@@ -2677,21 +2677,21 @@ class Shopping extends MY_Controller{
             $adminMailData['orderParrentId']=$order->parrentOrderID;
             $adminMailData['userFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
             //pre($adminMailData);die;
-            //$this->_global_tidiit_mail($orderInfoDataArr['group']->admin->email, "$currentUserFullName  has completed payment in your Buying Club order - TIDIIT-OD-".$order->orderId.' before delivery.', $adminMailData,'group_order_success_sod_final_payment',$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName);
+            //$this->_global_tidiit_mail($orderInfoDataArr['group']->admin->email, "$currentUserFullName  has completed payment in your Buying Club order - RH-OD-".$order->orderId.' before delivery.', $adminMailData,'group_order_success_sod_final_payment',$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName);
 
             /// for seller
             $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
             $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
-            $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment has submited for the Buying Club order TIDIIT-OD-".$order->parrentOrderID.' before delivery.', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+            $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment has submited for the Buying Club order RH-OD-".$order->parrentOrderID.' before delivery.', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
             /// for support
-            $adminMailData['userFullName']='Tidiit Inc Support';
+            $adminMailData['userFullName']='Retailershangout  Support';
             $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
             $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
             $this->load->model('Siteconfig_model','siteconfig');
             //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
             $supportEmail='judhisahoo@gmail.com';
-            $this->_global_tidiit_mail($supportEmail, "Payment has submited for the Tidiit Buying Club order TIDIIT-OD-".$order->parrentOrderID.' before delivery.', $adminMailData,'support_group_order_success_sod_final_payment','Tidiit Inc Support');
+            $this->_global_tidiit_mail($supportEmail, "Payment has submited for the Retailers Hangout order RH-OD-".$order->parrentOrderID.' before delivery.', $adminMailData,'support_group_order_success_sod_final_payment','Retailershangout  Support');
             //die;
             ///mail to Buyer CLub
             $allChieldOrdersData=$this->Order_model->get_all_chield_order($order->parrentOrderID);
@@ -2714,23 +2714,23 @@ class Shopping extends MY_Controller{
                 }
                 //echo '<br>$order id '.$k->orderId.'<br>';
                 $adminMailData['userFullName']=$userFullName;
-                $this->_global_tidiit_mail($email, "Payment has completed for your Tidiit Buying Club order TIDIIT-OD-".$k->orderId.' before delivery.', $adminMailData,'group_order_success_sod_final_payment',$userFullName);
+                $this->_global_tidiit_mail($email, "Payment has completed for your Retailers Hangout order RH-OD-".$k->orderId.' before delivery.', $adminMailData,'group_order_success_sod_final_payment',$userFullName);
 
                 //echo '<br>$order id '.$k->orderId.'<br>';
                 /// for seller
                 $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
                 $adminMailData['buyerFullName']=$userFullName;
-                $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment has completed for Tidiit Buying Club order TIDIIT-OD-".$k->orderId.' before delivery.', $adminMailData,'seller_group_order_success_sod_final_payment',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+                $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment has completed for Retailers Hangout order RH-OD-".$k->orderId.' before delivery.', $adminMailData,'seller_group_order_success_sod_final_payment',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
                 //echo '<br>$order id '.$k->orderId.'<br>';
                 /// for support
-                $adminMailData['userFullName']='Tidiit Inc Support';
+                $adminMailData['userFullName']='Retailershangout  Support';
                 $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
                 $adminMailData['buyerFullName']=$userFullName;
                 $this->load->model('Siteconfig_model','siteconfig');
                 //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
                 $supportEmail='judhisahoo@gmail.com';
-                $this->_global_tidiit_mail($supportEmail, "Payment has completed for Tidiit Buying Club order TIDIIT-OD-".$k->orderId.' before delivery.', $adminMailData,'support_group_order_success_sod_final_payment','Tidiit Inc Support');
+                $this->_global_tidiit_mail($supportEmail, "Payment has completed for Retailers Hangout order RH-OD-".$k->orderId.' before delivery.', $adminMailData,'support_group_order_success_sod_final_payment','Retailershangout  Support');
             }
         }else{
             die('comming else part');

@@ -73,9 +73,9 @@ class User extends My_Controller {
 	}
         
         function user_creation_notification($dataArr){
-            $this->email->from("no-reply@tidiit.com", 'Tidiit System Administrator');
+            $this->email->from("no-reply@retailershangout.com", 'Tidiit System Administrator');
             $this->email->to($dataArr['email'],$dataArr['firstName'].' '.$dataArr['lastName']);
-            $this->email->subject('Your login details for Tidiit Inc. Ltd.');
+            $this->email->subject('Your login details for retailershangout.com');
             $data=array();
             $data['userDetails']=$dataArr;
             $msg=$this->load->view('email_template/admin_user_create',$data,true);
@@ -202,9 +202,9 @@ class User extends My_Controller {
     
     function retrive_password($userId){
         $userDetails=$this->User_model->get_details_by_id($userId);
-        $this->email->from("no-reply@tidiit.com", 'Tidiit System Administrator');
+        $this->email->from("no-reply@retailershangout.com", 'Tidiit System Administrator');
         $this->email->to($userDetails[0]->email,$userDetails[0]->firstName.' '.$userDetails[0]->lastName);
-        $this->email->subject('Your password at Tidiit Inc. Ltd.');
+        $this->email->subject('Your password at retailershangout.com');
         $data=array();
         $data['userDetails']=$userDetails;
         $msg=$this->load->view('email_template/retribe_user_password',$data,true);

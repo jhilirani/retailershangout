@@ -71,9 +71,9 @@ class Ajax extends MY_Controller{
                 
                 $mail_template_view_data=$this->load_default_resources();
                 $mail_template_view_data['create_user']=$mail_template_data;
-                $this->_global_tidiit_mail($email, "Your account at Tidiit Inc. Ltd.", $mail_template_view_data,'user_create',$firstName.' '.$lastName);
+                $this->_global_tidiit_mail($email, "Your account at retailershangout.com", $mail_template_view_data,'user_create',$firstName.' '.$lastName);
                 
-                echo json_encode(array('result'=>'good','url'=>BASE_URL.'my-shipping-address','msg'=>'You have successfully register your account with "Tidiit Inc Ltd.Your login information will be sent to registered email account.','profile_common_message'=>  $this->commonProfileCompletionMessage));die; 
+                echo json_encode(array('result'=>'good','url'=>BASE_URL.'my-shipping-address','msg'=>'You have successfully register your account with "retailershangout.com.Your login information will be sent to registered email account.','profile_common_message'=>  $this->commonProfileCompletionMessage));die; 
             }else{
                 echo json_encode(array('result'=>'bad','msg'=>'Please check your user anme and password and try again.','profile_common_message'=>""));die;     
             }
@@ -477,7 +477,7 @@ class Ajax extends MY_Controller{
                     $data['senderId'] = $this->session->userdata('FE_SESSION_VAR');
                     $data['receiverId'] = $usr->userId;
                     $data['nType'] = 'BUYING-CLUB-ORDER';
-                    $data['nTitle'] = 'Buying Club Re-order [TIDIIT-OD'.$order->orderId.'] running by <b>'.$group->admin->firstName.' '.$group->admin->lastName.'</b>';
+                    $data['nTitle'] = 'Buying Club Re-order [RH-OD'.$order->orderId.'] running by <b>'.$group->admin->firstName.' '.$group->admin->lastName.'</b>';
                     $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_ORDER_ID']=$order->orderId;
                     $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_ADMIN_NAME']=$group->admin->firstName.' '.$group->admin->lastName;
                     $data['nMessage'] = "Hi, <br> You have requested to buy Buying Club order product.<br>";
@@ -486,7 +486,7 @@ class Ajax extends MY_Controller{
                     $data['nMessage'] .= "Want to process the order ? <br>";
                     $data['nMessage'] .= "<a href='".BASE_URL."shopping/group-order-decline/".base64_encode($orderId*226201)."' class='btn btn-danger btn-lg'>Decline</a>  or <a href='".BASE_URL."shopping/group-re-order-accept-process/".base64_encode($orderId*226201)."/".base64_encode(100)."' class='btn btn-success btn-lg'>Accept</a><br>";
                     $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_ORDER_ID1']=$orderId;
-                    $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                    $data['nMessage'] .= "Thanks <br> retailershangout.com.";
                     $data['orderId'] =$orderId;
                     $data['productId'] =$orderinfo['priceinfo']->productId;
                     $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -502,7 +502,7 @@ class Ajax extends MY_Controller{
                     /// firing mail
                     $mail_template_view_data=$this->load_default_resources();
                     $mail_template_view_data['group_order_re_start']=$mail_template_data;
-                    $this->_global_tidiit_mail($recv_email, "Buying Club Order Re-Invitation at Tidiit Inc Ltd", $mail_template_view_data,'group_order_re_start');
+                    $this->_global_tidiit_mail($recv_email, "Buying Club Order Re-Invitation at retailershangout.com", $mail_template_view_data,'group_order_re_start');
                     
                     $this->User_model->notification_add($data);
                 endforeach;
@@ -957,7 +957,7 @@ class Ajax extends MY_Controller{
                 
                 $mail_template_view_data=$this->load_default_resources();
                 $mail_template_view_data['retribe_user_password']=$mail_template_data;
-                $this->_global_tidiit_mail($DataArr[0]->email, "Your password at Tidiit Inc. Ltd.", $mail_template_view_data,'retribe_user_password',$DataArr[0]->firstName.' '.$DataArr[0]->lastName);
+                $this->_global_tidiit_mail($DataArr[0]->email, "Your password at retailershangout.com", $mail_template_view_data,'retribe_user_password',$DataArr[0]->firstName.' '.$DataArr[0]->lastName);
                 echo json_encode(array('result'=>'good','msg'=>'Your password has been sent to your register email address.'));die; 
             }else{
                 echo json_encode(array('result'=>'bad','msg'=>'Please check your "email" and try again.'));die;     
@@ -1017,7 +1017,7 @@ class Ajax extends MY_Controller{
         $config = array(
             array('field'   => 'outForDeliveryType','label'   => 'Select out for delivery type','rules'=> 'trim|required|xss_clean'),
             array('field'   => 'orderId','label'   => 'Enter the OrderID','rules'   => 'trim|required|xss_clean|callback_valid_user_order_out_for_delivery'),
-            array('field'   => 'logisticsId','label'   => 'Logistics Tidiit Sign ID','rules'   => 'trim|required|xss_clean'),
+            array('field'   => 'logisticsId','label'   => 'Logistics Retailershangout Sign ID','rules'   => 'trim|required|xss_clean'),
             array('field'   => 'deliveryStaffName','label'   => 'Delivery Staff Name','rules'   => 'trim|required|xss_clean'),
             array('field'   => 'deliveryStaffContactNo','label'   => 'Delivery Staff Contact No','rules'   => 'trim|required|xss_clean'),
             array('field'   => 'deliveryStaffEmail','label'   => 'Delivery Staff Email','rules'   => 'trim|required|xss_clean|valid_email')
@@ -1096,7 +1096,7 @@ class Ajax extends MY_Controller{
         $mail_template_view_data['deliveryStaffEmail']=$outForDeliveryDataArr['deliveryStaffEmail'];
         $mail_template_view_data['isPaid']=$order->isPaid;
         $buyerFullName=$order->buyerFirstName.' '.$order->buyerLastName;
-        $this->_global_tidiit_mail($order->buyerEmail, "Pre-alert to your Tidiit order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'single_order_out_for_delivery_pre_alert',$buyerFullName);
+        $this->_global_tidiit_mail($order->buyerEmail, "Pre-alert to your Retailershangout order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'single_order_out_for_delivery_pre_alert',$buyerFullName);
         
         
         $mail_template_view_data['orderInfoDataArr']=unserialize(base64_decode($order->orderInfo));
@@ -1104,18 +1104,18 @@ class Ajax extends MY_Controller{
         /// for seller
         $mail_template_view_data['userFullName']=$order->sellerFirstName.' '.$order->sellerFirstName;
         $mail_template_view_data['buyerFullName']=$buyerFullName;
-        $this->_global_tidiit_mail($order->sellerEmail, "Pre-alert for order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'seller_single_order_out_for_delivery_pre_alert',$order->sellerFirstName.' '.$order->sellerFirstName);
+        $this->_global_tidiit_mail($order->sellerEmail, "Pre-alert for order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'seller_single_order_out_for_delivery_pre_alert',$order->sellerFirstName.' '.$order->sellerFirstName);
         
         
-        $mail_template_view_data['userFullName']='Tidiit Inc Support';
+        $mail_template_view_data['userFullName']='Retailershangout  Support';
         $mail_template_view_data['sellerFullName']=$order->sellerFirstName.' '.$order->sellerLastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Pre-alert for Order no - TIDIIT-OD-".$order->orderId.' before delivery ', $mail_template_view_data,'support_single_order_out_for_delivery_pre_alert','Tidiit Inc Support');
+        $this->_global_tidiit_mail($supportEmail, "Pre-alert for Order no - RH-OD-".$order->orderId.' before delivery ', $mail_template_view_data,'support_single_order_out_for_delivery_pre_alert','Retailershangout  Support');
         
         /// sendin SMS to allmember
-        $smsMsg='Tidiit order TIDIIT-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
+        $smsMsg='Retailershangout order RH-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
         if($order->isPaid==0):
             $smsMsg.="AS you had selected Settlement on Delivery method,please submit the payment,So delivery people will delivery your item.";
         endif;
@@ -1144,30 +1144,30 @@ class Ajax extends MY_Controller{
         $mail_template_view_data['isPaid']=$order->isPaid;
         $mail_template_view_data['orderDetails']=$orderDetails;
         $buyerFullName=$order->buyerFirstName.' '.$order->buyerLastName;
-        $this->_global_tidiit_mail($order->buyerEmail, "Pre-alert to your Tidiit Buying Club order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'group_order_out_for_delivery_pre_alert',$buyerFullName);
+        $this->_global_tidiit_mail($order->buyerEmail, "Pre-alert to your Retailers Hangout order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'group_order_out_for_delivery_pre_alert',$buyerFullName);
         
         /// mail for group leader
         $mail_template_view_data['buyerFullName']=$buyerFullName;
         if($order->parrentOrderID>0):
             $mail_template_view_data['leaderFullName']=$orderInfo['group']->admin->firstName.' '.$orderInfo['group']->admin->lastName;
-            $this->_global_tidiit_mail($orderInfo['group']->admin->email, "Pre-alert to your Tidiit Buying Club Member order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'group_order_out_for_delivery_pre_alert_leader',$buyerFullName);    
+            $this->_global_tidiit_mail($orderInfo['group']->admin->email, "Pre-alert to your Retailers Hangout Member order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'group_order_out_for_delivery_pre_alert_leader',$buyerFullName);    
         endif;
         
         /// for seller
         $mail_template_view_data['orderInfoDataArr']=unserialize(base64_decode($order->orderInfo));
         $sellerFullName=$order->sellerFirstName.' '.$order->sellerFirstName;
         $mail_template_view_data['sellerFullName']=$sellerFullName;
-        $this->_global_tidiit_mail($order->sellerEmail, "Pre-alert for Tidiit Buying Club order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'seller_group_order_out_for_delivery_pre_alert',$sellerFullName);
+        $this->_global_tidiit_mail($order->sellerEmail, "Pre-alert for Retailers Hangout order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'seller_group_order_out_for_delivery_pre_alert',$sellerFullName);
         
-        $mail_template_view_data['supportFullName']='Tidiit Inc Support';
+        $mail_template_view_data['supportFullName']='Retailershangout  Support';
         $mail_template_view_data['sellerFullName']=$order->sellerFirstName.' '.$order->sellerLastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Pre-alert Tidiit Buying Club for Order no - TIDIIT-OD-".$order->orderId.' before delivery ', $mail_template_view_data,'support_group_order_out_for_delivery_pre_alert','Tidiit Inc Support');
+        $this->_global_tidiit_mail($supportEmail, "Pre-alert Retailers Hangout for Order no - RH-OD-".$order->orderId.' before delivery ', $mail_template_view_data,'support_group_order_out_for_delivery_pre_alert','Retailershangout  Support');
         
         /// sendin SMS to Buyer
-        $smsMsg='Your Tidiit order TIDIIT-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
+        $smsMsg='Your Retailershangout order RH-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
         if($order->isPaid==0):
             $smsMsg.="AS you had selected Settlement on Delivery method,please submit the payment,So delivery people will delivery your item.";
         endif;
@@ -1177,7 +1177,7 @@ class Ajax extends MY_Controller{
         
         if($order->userId!=$orderInfo["group"]->admin->userId):
             /// sendin SMS to Leader
-            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Tidiit order TIDIIT-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
+            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Retailershangout order RH-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
             if($order->isPaid==0):
                 $smsMsg.="$buyerFullName had selected Settlement on Delivery method,please follow with him/her to submit the payment,So delivery people will delivery your item.";
             endif;
@@ -1205,24 +1205,24 @@ class Ajax extends MY_Controller{
         $mail_template_view_data['deliveryStaffEmail']=$outForDeliveryDataArr['deliveryStaffEmail'];
         $mail_template_view_data['isPaid']=$order->isPaid;
         $buyerFullName=$order->buyerFirstName.' '.$order->buyerLastName;
-        $this->_global_tidiit_mail($order->buyerEmail, "Your Tidiit order no - TIDIIT-OD-".$order->orderId.' is ready now to Out For Delivery', $mail_template_view_data,'single_order_out_for_delivery',$buyerFullName);
+        $this->_global_tidiit_mail($order->buyerEmail, "Your Retailershangout order no - RH-OD-".$order->orderId.' is ready now to Out For Delivery', $mail_template_view_data,'single_order_out_for_delivery',$buyerFullName);
         
         /// for seller
         $mail_template_view_data['orderInfoDataArr']=unserialize(base64_decode($order->orderInfo));
         $mail_template_view_data['orderDetails']=$orderDetails;
         $mail_template_view_data['userFullName']=$order->sellerFirstName.' '.$order->sellerFirstName;
         $mail_template_view_data['buyerFullName']=$buyerFullName;
-        $this->_global_tidiit_mail($order->sellerEmail, "Tidiit order no - TIDIIT-OD-".$order->orderId.' is ready to Out For Delivery', $mail_template_view_data,'seller_single_order_out_for_delivery',$order->sellerFirstName.' '.$order->sellerFirstName);
+        $this->_global_tidiit_mail($order->sellerEmail, "Retailershangout order no - RH-OD-".$order->orderId.' is ready to Out For Delivery', $mail_template_view_data,'seller_single_order_out_for_delivery',$order->sellerFirstName.' '.$order->sellerFirstName);
         
         
-        $mail_template_view_data['userFullName']='Tidiit Inc Support';
+        $mail_template_view_data['userFullName']='Retailershangout  Support';
         $mail_template_view_data['sellerFullName']=$order->sellerFirstName.' '.$order->sellerLastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Tidiit Order no - TIDIIT-OD-".$order->orderId.' is ready to Out For Delivery ', $mail_template_view_data,'support_single_order_out_for_delivery','Tidiit Inc Support');
+        $this->_global_tidiit_mail($supportEmail, "Retailershangout order no - RH-OD-".$order->orderId.' is ready to Out For Delivery ', $mail_template_view_data,'support_single_order_out_for_delivery','Retailershangout  Support');
         
-        $smsMsg='Tidiit order TIDIIT-OD-'.$order->orderId.' is ready to Out For Delivery.';
+        $smsMsg='Retailershangout order RH-OD-'.$order->orderId.' is ready to Out For Delivery.';
         if($order->isPaid==0):
             $smsMsg.="AS you had selected Settlement on Delivery method,please submit the payment,So delivery people will deliver your item at your door step.";
         endif;
@@ -1249,30 +1249,30 @@ class Ajax extends MY_Controller{
         $mail_template_view_data['isPaid']=$order->isPaid;
         $mail_template_view_data['orderDetails']=$orderDetails;
         $buyerFullName=$order->buyerFirstName.' '.$order->buyerLastName;
-        $this->_global_tidiit_mail($order->buyerEmail, "Your Tidiit Buying Club order no - TIDIIT-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'group_order_out_for_delivery',$buyerFullName);
+        $this->_global_tidiit_mail($order->buyerEmail, "Your Retailers Hangout order no - RH-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'group_order_out_for_delivery',$buyerFullName);
         
         /// mail for group leader
         $mail_template_view_data['buyerFullName']=$buyerFullName;
         if($order->parrentOrderID>0):
             $mail_template_view_data['leaderFullName']=$orderInfo['group']->admin->firstName.' '.$orderInfo['group']->admin->lastName;
-            $this->_global_tidiit_mail($orderInfo['group']->admin->email, "Your Tidiit Buying Club Member order no - TIDIIT-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'group_order_out_for_delivery_leader',$buyerFullName);    
+            $this->_global_tidiit_mail($orderInfo['group']->admin->email, "Your Retailers Hangout Member order no - RH-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'group_order_out_for_delivery_leader',$buyerFullName);    
         endif;
         
         /// for seller
         $mail_template_view_data['orderInfoDataArr']=unserialize(base64_decode($order->orderInfo));
         $sellerFullName=$order->sellerFirstName.' '.$order->sellerFirstName;
         $mail_template_view_data['sellerFullName']=$sellerFullName;
-        $this->_global_tidiit_mail($order->sellerEmail, "Tidiit Buying Club order no - TIDIIT-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'seller_group_order_out_for_delivery',$sellerFullName);
+        $this->_global_tidiit_mail($order->sellerEmail, "Retailers Hangout order no - RH-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'seller_group_order_out_for_delivery',$sellerFullName);
         
-        $mail_template_view_data['supportFullName']='Tidiit Inc Support';
+        $mail_template_view_data['supportFullName']='Retailershangout  Support';
         $mail_template_view_data['sellerFullName']=$order->sellerFirstName.' '.$order->sellerLastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Tidiit Buying Club for Order no - TIDIIT-OD-".$order->orderId.' is ready for Out For Delivery ', $mail_template_view_data,'support_group_order_out_for_delivery','Tidiit Inc Support');
+        $this->_global_tidiit_mail($supportEmail, "Retailers Hangout for Order no - RH-OD-".$order->orderId.' is ready for Out For Delivery ', $mail_template_view_data,'support_group_order_out_for_delivery','Retailershangout  Support');
         
         /// sendin SMS to Buyer
-        $smsMsg='Your Tidiit order TIDIIT-OD-'.$order->orderId.' is ready to Out For Delivery.';
+        $smsMsg='Your Retailershangout order RH-OD-'.$order->orderId.' is ready to Out For Delivery.';
         if($order->isPaid==0):
             $smsMsg.="AS you had selected Settlement on Delivery method,please submit the payment,So delivery people will delivery your item.";
         endif;
@@ -1282,7 +1282,7 @@ class Ajax extends MY_Controller{
         
         if($order->userId!=$orderInfo["group"]->admin->userId):
             /// sendin SMS to Leader
-            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Tidiit order TIDIIT-OD-'.$order->orderId.' is ready to Out For Delivery.';
+            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Retailershangout order RH-OD-'.$order->orderId.' is ready to Out For Delivery.';
             if($order->isPaid==0):
                 $smsMsg.="$buyerFullName had selected Settlement on Delivery method,please follow with him/her to submit the payment,So delivery people will delivery your item.";
             endif;
@@ -1377,7 +1377,7 @@ class Ajax extends MY_Controller{
     function submit_delivery(){
         $config = array(
             array('field'   => 'orderId','label'   => 'Enter the OrderID','rules'   => 'trim|required|xss_clean|callback_valid_user_order_for_delivery'),
-            array('field'   => 'logisticsId','label'   => 'Logistics Tidiit Sign ID','rules'   => 'trim|required|xss_clean'),
+            array('field'   => 'logisticsId','label'   => 'Logistics Retailershangout Sign ID','rules'   => 'trim|required|xss_clean'),
             array('field'   => 'deliveryStaffName','label'   => 'Delivery Staff Name','rules'   => 'trim|required|xss_clean'),
             array('field'   => 'deliveryStaffContactNo','label'   => 'Delivery Staff Contact No','rules'   => 'trim|required|xss_clean'),
             array('field'   => 'deliveryStaffEmail','label'   => 'Delivery Staff Email','rules'   => 'trim|required|xss_clean|valid_email'),
@@ -1442,7 +1442,7 @@ class Ajax extends MY_Controller{
                 endif;
             }
             if(empty($upload_files) || count($upload_files)<2){
-                echo json_encode(array('result'=>'bad','msg'=>'You must upload 2 photo for tidiit order delivery proof.'));die;
+                echo json_encode(array('result'=>'bad','msg'=>'You must upload 2 photo for Retailershangout order delivery proof.'));die;
             }
             $dataArr['photo1']=$upload_files[0];
             $dataArr['photo2']=$upload_files[1];

@@ -257,7 +257,7 @@ class Index extends MY_Controller{
         $maildata['message']= $help_message;
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='kousik.das.btech@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, $help_subject, $maildata,'help_mail','Tidiit Inc Help Support');
+        $this->_global_tidiit_mail($supportEmail, $help_subject, $maildata,'help_mail','Retailershangout  Help Support');
         echo "<p class='box info text-left'>Your query have been submitted successfully!</p>";die;
     }
     

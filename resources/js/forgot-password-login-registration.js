@@ -9,8 +9,8 @@ myJsMain.login=function(){
             required: true
         }
     };
-    $('#tidiit_user_login_form').validate({rules: loginValidationRules,onsubmit: true});
-    $('#tidiit_user_login_form').submit(function(e) {
+    $('#retailershangout_user_login_form').validate({rules: loginValidationRules,onsubmit: true});
+    $('#retailershangout_user_login_form').submit(function(e) {
         e.preventDefault();
         if ($(this).valid()) {
             myJsMain.commonFunction.showPleaseWait();
@@ -78,7 +78,7 @@ myJsMain.registration=function(){
     /**
      * 
      */
-    $('#tidiit_user_register_form').validate({
+    $('#retailershangout_user_register_form').validate({
         rules: registerValidationRules,
         messages:{
             email:{
@@ -115,8 +115,8 @@ myJsMain.forgot_password=function(){
             email:true
         }
     };
-    $('#tidiit_user_forgot_form').validate({rules: forgotPasswrodValidationRules,onsubmit: true});
-    $('#tidiit_user_forgot_form').submit(function(e) {
+    $('#retailershangout_user_forgot_form').validate({rules: forgotPasswrodValidationRules,onsubmit: true});
+    $('#retailershangout_user_forgot_form').submit(function(e) {
         e.preventDefault();
         if ($(this).valid()) {
             myJsMain.commonFunction.showPleaseWait();

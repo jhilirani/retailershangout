@@ -34,11 +34,11 @@ myJsMain.login=function(){
         //$('#fade_background').fadeOut();
         //$('#LoadingDiv').fadeOut();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+            myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.msg,200);
             $('#loginInSubmit').prop('disabled',false);
         }else if(resultData.result=='good'){
             location.href=resultData.url;
-            //myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.url,200);
+            //myJsMain.commonFunction.tidiitAlert('Retailershangout System Message',resultData.url,200);
         }
     }
     
@@ -113,8 +113,8 @@ myJsMain.registration=function(){
 		//console.log('i ma in');
         e.preventDefault();
         if ($(this).valid()) {
-            //var ret=myJsMain.commonFunction.tidiitConfirm('Tidiit System','Are you sure  ?','silent','',180);
-            //myJsMain.commonFunction.tidiitAlert('Tidiit System','returning '+ret,180);
+            //var ret=myJsMain.commonFunction.tidiitConfirm('Retailershangout System','Are you sure  ?','silent','',180);
+            //myJsMain.commonFunction.tidiitAlert('Retailershangout System','returning '+ret,180);
             
             //alert(myJsMain.registrationRequestURL);return false;
             //$('#fade_background').fadeIn();
@@ -122,15 +122,15 @@ myJsMain.registration=function(){
             //alert(myJsMain.registrationRequestURL);
             //myJsMain.commonFunction.ajaxSubmit($(this),myJsMain.registrationRequestURL, judhiTest);
             //myJsMain.commonFunction.ajaxSubmit($(this),myJsMain.registrationRequestURL, registrationFormCallback);
-            tidiitAlert('Tidiit System','returning ',180);
+            tidiitAlert('Retailershangout System','returning ',180);
         }
     });
     
     
      // this is just to show product list page
     function registrationFormCallback(resultData){ //alert('rr');
-        //myJsMain.commonFunction.tidiitAlert('Tidiit Alert',resultData.msg,150);
+        //myJsMain.commonFunction.tidiitAlert('Retailershangout Alert',resultData.msg,150);
         alert(resultData.msg);
-        //myJsMain.commonFunction.tidiitAlert('Tidiit Alert',resultData.msg,150);
+        //myJsMain.commonFunction.tidiitAlert('Retailershangout Alert',resultData.msg,150);
     }
 }

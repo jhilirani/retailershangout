@@ -35,7 +35,7 @@ class Tidiit_debug extends MY_Controller{
             /// for seller
             $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
             $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
-            $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - RH-OD-".$order->parrentOrderID.' has placed from retailershangout.com', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+            $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Hangout order no - RH-OD-".$order->parrentOrderID.' has placed from retailershangout.com', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
             
             /// for support
             $adminMailData['userFullName']='Retailershangout  Support';
@@ -44,7 +44,7 @@ class Tidiit_debug extends MY_Controller{
             $this->load->model('Siteconfig_model','siteconfig');
             //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
             $supportEmail='judhisahoo@gmail.com';
-            $this->_global_tidiit_mail($supportEmail, "Buying Club order no - RH-OD-".$order->parrentOrderID.' has placed from retailershangout.com', $adminMailData,'support_group_order_success','Retailershangout  Support');
+            $this->_global_tidiit_mail($supportEmail, "Hangout order no - RH-OD-".$order->parrentOrderID.' has placed from retailershangout.com', $adminMailData,'support_group_order_success','Retailershangout  Support');
             //die;
             ///mail to Buyer CLub
             $allChieldOrdersData=$this->Order_model->get_all_chield_order($order->parrentOrderID);
@@ -67,13 +67,13 @@ class Tidiit_debug extends MY_Controller{
                 }
                 echo '<br>$order id '.$k->orderId.'<br>';
                 $adminMailData['userFullName']=$userFullName;
-                $this->_global_tidiit_mail($email, "Confirmation mail for your Buying Club Retailershangout order no - RH-OD-".$k->orderId, $adminMailData,'group_order_success',$userFullName);
+                $this->_global_tidiit_mail($email, "Confirmation mail for your Hangout Retailershangout order no - RH-OD-".$k->orderId, $adminMailData,'group_order_success',$userFullName);
                 
                 echo '<br>$order id '.$k->orderId.'<br>';
                 /// for seller
                 $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
                 $adminMailData['buyerFullName']=$userFullName;
-                $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - RH-OD-".$k->orderId.' has placed from retailershangout.com', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+                $this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Hangout order no - RH-OD-".$k->orderId.' has placed from retailershangout.com', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
                 
                 echo '<br>$order id '.$k->orderId.'<br>';
                 /// for support
@@ -83,7 +83,7 @@ class Tidiit_debug extends MY_Controller{
                 $this->load->model('Siteconfig_model','siteconfig');
                 //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
                 $supportEmail='judhisahoo@gmail.com';
-                $this->_global_tidiit_mail($supportEmail, "Buying Club order no - RH-OD-".$k->orderId.' has placed from retailershangout.com', $adminMailData,'support_group_order_success','Retailershangout  Support');
+                $this->_global_tidiit_mail($supportEmail, "Hangout order no - RH-OD-".$k->orderId.' has placed from retailershangout.com', $adminMailData,'support_group_order_success','Retailershangout  Support');
             }
         }
     }
@@ -103,7 +103,7 @@ class Tidiit_debug extends MY_Controller{
         /// for seller
         $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['billing']->firstName.' '.$orderInfoDataArr['billing']->lastName;
-        //$this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - RH-OD-".$orderId.' has placed from retailershangout.com', $adminMailData,'seller_single_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+        //$this->_global_tidiit_mail($orderDetails[0]->sellerEmail, "Hangout order no - RH-OD-".$orderId.' has placed from retailershangout.com', $adminMailData,'seller_single_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
         /// for support
         $adminMailData['userFullName']='Retailershangout  Support';
@@ -112,7 +112,7 @@ class Tidiit_debug extends MY_Controller{
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        $this->_global_tidiit_mail($supportEmail, "Buying Club order no - RH-OD-".$orderId.' has placed from retailershangout.com', $adminMailData,'support_single_order_success','Retailershangout  Support');
+        $this->_global_tidiit_mail($supportEmail, "Hangout order no - RH-OD-".$orderId.' has placed from retailershangout.com', $adminMailData,'support_single_order_success','Retailershangout  Support');
         //die;
         
         return TRUE;

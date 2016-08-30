@@ -44,7 +44,7 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                    <div class="col-md-3 col-sm-3">
+                                                    <?php /*<div class="col-md-3 col-sm-3">
                                                         <label>Country</label>
                                                         <p style="position:relative;" class="countryElementPara">
                                                             <select class="form-control nova heght_cntrl" name="countryId" id="countryId" value=""  tabindex="1">
@@ -54,8 +54,8 @@
                                                                 <?php }?>
                                                             </select>
                                                         </p>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-3 pad_rit_none">
+                                                    </div>*/?>
+                                                    <div class="col-md-4 col-sm-4">
                                                         <label>
                                                             <?php if($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=='IN'):?>
                                                             City<?php else:?>
@@ -65,6 +65,9 @@
                                                             <?php if($userShippingDataDetails[0]->cityId==""){?>
                                                             <select class="form-control nova heght_cntrl" name="cityId" id="cityId" value=""  tabindex="1">
                                                                 <option value="">Select</option>
+                                                                <?php foreach($cityDataArr As $k){?>
+                                                                <option value="<?php echo $k->cityId;?>"><?php echo $k->city;?></option>
+                                                                <?php }?> 
                                                             </select>
                                                             <?php }else{?> 
                                                             <select class="form-control nova heght_cntrl" name="cityId" id="cityId" value=""  tabindex="1">
@@ -76,7 +79,7 @@
                                                             <?php }?>
                                                         </p>
                                                     </div>
-                                                    <div class="col-md-3 col-sm-3 pad_rit_none">
+                                                    <div class="col-md-4 col-sm-4 pad_rit_none">
                                                         <label>
                                                             <?php if($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=='IN'):?>
                                                             Zip<?php else:?>
@@ -98,7 +101,7 @@
                                                         </p>
                                                     </div>
                                                     
-                                                    <div class="col-md-3 col-sm-3 pad_rit_none">
+                                                    <div class="col-md-4 col-sm-4 pad_rit_none">
                                                         <label>Locality</label>
                                                         <p style="position:relative;" class="localityElementPara">
                                                             <?php if($userShippingDataDetails[0]->localityId==""){?>
@@ -117,6 +120,7 @@
                                                     </div>
                                                     
                                                 </div>
+                                                <input type="hidden" name="countryId" id="countryId" value="99" />
                                             </div>
                                             
                                             <div class="col-md-12 rootShowInerCategoryData">

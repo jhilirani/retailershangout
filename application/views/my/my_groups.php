@@ -20,17 +20,17 @@
                     	<div class="active row">
                         	<div class="col-md-12 col-sm-12">
                              <div class="gen_infmtn">
-                            	<h6>My Buying Clubs <span class="pull-right"><input type="button" data-toggle="modal" data-target="#myModalLogin" name="" value="Creat new Buying Club" /></span></h6>
+                            	<h6>My Hangouts <span class="pull-right"><input type="button" data-toggle="modal" data-target="#myModalLogin" name="" value="Creat New Hangout" /></span></h6>
                                 </div>
                                     <div class="js-my-groups">    
                                         <?php if(!empty($myGroups)):
                                         foreach($myGroups as $gkey => $group):?>        
-                                        <div class="col-md-3 col-sm-3 grp_dashboard js-group-popover" title="<i class='fa fa-group'></i> Buying Club : <?=$group->groupTitle?>"  data-container="body" data-toggle="popover" data-placement="top" data-color="<?=$group->groupColor?>" id="group-id-<?=$group->groupId?>" data-content='<div class="row">
+                                        <div class="col-md-3 col-sm-3 grp_dashboard js-group-popover" title="<i class='fa fa-group'></i> Hangout : <?=$group->groupTitle?>"  data-container="body" data-toggle="popover" data-placement="top" data-color="<?=$group->groupColor?>" id="group-id-<?=$group->groupId?>" data-content='<div class="row">
                                              <div class="col-md-12">
-                                                 <h5><strong>Buying Club Leader</strong></h5>
+                                                 <h5><strong>Hangout Leader</strong></h5>
                                                  <p class="text-left"><?=$group->admin->firstName?> <?=$group->admin->lastName?></p>
                                                  <?php if($group->users):?>
-                                             <h5><strong>Buying Club Member</strong></h5><?php
+                                             <h5><strong>Hangout Member</strong></h5><?php
                                                 foreach($group->users as $ukey => $usr):?>
                                              <p class="text-left"><?=$usr->firstName?> <?=$usr->lastName?></p>
                                              <?php endforeach; endif;?>
@@ -65,23 +65,24 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Create New Buying Club</h4>
+        <h4 class="modal-title" id="myModalLabel">Create New Hangout</h4>
       </div>
       <form action="#" method="post" name="add_groups" class="form-horizontal" id="add_groups"> 
           <input type="hidden" name="groupAdminId" value="<?=$user->userId?>">
       <div class="modal-body">  
           
               <div class="form-group">
-                  <label for="groupTitle" class="col-sm-3 control-label">Buying Club Name</label>
+                  <label for="groupTitle" class="col-sm-3 control-label">Hangout Name</label>
                   <div class="col-sm-7">
                   <input type="text" class="form-control" id="groupTitle" name="groupTitle" placeholder="Jane Doe" required>
                   </div>
               </div>
                 <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">Search Buying Club member by below filters </legend>
-                    <div class="form-group">
+                    <legend class="scheduler-border">Search Hangout member by below filters </legend>
+                    <input type="hidden" name="countryId" id="countryId" value="99" />
+                    <?php /*<div class="form-group">
                         <label for="locality" class="col-sm-3 control-label">Select Country :</label>
-                        <div class="col-sm-7">
+                        <div class="col-sm-7">        
                             <select name="countryId" class="form-control nova heght_cntrl" id="countryId">
                                 <option value="">Select</option>
                                 <?php foreach ($countryDataArr AS $k): ?>
@@ -89,12 +90,15 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    </div>
+                    </div>*/?>
                     <div class="form-group">
                         <label for="locality" class="col-sm-3 control-label">Select City :</label>
                         <div class="cityElementPara col-sm-7">
                             <select name="cityId" class="form-control nova heght_cntrl" id="cityId">
                                 <option>Select City</option>
+                                <?php foreach ($cityDataArr AS $k): ?>
+                                    <option value="<?= $k->cityId ?>"><?= $k->city ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
@@ -136,7 +140,7 @@
             <div class="js-message" style="display:none;"></div>
       </div>
       <div class="modal-footer">
-        <input type="submit"  class="grpButton" name="creatGrp" id="grpButton" value="Create New Buying Club" />
+        <input type="submit"  class="grpButton" name="creatGrp" id="grpButton" value="Create New Hangout" />
       </div>
       </form>    
     </div>

@@ -61,7 +61,8 @@ class Index extends MY_Controller {
     function login() {
         $this->load->model('Country');
         $data = $this->_get_tobe_login_template();
-        $data['CountryDataArr'] = $this->Country->get_all1();
+        $countryId=99;
+        $data['stateDataArr'] = $this->Country->get_state_country($countryId);
         $this->load->view('login', $data);
     }
 

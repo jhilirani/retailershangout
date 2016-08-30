@@ -51,7 +51,7 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                                                     </tbody>
                                                     <tr>
                                                         <td>Order #RH-OD-<?=$order->orderId?></td>
-                                                        <td><?=$order->orderType=='GROUP'?'Buying Club':'Self'?></td>
+                                                        <td><?=$order->orderType=='GROUP'?'Hangout':'Self'?></td>
                                                         <td><?php echo $currencySymbol;?><?=$order->subTotalAmount?></td>
                                                         <td><?php echo ($order->paymentType=='settlementOnDelivery')?'Settlement On Delivery':'Paid';?></td>
                                                         <td><?php echo ($order->paymentType=='settlementOnDelivery')?'<span style="color: #009900;">No</span>':'<span style="color: #009900;">Yes</span>';?></td>

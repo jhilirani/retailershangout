@@ -20,7 +20,7 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                         	<div class="col-md-12 col-sm-12">
                                 
                                     <div class="gen_infmtn">
-                                        <h6>My Buying Clubs Orders</h6>
+                                        <h6>My Hangouts Orders</h6>
                                         <div class="row">
                                             <?php if($orders):?>
                                             <table class="table table-striped ">

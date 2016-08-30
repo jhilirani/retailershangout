@@ -32,16 +32,23 @@
                 <div class="col-md-6">
                     <div class="Scr_trstd">
                         <p><strong>100% Secure and Trusted Payment </strong></p>
-                        <span>We accept Net Banking, mPesa. We also offer Cash on Delivery.</span>
-                        <img src="<?php echo SiteImagesURL; ?>trstd_pymnt.png" />
+                        <span>We accept Net Banking, mPesa. We also offer Settlement on Delivery.</span>
+                        <div class="col-md-12">
+                            <div class="col-md-3"><img src="<?php echo SiteImagesURL; ?>godaddy-verified.png" /></div>
+                            <div class="col-md-2"><img src="<?php echo SiteImagesURL; ?>visa-verified.png" /></div>
+                            <div class="col-md-2"><img src="<?php echo SiteImagesURL; ?>master-card-verified.png" /></div>
+                            <div class="col-md-3"><img src="<?php echo SiteImagesURL; ?>diners-club-verified.png" /></div>
+                            <div class="col-md-2"><img src="<?php echo SiteImagesURL; ?>american-express-verified.png" /></div>
+                        </div>
+                        <?php /*<img src="<?php echo SiteImagesURL; ?>trstd_pymnt.png" /> */?>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="fotr_btm">
-            <p><strong><?php echo ($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=='IN') ? 'India' : 'Kenya';?> Wholesale Marketplace</strong></p>
-            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+            <?php /*<p><strong><?php echo ($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=='IN') ? 'India' : 'Kenya';?> Wholesale Marketplace</strong></p>
+            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span> */?>
             <div class="row">
                 <div class="col-md-2">
                     <div class="get_tidiit">
@@ -54,14 +61,14 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             <ul class="fotr_menu">
-                                <h6>retailershangout Inc. Ltd.</h6>
+                                <h6>Retailershangout Ltd.</h6>
                                 <li><a href="<?php echo BASE_URL.'content/careers/Ng==/';?>">Careers</a></li>
                                 <li><a href="#http://blog.retailershangout.com">Blog</a></li>
                                 <li><a href="<?php echo BASE_URL.'content/press/Nw==/';?>">Press</a></li>
                                 <h6>Community</h6>
-                                <li><a href="#">retailershangout Facebook</a></li>
-                                <li><a href="#">retailershangout Twitter</a></li>
-                                <li><a href="#">retailershangout LinkedIn</a></li>
+                                <li><a href="#">Retailershangout Facebook</a></li>
+                                <li><a href="#">Retailershangout Twitter</a></li>
+                                <li><a href="#">Retailershangout LinkedIn</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">

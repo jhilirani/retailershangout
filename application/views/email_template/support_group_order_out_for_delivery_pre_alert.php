@@ -37,7 +37,7 @@
                   <td width="80%" align="left" valign="top"><font style="font-family: Georgia, 'Times New Roman', Times, serif; color:#010101; font-size:14px"><strong><em>Hi <?php echo $supportFullName;?>,</em></strong></font><br />
                     <br />
                     <font style="font-family: Verdana, Geneva, sans-serif; color:#666766; font-size:13px; line-height:21px">
-						This is a pre-alert before out of delivery of Buying Club order <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">RH-OD-<?php echo $orderDetails[0]->orderId;?></span></a> for <?php echo $buyerFullName;?>
+						This is a pre-alert before out of delivery of Hangout order <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">RH-OD-<?php echo $orderDetails[0]->orderId;?></span></a> for <?php echo $buyerFullName;?>
 						<br /><br /><strong>Delivery Person Details as below.</strong>
                     <br />
 					Delivery Company Name : <?php echo $deliveryCompanyName;?><br />

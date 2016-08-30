@@ -88,7 +88,7 @@
                           </td>
                           <td><?php echo $status[$k->status];?></td>
                           <td>TIDIIT-OD-<?php echo $k->orderId;?></td>
-                          <td><?php if($k->orderType=='GROUP'){?><button class="btn btn-success showGroupDetails" data-groupid="<?php echo $k->groupId;?>"><i class="fa fa-arrow-left"></i>Buying Club</button><?php }else{echo 'Single';}?></td>
+                          <td><?php if($k->orderType=='GROUP'){?><button class="btn btn-success showGroupDetails" data-groupid="<?php echo $k->groupId;?>"><i class="fa fa-arrow-left"></i>Hangout</button><?php }else{echo 'Single';}?></td>
                           <td><?php if($k->orderType=='GROUP'){if($k->parrentOrderID==0){echo $k->orderId;}else{echo $k->parrentOrderID;}}?></td>
                           <td><?php echo date('d-m-Y',strtotime($k->orderDate));?></td>
                           <td><?php echo $k->productQty; ?></td>

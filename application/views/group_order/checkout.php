@@ -67,7 +67,7 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <?php /*<div class="form-group">
                                                 <label for="" class="col-sm-3 control-label">Country</label>
                                                 <div class="col-sm-9 countryElementPara">
                                                     <select class="form-control" name="countryId" id="countryId" value="">
@@ -77,7 +77,8 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                                                         <?php } ?>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div>*/?>
+                                            <input type="hidden" name="countryId" id="countryId" value="99" />
                                             <div class="form-group">
                                                 <label for="" class="col-sm-3 control-label">
                                                     <?php if($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=='IN'):?>
@@ -85,18 +86,18 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                                                     County<?php endif;?>
                                                 </label>
                                                 <div class="col-sm-9 cityElementPara">
-                                                    <?php if ($userShippingDataDetails->cityId == "") { ?>
+                                                    <?php /*if ($userShippingDataDetails->cityId == "") { ?>
                                                         <select class="form-control" name="cityId" id="cityId" value=""  tabindex="1">
                                                             <option value="">Select</option>
                                                         </select>
-                                                    <?php } else { ?> 
+                                                    <?php } else { */?> 
                                                         <select class="form-control" name="cityId" id="cityId" value=""  tabindex="1">
                                                             <option value="">Select</option>
                                                             <?php foreach ($cityDataArr As $k) { ?>
                                                                 <option value="<?php echo $k->cityId; ?>" <?php if ($k->cityId == $userShippingDataDetails->cityId) { ?>selected<?php } ?>><?php echo $k->city; ?></option>
                                                             <?php } ?> 
                                                         </select>
-                                                    <?php } ?>
+                                                    <?php //} ?>
                                                 </div>
                                             </div>
                                             <div class="form-group">

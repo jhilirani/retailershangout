@@ -54,7 +54,7 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                                                         <p class="text-center"><a href="<?php echo BASE_URL.'product/details/'.base64_encode($order->productId);?>" class="" target="_blank"><?=$ptitle;?></a></p></td>
                                                     <td><b><?php echo $currencySymbol;?> <?=$order->orderAmount;?></b></td>
                                                     <td><i class="fa fa-clock-o"></i><?=date('F j, Y, g:i a' , strtotime($order->orderDate));?></td>
-                                                    <td><span class="label label-info"><?php echo ($order->orderType=='GROUP') ? 'Buying Club' :'Single';?> - <?=$status[$order->status];?></span></td>
+                                                    <td><span class="label label-info"><?php echo ($order->orderType=='GROUP') ? 'Hangout' :'Single';?> - <?=$status[$order->status];?></span></td>
                                                     <td align="right">
                                                     <?php if($porder):?>
                                                         <a class="btn btn-warning btn-xs" href="<?=BASE_URL?>my-orders/parent/<?=base64_encode($order->orderId*226201);?>"><i class="fa fa-eye"></i> Parent Order</a>

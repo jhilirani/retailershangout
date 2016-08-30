@@ -123,7 +123,7 @@ $currencySymbol=($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')=="IN")
                                             </table>
                                             <?php endif;?>
                                             <?php if($is_group):?>
-                                            <h4>Buying Club Order</h4>
+                                            <h4>Hangout Order</h4>
                                             <table id="cart" class="table table-hover table-condensed">
                                                 <thead>
                                                     <tr>

@@ -117,7 +117,7 @@
                 $subtotal = 0;
                 $tax = 0;
                 if ($is_group): ?>
-                    <h4>Buying Club Order</h4><br>
+                    <h4>Hangout Order</h4><br>
                     <table id="cart" class="table table-hover table-condensed">
                         <thead>
                         <tr>

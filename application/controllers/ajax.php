@@ -12,7 +12,7 @@ class Ajax extends MY_Controller{
         //parse_str($_SERVER['QUERY_STRING'],$_GET);
         $this->load->library('cart');
         $this->db->cache_off();
-        $this->commonProfileCompletionMessage='Please complete "My Profile","My Shipping Address","My Buying Club","My Fiance" before start order process.';
+        $this->commonProfileCompletionMessage='Please complete "My Profile","My Shipping Address","My Hangout","My Fiance" before start order process.';
     }
    
     public function check_registration(){
@@ -251,7 +251,7 @@ class Ajax extends MY_Controller{
             if(empty($UsersDataArr)){
                 echo '';die;
             }else{
-                $html ='<label class="col-sm-3 control-label">Select Buying Club Users :</label>';
+                $html ='<label class="col-sm-3 control-label">Select Hangout Users :</label>';
                 $html .='<div class="boxes">';
                 foreach($UsersDataArr as $user):
                 $html.='<div class="checkbox-'.$user->userId.'"><div class="checkbox">
@@ -360,7 +360,7 @@ class Ajax extends MY_Controller{
         
         $rs=$this->User_model->is_all_users_exists_for_group_by_admin_id($groupAdminId,$groupUsers);
         if($rs!=FALSE){
-            echo json_encode(array('result'=>'bad','msg'=>'All users are already attached with "Buying Club"['.$rs->groupTitle.'],Instead of create another Buying Club please use exist one.'));die;
+            echo json_encode(array('result'=>'bad','msg'=>'All users are already attached with "Hangout"['.$rs->groupTitle.'],Instead of create another Hangout please use exist one.'));die;
         }
         
         $groupId = $this->User_model->group_add(array('groupAdminId'=>$groupAdminId,'groupTitle'=>$groupTitle,'productType'=>$productType,'groupUsers'=>$groupUsers,'groupColor'=>$groupColor));
@@ -402,7 +402,7 @@ class Ajax extends MY_Controller{
         $groupColor = $colors[$rand_keys];
         
         if(!$groupUsersArr):
-            echo json_encode(array('result'=>'bad','msg'=>'Please select the at least one Buying Club member!'));die;
+            echo json_encode(array('result'=>'bad','msg'=>'Please select the at least one Hangout member!'));die;
         endif;
         
         $groupUsers = implode(",", $groupUsersArr);
@@ -477,10 +477,10 @@ class Ajax extends MY_Controller{
                     $data['senderId'] = $this->session->userdata('FE_SESSION_VAR');
                     $data['receiverId'] = $usr->userId;
                     $data['nType'] = 'BUYING-CLUB-ORDER';
-                    $data['nTitle'] = 'Buying Club Re-order [RH-OD'.$order->orderId.'] running by <b>'.$group->admin->firstName.' '.$group->admin->lastName.'</b>';
+                    $data['nTitle'] = 'Hangout Re-order [RH-OD'.$order->orderId.'] running by <b>'.$group->admin->firstName.' '.$group->admin->lastName.'</b>';
                     $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_ORDER_ID']=$order->orderId;
                     $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_ADMIN_NAME']=$group->admin->firstName.' '.$group->admin->lastName;
-                    $data['nMessage'] = "Hi, <br> You have requested to buy Buying Club order product.<br>";
+                    $data['nMessage'] = "Hi, <br> You have requested to buy Hangout order product.<br>";
                     $data['nMessage'] .= "Product is <a href=''>".$orderinfo['pdetail']->title."</a><br>";
                     $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_PRODUCT_TITLE']=$orderinfo['pdetail']->title;
                     $data['nMessage'] .= "Want to process the order ? <br>";
@@ -502,7 +502,7 @@ class Ajax extends MY_Controller{
                     /// firing mail
                     $mail_template_view_data=$this->load_default_resources();
                     $mail_template_view_data['group_order_re_start']=$mail_template_data;
-                    $this->_global_tidiit_mail($recv_email, "Buying Club Order Re-Invitation at retailershangout.com", $mail_template_view_data,'group_order_re_start');
+                    $this->_global_tidiit_mail($recv_email, "Hangout Order Re-Invitation at retailershangout.com", $mail_template_view_data,'group_order_re_start');
                     
                     $this->User_model->notification_add($data);
                 endforeach;
@@ -536,7 +536,7 @@ class Ajax extends MY_Controller{
             <div class="alert alert-success" role="alert">
                 <i class="fa fa-group"></i>
                 <span class="sr-only">Success:</span>
-                Buying Club has been added successfully. Please process the order without reload page.
+                Hangout has been added successfully. Please process the order without reload page.
             </div>
             <div class="col-md-3 col-sm-3 grp_dashboard" style="margin:0;">
             <div class="<?= $group->groupColor ?>">
@@ -545,10 +545,10 @@ class Ajax extends MY_Controller{
             <div class="grp_title"><?= $group->groupTitle ?></div>
         </div>        
         <div class="col-md-6">
-            <h5><strong>Buying Club Leader</strong></h5>
+            <h5><strong>Hangout Leader</strong></h5>
             <p class="text-left"><?= $group->admin->firstName ?> <?= $group->admin->lastName ?></p>
             <?php if ($group->users): ?>
-                <h5><strong>Buying Club Members</strong></h5><?php foreach ($group->users as $ukey => $usr): ?>
+                <h5><strong>Hangout Members</strong></h5><?php foreach ($group->users as $ukey => $usr): ?>
                     <p class="text-left"><?= $usr->firstName ?> <?= $usr->lastName ?></p>
                 <?php endforeach;
             endif;
@@ -569,14 +569,14 @@ class Ajax extends MY_Controller{
         <div class="alert alert-success" role="alert">
             <i class="fa fa-exclamation-circle"></i>
             <span class="sr-only">Success:</span>
-            Please select a Buying club!
+            Please select a Hangout!
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Buying Club Leader</th>
-                    <th>Buying Club Members</th>
+                    <th>Hangout Leader</th>
+                    <th>Hangout Members</th>
                     <th>Select</th>
                 </tr>
             </thead>
@@ -599,7 +599,7 @@ class Ajax extends MY_Controller{
         else:?>
         <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            You have no own Buying Club or not added any other Buyer. Please create Buying Club first!
+            You have no own Hangout or not added any other Buyer. Please create Hangout first!
         </div>
         <?php
         endif;
@@ -620,7 +620,7 @@ class Ajax extends MY_Controller{
         $type = $data['nType'];
         switch($type){
             case 'BUYING-CLUB-ADD':
-                $data['nMessage'] = "Hi, <br /> You Have added in my newly created Buying Club <strong>[".$data['nTitle']."]</strong> by ".$data['adminName'].".<br />Group Leader email id is ".$data['adminEmail'].".<br />Group Leader contact number is ".$data['adminContactNo'].".";
+                $data['nMessage'] = "Hi, <br /> You Have added in my newly created Hangout <strong>[".$data['nTitle']."]</strong> by ".$data['adminName'].".<br />Group Leader email id is ".$data['adminEmail'].".<br />Group Leader contact number is ".$data['adminContactNo'].".";
                 $data['isEmail'] = true;
                 if($this->Siteconfig_model->get_value_by_name('SMS_SEND_ALLOW')=='yes'):
                     $data['isMobMessage'] = true;
@@ -630,7 +630,7 @@ class Ajax extends MY_Controller{
                 $data['createDate'] = date('Y-m-d H:i:s');
                 break;
             case 'BUYING-CLUB-MODIFY':
-                $data['nMessage'] = "Hi, <br> Buying Club <strong>[".$data['nTitle']."]</strong> has been modified.";
+                $data['nMessage'] = "Hi, <br> Hangout <strong>[".$data['nTitle']."]</strong> has been modified.";
                 $data['isEmail'] = true;
                 if($this->Siteconfig_model->get_value_by_name('SMS_SEND_ALLOW')=='yes'):
                     $data['isMobMessage'] = true;
@@ -640,7 +640,7 @@ class Ajax extends MY_Controller{
                 $data['createDate'] = date('Y-m-d H:i:s');
                 break;
             case 'BUYING-CLUB-MODIFY-NEW':
-                $data['nMessage'] = "Hi, <br> You Have added in my Buying Club <strong>[".$data['nTitle']."]</strong>.<br />My name is ".$data['adminName'].".<br />My email id is ".$data['adminEmail'].".<br />My contact number is ".$data['adminContactNo'].".";
+                $data['nMessage'] = "Hi, <br> You Have added in my Hangout <strong>[".$data['nTitle']."]</strong>.<br />My name is ".$data['adminName'].".<br />My email id is ".$data['adminEmail'].".<br />My contact number is ".$data['adminContactNo'].".";
                 $data['isEmail'] = true;
                 if($this->Siteconfig_model->get_value_by_name('SMS_SEND_ALLOW')=='yes'):
                     $data['isMobMessage'] = true;
@@ -650,7 +650,7 @@ class Ajax extends MY_Controller{
                 $data['createDate'] = date('Y-m-d H:i:s');
                 break;
             case 'BUYING-CLUB-MODIFY-DELETE':
-                $data['nMessage'] = "Hi, <br> You are not part of this Buying Club <strong>[".$data['nTitle']."]</strong>";
+                $data['nMessage'] = "Hi, <br> You are not part of this Hangout <strong>[".$data['nTitle']."]</strong>";
                 $data['isEmail'] = true;
                 if($this->Siteconfig_model->get_value_by_name('SMS_SEND_ALLOW')=='yes'):
                     $data['isMobMessage'] = true;
@@ -978,7 +978,7 @@ class Ajax extends MY_Controller{
                 echo '';die;
             }else{
                 //echo '';die;
-                $html ='<label class="col-sm-3 control-label">Select Buying Club Users :</label>';
+                $html ='<label class="col-sm-3 control-label">Select Hangout Users :</label>';
                 $html .='<div class="boxes">';
                 foreach($UsersDataArr as $user):
                 $html.='<div class="checkbox-'.$user->userId.'"><div class="checkbox">
@@ -1177,7 +1177,7 @@ class Ajax extends MY_Controller{
         
         if($order->userId!=$orderInfo["group"]->admin->userId):
             /// sendin SMS to Leader
-            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Retailershangout order RH-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
+            $smsMsg='Your Hangout['.$orderInfo['group']->groupTitle.']  member Retailershangout order RH-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
             if($order->isPaid==0):
                 $smsMsg.="$buyerFullName had selected Settlement on Delivery method,please follow with him/her to submit the payment,So delivery people will delivery your item.";
             endif;
@@ -1282,7 +1282,7 @@ class Ajax extends MY_Controller{
         
         if($order->userId!=$orderInfo["group"]->admin->userId):
             /// sendin SMS to Leader
-            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Retailershangout order RH-OD-'.$order->orderId.' is ready to Out For Delivery.';
+            $smsMsg='Your Hangout['.$orderInfo['group']->groupTitle.']  member Retailershangout order RH-OD-'.$order->orderId.' is ready to Out For Delivery.';
             if($order->isPaid==0):
                 $smsMsg.="$buyerFullName had selected Settlement on Delivery method,please follow with him/her to submit the payment,So delivery people will delivery your item.";
             endif;

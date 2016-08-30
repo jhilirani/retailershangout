@@ -256,10 +256,10 @@ class Ajax extends MY_Controller{
         $adminMailData['sellerFullName']=$sellerFullName;
         $adminMailData['buyerFullName']=$buyerFullName;
 
-        $this->_global_tidiit_mail($orderDetails[0]->buyerEmail, "Tiidit Buying Club order - RH-OD-".$order->orderId.' has delivered successfully.', $adminMailData,'group_order_delivered',$buyerFullName);
+        $this->_global_tidiit_mail($orderDetails[0]->buyerEmail, "Tiidit Hangout order - RH-OD-".$order->orderId.' has delivered successfully.', $adminMailData,'group_order_delivered',$buyerFullName);
 
         if($order->parrentOrderID>0):
-            $this->_global_tidiit_mail($orderInfoDataArr['group']->admin->email, "Tiidit Buying Club order - RH-OD-".$order->orderId.' has delivered successfully.', $adminMailData,'group_order_delivered_leader',$orderLeaderFullName);
+            $this->_global_tidiit_mail($orderInfoDataArr['group']->admin->email, "Tiidit Hangout order - RH-OD-".$order->orderId.' has delivered successfully.', $adminMailData,'group_order_delivered_leader',$orderLeaderFullName);
         endif;
 
         /// for seller

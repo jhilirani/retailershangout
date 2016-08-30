@@ -38,17 +38,20 @@ class User extends MY_Controller{
             $userShippingDataDetails[0]=new stdClass();
             $userShippingDataDetails[0]->firstName="";
             $userShippingDataDetails[0]->lastName="";
-            $userShippingDataDetails[0]->countryId="";
+            $userShippingDataDetails[0]->countryId=99;
             $userShippingDataDetails[0]->cityId="";
             $userShippingDataDetails[0]->zipId="";
             $userShippingDataDetails[0]->localityId="";
             $userShippingDataDetails[0]->phone="";
             $userShippingDataDetails[0]->address="";
             $userShippingDataDetails[0]->contactNo="";
+        }else{
+            $userShippingDataDetails[0]->countryId=99;
         }
-        if($userShippingDataDetails[0]->countryId!=""){
+        /*if($userShippingDataDetails[0]->countryId!=""){
             $data['cityDataArr']=  $this->Country->get_all_city1($userShippingDataDetails[0]->countryId);
-        }
+        }*/
+        $data['cityDataArr']=  $this->Country->get_all_city1($userShippingDataDetails[0]->countryId);
         if($userShippingDataDetails[0]->zipId!=""){
             $data['zipDataArr']=  $this->Country->get_all_zip1($userShippingDataDetails[0]->cityId);
         }
@@ -155,7 +158,9 @@ class User extends MY_Controller{
         $this->load->model('Country');
         $SEODataArr=array();
         $data=$this->_get_logedin_template($SEODataArr);
-        $data['countryDataArr']=$this->Country->get_all1();
+        //$data['countryDataArr']=$this->Country->get_all1();
+        $countryId=99;
+        $data['cityDataArr'] = $this->Country->get_city_country($countryId);
         //$data['CatArr']=$this->Category_model->get_all(0);
         $menuArr=array();
         $TopCategoryData=$this->Category_model->get_top_category_for_product_list();
@@ -202,7 +207,8 @@ class User extends MY_Controller{
         $this->load->model('Country');
         $SEODataArr=array();
         $data=$this->_get_logedin_template($SEODataArr);
-        $data['countryDataArr']=$this->Country->get_all1();
+        $countryId=99;
+        $data['cityDataArr'] = $this->Country->get_city_country($countryId);
         $menuArr=array();
         $TopCategoryData=$this->Category_model->get_top_category_for_product_list();
         //$AllButtomCategoryData=$this->Category_model->buttom_category_for_product_list();

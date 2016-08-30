@@ -37,7 +37,7 @@
                   <td width="80%" align="left" valign="top"><font style="font-family: Georgia, 'Times New Roman', Times, serif; color:#010101; font-size:14px"><strong><em>Hi <?php echo $leaderFullName;?>,</em></strong></font><br />
                     <br />
                     <font style="font-family: Verdana, Geneva, sans-serif; color:#666766; font-size:13px; line-height:21px">
-					<?php echo $userFullName?> had placed the order <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">TIDIIT-OD-<?php echo $orderDetails[0]->orderId;?></span></a> under your Buying Club <strong><?php echo $orderInfoDataArr['group']->groupTitle?></strong>. <br />
+					<?php echo $userFullName?> had placed the order <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">TIDIIT-OD-<?php echo $orderDetails[0]->orderId;?></span></a> under your Hangout <strong><?php echo $orderInfoDataArr['group']->groupTitle?></strong>. <br />
                     <br />
 					<?php echo $sellerFullName;?> has shipped that and will be serviced by them. 
 					<br /><br />

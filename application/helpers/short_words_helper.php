@@ -128,7 +128,7 @@ if ( ! function_exists('title_more_string')){
 
 if ( ! function_exists('return_current_country_code')){
     function return_current_country_code(){
-        return 'US';die;
+        return 'IN';die;
         $ip=$_SERVER['REMOTE_ADDR'];
         
         $params = getopt('l:i:');
@@ -270,8 +270,9 @@ endif;
 
 if ( ! function_exists('get_counry_code_from_lat_long')):
     function get_counry_code_from_lat_long($lat,$long){
+        return 'IN';
         //("country", $jsondata["results"][0]["address_components"]);
-        $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false";
+        /*$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false";
         // Make the HTTP request
         $data = @file_get_contents($url);
         // Parse the json response
@@ -285,7 +286,7 @@ if ( ! function_exists('get_counry_code_from_lat_long')):
             }
         }else{
             return FALSE;
-        }
+        }*/
         //return $jsondata["results"][0]["formatted_address"];
     }
 endif;

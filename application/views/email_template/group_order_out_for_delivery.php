@@ -44,7 +44,7 @@
 					Email of delivery person : <?php echo $deliveryStaffEmail;?><br >
 					<!--Will delivery by : <br />-->
 					<?php if($isPaid==0){?><br />
-					As you had a Buying Club order order the item with <strong>Settle on Delivery</strong> Method,<br /> please be ready your payment in your account.<br />Make payment from your my account so logistics people delivery your item in your door step.
+					As you had a Hangout order order the item with <strong>Settle on Delivery</strong> Method,<br /> please be ready your payment in your account.<br />Make payment from your my account so logistics people delivery your item in your door step.
 					<?php }?>	</font> <br /></td>
                   <td width="10%">&nbsp;</td>
                 </tr>

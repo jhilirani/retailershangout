@@ -36,7 +36,7 @@
                   <td width="10%">&nbsp;</td>
                   <td width="80%" align="left" valign="top"><font style="font-family: Georgia, 'Times New Roman', Times, serif; color:#010101; font-size:14px"><strong><em>Hi <?php echo $userFullName;?>,</em></strong></font><br />
                     <br />
-                    <font style="font-family: Verdana, Geneva, sans-serif; color:#666766; font-size:13px; line-height:21px"><?php echo $buyerFullName;?> had  placed one Buying Club Order <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">RH-OD-<?php echo $orderDetails[0]->orderId;?></span></a> for <?php echo $sellerFullName;?> <br />Master order number : <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">RH-OD-<?php echo $orderParrentId?></span></a>.
+                    <font style="font-family: Verdana, Geneva, sans-serif; color:#666766; font-size:13px; line-height:21px"><?php echo $buyerFullName;?> had  placed one Hangout Order <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">RH-OD-<?php echo $orderDetails[0]->orderId;?></span></a> for <?php echo $sellerFullName;?> <br />Master order number : <a style="text-decoration:underline;" target="_blank" href="#"><span style="color:#565656;font-size:13px;">RH-OD-<?php echo $orderParrentId?></span></a>.
 					<br /><br />It has delivered successfully at <?php echo $buyerFullName;?>.<br />
 					Delivery Company Name : <?php echo $orderDeliveryDetails[0]['logisticsCompanyName'];?><br />
 					Delivery person name : <?php echo $orderDeliveryDetails[0]['deliveryStaffName'];?><br />

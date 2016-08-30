@@ -87,7 +87,7 @@ $OrderTypeArr=array('1'=>'Website','2'=>'Mobile Web','3'=>"Mobile Apps");
                         <td><?php echo date('d-m-Y',strtotime($InerArr->orderDate));?></td>
                         <td><?php echo $InerArr->orderStatusType;?></td>
                         <td><?php echo number_format($InerArr->orderAmount,2);?></td>
-                        <td><?php if($InerArr->orderType=='GROUP'){?><button class="btn btn-success showGroupDetails" data-groupid="<?php echo $InerArr->groupId;?>"><i class="fa fa-arrow-left"></i>Buying Club</button><?php }else{echo 'Single';}?></td>
+                        <td><?php if($InerArr->orderType=='GROUP'){?><button class="btn btn-success showGroupDetails" data-groupid="<?php echo $InerArr->groupId;?>"><i class="fa fa-arrow-left"></i>Hangout</button><?php }else{echo 'Single';}?></td>
                         <td><?php echo $InerArr->SellerEmail;?></td>
                         <td><?php echo $InerArr->email;?></td>
                         <td><?php if($InerArr->paymentType=='settlementOnDelivery'){ echo 'Settlement On Delivery';}else if($InerArr->paymentType=='mPesa'){echo 'mPesa';}?></td>

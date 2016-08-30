@@ -15,7 +15,7 @@
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12">
                                             <div class="js-message" style="display:none;"></div>
-                                            <div class="gen_infmtn"><h6><i class='fa fa-group'></i> Edit Buying club : <?= $group->groupTitle ?> </h6></div>
+                                            <div class="gen_infmtn"><h6><i class='fa fa-group'></i> Edit Hangout : <?= $group->groupTitle ?> </h6></div>
                                             <div class="create_grp">
                                                 <input type="hidden" name="reorder" value="<?=$reorder?>">
                                                 <input type="hidden" name="groupId" value="<?=$group->groupId?>">
@@ -23,15 +23,16 @@
                                                 <div class="row">
                                                     <div class="row">
                                                     <div class="col-md-12">
-                                                        <label for="groupTitle">Buying Club Title</label>
+                                                        <label for="groupTitle">Hangout Title</label>
                                                         <input type="text" class="form-control" id="groupTitle" name="groupTitle" placeholder="Jane Doe" value='<?= $group->groupTitle ?>' required>
                                                     </div>
                                                     </div>
                                                     <div class="clear" style="margin-bottom: 20px;"></div>
                                                     <fieldset class="scheduler-border">
-                                                        <legend class="scheduler-border">Search club member by below filters </legend>
+                                                        <legend class="scheduler-border">Search hangout member by below filters </legend>
                                                     <div class="row">
-                                                    <div class="col-md-6">
+                                                     <input type="hidden" name="countryId" id="countryId" value="99" />   
+                                                    <?php /*<div class="col-md-6">
                                                         <label for="locality" class="col-md-6 pad_none">Select Country :</label>
                                                         <div class="col-md-6 pad_none">
                                                             <select name="countryId" class="form-control nova heght_cntrl" id="countryId">
@@ -41,19 +42,20 @@
                                                                 <?php endforeach; ?>
                                                             </select>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-6">
+                                                    </div>*/?>
+                                                    <div class="col-md-4">
                                                         <label for="locality" class="col-md-6 pad_none">Select City :</label>
                                                         <div class="col-md-6 pad_none cityElementPara">
                                                             <select name="cityId" class="form-control nova heght_cntrl" id="cityId">
-                                                                <option>Select City</option>
+                                                                <option value="">Select City</option>
+                                                                <?php foreach ($cityDataArr AS $k): ?>
+                                                                    <option value="<?= $k->cityId ?>"><?= $k->city ?></option>
+                                                                <?php endforeach; ?>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    </div>
-                                                    <div class="clear" style="margin-bottom: 20px;"></div>
-                                                    <div class="row">
-                                                    <div class="col-md-6">
+                                                     
+                                                     <div class="col-md-4">
                                                         <label for="locality" class="col-md-6 pad_none">Select Zip :</label>
                                                         <div class="col-md-6 pad_none zipElementPara">
                                                             <select name="zipId" class="form-control nova heght_cntrl" id="zipId">
@@ -61,7 +63,7 @@
                                                             </select>
                                                         </div>
                                                     </div> 
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-4">
                                                         <label for="locality" class="col-md-6 pad_none">Select Locality :</label>
                                                         <div class="col-md-6 pad_none localityElementPara">
                                                             <select name="localityId" class="form-control nova heght_cntrl" id="localityId">
@@ -69,7 +71,7 @@
                                                             </select>
                                                         </div>
                                                     </div> 
-                                                    
+                                                     
                                                     </div>
                                                     <div class="clear" style="margin-bottom: 20px;"></div>
                                                     <div class="row">

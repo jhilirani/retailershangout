@@ -35,9 +35,12 @@
                         <span>We accept Net Banking, mPesa. We also offer Settlement on Delivery.</span>
                         <div class="col-md-12">
                             <div class="col-md-3"><img src="<?php echo SiteImagesURL; ?>godaddy-verified.png" /></div>
-                            <div class="col-md-2"><img src="<?php echo SiteImagesURL; ?>visa-verified.png" /></div>
+                            <div class="col-md-3"><script language="JavaScript" type="text/javascript">
+TrustLogo("https://www.retailershangout.com/resources/images/comodo_secure_seal_76x26_transp.png", "CL1", "none");
+</script>
+<a  href="https://www.positivessl.com/" id="comodoTL">Positive SSL</a></div>
                             <div class="col-md-2"><img src="<?php echo SiteImagesURL; ?>master-card-verified.png" /></div>
-                            <div class="col-md-3"><img src="<?php echo SiteImagesURL; ?>diners-club-verified.png" /></div>
+                            <div class="col-md-2"><img src="<?php echo SiteImagesURL; ?>visa-verified.png" /></div>
                             <div class="col-md-2"><img src="<?php echo SiteImagesURL; ?>american-express-verified.png" /></div>
                         </div>
                         <?php /*<img src="<?php echo SiteImagesURL; ?>trstd_pymnt.png" /> */?>

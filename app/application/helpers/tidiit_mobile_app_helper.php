@@ -123,8 +123,8 @@ if ( ! function_exists('title_more_string')){
 
 if ( ! function_exists('return_current_country_code')){
     function return_current_country_code(){
-        return 'US';die;
-        $ip=$_SERVER['REMOTE_ADDR'];
+        return 'IN';
+        /*$ip=$_SERVER['REMOTE_ADDR'];
         
         $params = getopt('l:i:');
         if (!isset($params['l'])) $params['l'] = 'puDQd5MDgVxy';
@@ -184,7 +184,7 @@ if ( ! function_exists('return_current_country_code')){
         $insights_values = str_getcsv($resp);
         $insights_values = array_pad($insights_values, sizeof($insights_keys), '');
         $insights = array_combine($insights_keys, $insights_values);
-        return $insights['country_code'];
+        return $insights['country_code'];*/
     }
 }
 
@@ -210,13 +210,13 @@ if ( ! function_exists('success_response_after_post_get')){
 if ( ! function_exists('get_default_urls')){
 	function get_default_urls(){
 		$result=array();
-        $result['site_product_image_url']='http://seller.tidiit.com/resources/product/';
+        $result['site_product_image_url']='http://seller.retailershangout.com/resources/product/';
         //$result['site_image_url']=$this->config->item('MainSiteResourcesURL').'images/';
-        $result['site_image_url']='http://tidiit.com/resources/images/';
-        $result['site_slider_image_url']='http://tidiit.com/resources/banner/original/';
-        $result['site_brand_image_url']='http://tidiit.com/resources/brand/original/';
-        $result['site_category_image_url']='http://tidiit.com/resources/category/original/';
-        $result['main_site_url']='http://www.tidiit.com/';
+        $result['site_image_url']='https://www.retailershangout.com/resources/images/';
+        $result['site_slider_image_url']='https://www.retailershangout.com/resources/banner/original/';
+        $result['site_brand_image_url']='https://www.retailershangout.com/resources/brand/original/';
+        $result['site_category_image_url']='https://wwww.retailershangout.com/resources/category/original/';
+        $result['main_site_url']='https://www.retailershangout.com/';
         return $result;
 	}
 }
@@ -224,13 +224,13 @@ if ( ! function_exists('get_default_urls')){
 if ( ! function_exists('load_default_resources')){
 	function load_default_resources(){
 		$data=array();
-        $data['SiteImagesURL']='http://tidiit.com/resources/images/';
-        $data['SiteCSSURL']='http://tidiit.com/resources/css/';
-        $data['SiteJSURL']='http://tidiit.com/resources/js/';
-        $data['SiteResourcesURL']='http://tidiit.com/resources/';
-        $data['MainSiteBaseURL']='http://tidiit.com/';
-        $data['MainSiteImagesURL']='http://tidiit.com/resources/images/';
-        $data['SiteProductImageURL']='http://seller.tidiit.com/resources/product/';
+        $data['SiteImagesURL']='https://www.retailershangout.com/resources/images/';
+        $data['SiteCSSURL']='httpw://www.retailershangout.com/resources/css/';
+        $data['SiteJSURL']='https://www.retailershangout.com/resources/js/';
+        $data['SiteResourcesURL']='https://www.retailershangout.com/resources/';
+        $data['MainSiteBaseURL']='https://www.retailershangout.com/';
+        $data['MainSiteImagesURL']='https://www.retailershangout.com/resources/images/';
+        $data['SiteProductImageURL']='http://seller.retailershangout.com/resources/product/';
         return $data;
 	}
 }
@@ -248,7 +248,7 @@ if ( ! function_exists('global_tidiit_mail')){
             //echo $message;//die;
             //echo $to;die;
             $CI->load->library('email');
-            $CI->email->from("no-reply@tidiit.com", 'Tidiit System Administrator');
+            $CI->email->from("no-reply@retailershangout.com", 'Retailershangout System Administrator');
             if($toName!="")
                 $CI->email->to($to,$toName);
             else
@@ -354,10 +354,10 @@ if ( ! function_exists('get_full_address_from_lat_long')):
     }
 endif;
 
-if ( ! function_exists('get_counry_code_from_lat_long')):
-    function get_counry_code_from_lat_long($lat,$long){
+if ( ! function_exists('get_country_code_from_lat_long')):
+    function get_country_code_from_lat_long($lat,$long){
         //("country", $jsondata["results"][0]["address_components"]);
-        $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false";
+        /*$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false";
         // Make the HTTP request
         $data = @file_get_contents($url);
         // Parse the json response
@@ -371,7 +371,8 @@ if ( ! function_exists('get_counry_code_from_lat_long')):
             }
         }else{
             return FALSE;
-        }
+        }*/
+        return "IN";
         //return $jsondata["results"][0]["formatted_address"];
     }
 endif;
@@ -380,7 +381,7 @@ endif;
 if ( ! function_exists('get_currency_simble_from_lat_long')):
     function get_currency_simble_from_lat_long($lat,$long){
         //("country", $jsondata["results"][0]["address_components"]);
-        $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false";
+        /*$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false";
         // Make the HTTP request
         $data = @file_get_contents($url);
         // Parse the json response
@@ -398,8 +399,9 @@ if ( ! function_exists('get_currency_simble_from_lat_long')):
             }
         }else{
             return FALSE;
-        }
+        }*/
         //return $jsondata["results"][0]["formatted_address"];
+        return 'Rs';
     }
 endif;
 
@@ -514,19 +516,19 @@ if( !function_exists('send_gsm_message')){
     function send_gsm_message($fields){
         $CI=& get_instance();
         $CI->load->config('product');
-        @mail('judhisahoo@gmail.com','make ready for GoogleGSMKEY for message to GSM server ','make ready for GoogleGSMKEY for message to GSM server ');
+        //@mail('judhisahoo@gmail.com','make ready for GoogleGSMKEY for message to GSM server ','make ready for GoogleGSMKEY for message to GSM server ');
         $GOOGLE_API_KEY=$CI->config->item('GoogleGSMKEY');
-        @mail('judhisahoo@gmail.com','GSM API Key is '.$GOOGLE_API_KEY,'GSM API Key is '.$GOOGLE_API_KEY);
+        //@mail('judhisahoo@gmail.com','GSM API Key is '.$GOOGLE_API_KEY,'GSM API Key is '.$GOOGLE_API_KEY);
         $url = 'https://android.googleapis.com/gcm/send';
 
         $headers = array(
             'Authorization: key=' .$GOOGLE_API_KEY ,
             'Content-Type: application/json'
         );
-        @mail('judhisahoo@gmail.com','Opening conection for google GSM server ','Opening conection for google GSM server ');
+        //@mail('judhisahoo@gmail.com','Opening conection for google GSM server ','Opening conection for google GSM server ');
         // Open connection
         $ch = curl_init();
-        @mail('judhisahoo@gmail.com','reg ids are - '.json_encode($fields),'reg ids are - '.json_encode($fields));
+        //@mail('judhisahoo@gmail.com','reg ids are - '.json_encode($fields),'reg ids are - '.json_encode($fields));
         // Set the url, number of POST vars, POST data
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -542,11 +544,11 @@ if( !function_exists('send_gsm_message')){
         // Close connection
         curl_close($ch);
         if ($result === FALSE) {
-            @mail('judhisahoo@gmail.com','Google GSM server return fail','Google GSM server return fail');
+            //@mail('judhisahoo@gmail.com','Google GSM server return fail','Google GSM server return fail');
             //die('Curl failed: ' . curl_error($ch));
             return FALSE;
         }else{
-            @mail('judhisahoo@gmail.com','Google GSM server return success','Google GSM server return success');
+            //@mail('judhisahoo@gmail.com','Google GSM server return success','Google GSM server return success');
             return TRUE;
         }
     }

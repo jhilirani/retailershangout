@@ -57,7 +57,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid product index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         //die($countryShortName);
         if($countryShortName==FALSE){
             $this->response(array('error' => 'Please provide valid latitude and longitude!'), 400); return FALSE;
@@ -78,7 +78,7 @@ class Shopping extends REST_Controller {
         $prod_price_info = $this->product->get_products_price_details_by_id($cartDataArr['productPriceId']);
         $is_cart_update = false;
         
-        $countryShortName=  get_counry_code_from_lat_long($cartDataArr['latitude'], $cartDataArr['longitude']);
+        $countryShortName=  get_country_code_from_lat_long($cartDataArr['latitude'], $cartDataArr['longitude']);
         //$countryShortName='IN';
         $suggestedCountryShortName=array('IN','KE');
         if(!in_array($countryShortName, $suggestedCountryShortName)){
@@ -152,7 +152,7 @@ class Shopping extends REST_Controller {
         if(empty($rs)){
             $this->response(array('error' => 'Please provide valid user index!'), 400); return FALSE;
         }
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         //$countryShortName='IN';
         if($countryShortName==FALSE){
             $this->response(array('error' => 'Please provide valid latitude and longitude!'), 400); return FALSE;
@@ -330,7 +330,7 @@ class Shopping extends REST_Controller {
         if(!$coupon):
             $this->response(array('error' => 'Invalid promo code or promo code has expaired!!'), 400); return FALSE;
         endif;
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         //$countryShortName='IN';
         $userDetails=  $this->user->get_details_by_id($userId);
         if(empty($userDetails)){
@@ -427,7 +427,7 @@ class Shopping extends REST_Controller {
         if(empty($orderDetails)){
             $this->response(array('error' => 'Invalid order index provided.'), 400); return FALSE;
         }
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         //$countryShortName='IN';
         $suggestedCountryShortName=array('IN','KE');
         if(!in_array($countryShortName, $suggestedCountryShortName)){
@@ -464,7 +464,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid user index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         //die($countryShortName);
         if($countryShortName==FALSE){
             $this->response(array('error' => 'Please provide valid latitude and longitude!'), 400); return FALSE;
@@ -490,7 +490,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide user index,latitude,longitude,device id,device token !'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         $allIncompleteOrders= $this->order->get_incomplete_order_by_user($userId,'single');
         //pre($allIncompleteOrders);die;
@@ -514,7 +514,7 @@ class Shopping extends REST_Controller {
             $orderUpdateArr['status']=2;
             $this->order->update($orderUpdateArr,$k->orderId);
             /// sendin SMS to user
-            /*$sms_data=array('nMessage'=>'You have successfull placed an order TIDIIT-OD-'.$k->orderId.' for '.$orderInfo['pdetail']->title.'.More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
+            /*$sms_data=array('nMessage'=>'You have successfull placed an order RH-OD-'.$k->orderId.' for '.$orderInfo['pdetail']->title.'.More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
                 'receiverMobileNumber'=>$user->mobile,'senderId'=>'','receiverId'=>$user->userId,
                 'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER');*/
             //send_sms_notification($sms_data);
@@ -523,7 +523,7 @@ class Shopping extends REST_Controller {
             $mail_template_view_data=$defaultResources;
             $mail_template_view_data['single_order_success']=$mail_template_data;
             $receiverFullName=$user->firstName.' '.$user->lastName;
-            global_tidiit_mail($user->email, "Your Tidiit order - TIDIIT-OD-".$k->orderId.' has placed successfully', $mail_template_view_data,'single_order_success',$receiverFullName);
+            global_tidiit_mail($user->email, "Your Retailershangout Order - RH-OD-".$k->orderId.' has placed successfully', $mail_template_view_data,'single_order_success',$receiverFullName);
             
             $this->sent_single_order_complete_mail($k->orderId);
         }
@@ -560,7 +560,7 @@ class Shopping extends REST_Controller {
         //pre($allIncompleteOrders);die;
         $defaultResources=load_default_resources();
         $user=$this->user->get_details_by_id($userId)[0];
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         foreach ($allIncompleteOrders As $k){
             $orderInfo = array();
             $mail_template_data = array();
@@ -580,7 +580,7 @@ class Shopping extends REST_Controller {
             $mail_template_view_data=$defaultResources;
             $mail_template_view_data['single_order_success']=$mail_template_data;
             $receiverFullName=$user->firstName.' '.$user->lastName;
-            global_tidiit_mail($user->email, "Your Tidiit order - TIDIIT-OD-".$k->orderId.' has placed successfully', $mail_template_view_data,'single_order_success',$receiverFullName);
+            global_tidiit_mail($user->email, "Your Retailershangout Order - RH-OD-".$k->orderId.' has placed successfully', $mail_template_view_data,'single_order_success',$receiverFullName);
             
             $this->sent_single_order_complete_mail($k->orderId);
         }
@@ -603,10 +603,10 @@ class Shopping extends REST_Controller {
         }
         
         //$orderId=0;
-        $tidiitStrChr='TIDIIT-OD';
+        $tidiitStrChr='RH-OD';
         $tidiitStr='';
         //Send Email message
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         $user = $this->user->get_details_by_id($userId)[0]; 
         $recv_email = $user->email;
@@ -625,7 +625,7 @@ class Shopping extends REST_Controller {
         
         $mail_template_view_data=load_default_resources();
         $mail_template_view_data['single_order_success']=$mail_template_data;
-        global_tidiit_mail($recv_email, "Payment has completed for your Tidiit order TIDIIT-OD-".$orderId, $mail_template_view_data,'single_order_success_sod_final_payment',$recv_name);
+        global_tidiit_mail($recv_email, "Payment has completed for your Retailershangout Order RH-OD-".$orderId, $mail_template_view_data,'single_order_success_sod_final_payment',$recv_name);
         $this->_sent_single_order_complete_mail_sod_final_payment($orderId);
         
         /// here to preocess SMS to logistics partner
@@ -633,7 +633,7 @@ class Shopping extends REST_Controller {
         if(!empty($logisticsData) && array_key_exists('deliveryStaffContactNo', $logisticsData)):
             $logisticMobileNo=$logisticsData['deliveryStaffContactNo'];
             if($logisticMobileNo!=""):
-                $sms=$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.' please process the delivery.';
+                $sms=$recv_name.' has completed the payment for Retailershangout Order '.$tidiitStr.' please process the delivery.';
                 /// sendin SMS to allmember
                 $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$logisticMobileNo,'senderId'=>'','receiverId'=>'',
                 'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LOGISTICS');
@@ -642,14 +642,14 @@ class Shopping extends REST_Controller {
         endif;*/
         
         /// SMS to payer
-        $sms='Thanks for the payment.We have received for Tidiit order '.$tidiitStr.'.';
+        $sms='Thanks for the payment.We have received for Retailershangout Order '.$tidiitStr.'.';
         $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$user->mobile,'senderId'=>'','receiverId'=>$user->userId,
         'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-PAYER');
         send_sms_notification($sms_data);
         
         /// here send mail to logistic partner
-        /*$mailBody="Hi ".$logisticsData['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Tidiit Team.';
-        global_tidiit_mail($logisticsData['deliveryStaffEmail'],'Tidiit payment submited  for Order '.$tidiitStr,$mailBody,'',$recv_name);
+        /*$mailBody="Hi ".$logisticsData['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Retailershangout Team.';
+        global_tidiit_mail($logisticsData['deliveryStaffEmail'],'Retailers Hangout payment submited  for Order '.$tidiitStr,$mailBody,'',$recv_name);
         unset($_SESSION['PaymentData']);*/
         
         
@@ -713,8 +713,8 @@ class Shopping extends REST_Controller {
         else:
             $result['contact']=$user->mobile;
         endif;
-        $result['description']="Shopping from Tidiit";
-        $result['image']="http://tidiit.com/resources/images/logo.png";
+        $result['description']="Shopping from Retailershangout";
+        $result['image']="https://www.retailershangout.com/resources/images/logo.png";
         $result['orderIdData']=  base64_encode(serialize($allOrderArray));
         $result['orderType']= 'single';
         $result['finalReturn']= 'no';
@@ -821,7 +821,7 @@ class Shopping extends REST_Controller {
         $deviceType = $this->post('deviceType');
         $UDID = $this->post('UDID');
         $deviceToken=$this->post('deviceToken');
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         if($userId=="" || $latitude =="" || $longitude =="" || $deviceType=="" || $UDID ==""  || $deviceToken=="" || $productId=="" || $productPriceId==""){
             $this->response(array('error' => 'Please provide user index,latitude,longitude,device id,device token,product index,product price index !'), 400); return FALSE;
@@ -858,7 +858,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide user index,product index, product price index,latitude,longitude,device id,device token,device type !'), 400); return FALSE;
         }
         
-        $country_name=  get_counry_code_from_lat_long($latitude, $longitude);
+        $country_name=  get_country_code_from_lat_long($latitude, $longitude);
         if($country_name==""){
             $this->response(array('error' => 'Please provide valid latitude and longitude for getting country for tax calculation'), 400); return FALSE;
         }
@@ -984,7 +984,7 @@ class Shopping extends REST_Controller {
         $UDID=  $this->post('UDID');
         $deviceToken=  $this->post('deviceToken');
         
-        $country_name=  get_counry_code_from_lat_long($latitude, $longitude);
+        $country_name=  get_country_code_from_lat_long($latitude, $longitude);
         
         if($deviceToken == "" || $deviceType =="" || $UDID =="" ){
             $this->response(array('error' => 'Please provide the device token,device type, UDID.'), 400);
@@ -1103,7 +1103,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide user index,order index,UDID,device token,device type,latitude,longitude,quntity!'), 400); return FALSE;
         }
         
-        $country_name=  get_counry_code_from_lat_long($latitude, $longitude);
+        $country_name=  get_country_code_from_lat_long($latitude, $longitude);
         $user=$this->user->get_details_by_id($userId);
         if(empty($user)){
             $this->response(array('error' => 'Please provide valid user index!'), 400); return FALSE;
@@ -1259,7 +1259,7 @@ class Shopping extends REST_Controller {
             $tax=0;
             $grandTotal=0;
             $couponAmount=0;
-            $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+            $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
             //$countryShortName='IN';
             if($countryShortName==FALSE){
                 $this->response(array('error' => 'Please provide valid latitude and longitude!'), 400); return FALSE;
@@ -1319,7 +1319,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid user index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         //$countryShortName='IN';
         $suggestedCountryShortName=array('IN','KE');
         if(!in_array($countryShortName, $suggestedCountryShortName)){
@@ -1372,7 +1372,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid user index and related order index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         $orderDetails= $this->order->details($orderId);
                 
@@ -1421,7 +1421,7 @@ class Shopping extends REST_Controller {
             $data['nMessage'] .= "Want to process the order ? <br>";
             $data['nMessage'] .= "<a href='".$defaultResources['MainSiteBaseURL']."shopping/group-order-decline/".base64_encode($orderId*226201)."' class='btn btn-danger btn-lg'>Decline</a>  or <a href='".$defaultResources['MainSiteBaseURL']."shopping/group-order-accept-process/".base64_encode($orderId*226201)."' class='btn btn-success btn-lg'>Accept</a><br>";
             $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
-            $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+            $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
             $data['orderId'] =$orderId;
             $data['productId'] =$orderinfo['priceinfo']['productId'];
             $data['productPriceId'] =$orderinfo['priceinfo']['productPriceId'];
@@ -1438,7 +1438,7 @@ class Shopping extends REST_Controller {
 
             $mail_template_view_data=$defaultResources;
             $mail_template_view_data['group_order_start']=$mail_template_data;
-            global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Tidiit Inc Ltd", $mail_template_view_data,'group_order_start');
+            global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Retailershangout.com", $mail_template_view_data,'group_order_start');
             //pre($data);die;
             $notificationId=$this->user->notification_add($data);
             
@@ -1492,7 +1492,7 @@ class Shopping extends REST_Controller {
         if($this->order->is_valid_order_by_order_id_user_id($orderId,$userId)==FALSE){
             $this->response(array('error' => 'Please provide valid user index and related order index!'), 400); return FALSE;
         }
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         $orderDetails= $this->order->details($orderId);
                 
@@ -1541,7 +1541,7 @@ class Shopping extends REST_Controller {
             $data['nMessage'] .= "Want to process the order ? <br>";
             $data['nMessage'] .= "<a href='".$defaultResources['MainSiteBaseURL']."shopping/group-order-decline/".base64_encode($orderId*226201)."' class='btn btn-danger btn-lg'>Decline</a>  or <a href='".$defaultResources['MainSiteBaseURL']."shopping/group-order-accept-process/".base64_encode($orderId*226201)."' class='btn btn-success btn-lg'>Accept</a><br>";
             $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
-            $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+            $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
             $data['orderId'] =$orderId;
             $data['productId'] =$orderinfo['priceinfo']['productId'];
             $data['productPriceId'] =$orderinfo['priceinfo']['productPriceId'];
@@ -1557,7 +1557,7 @@ class Shopping extends REST_Controller {
 
             $mail_template_view_data=$defaultResources;
             $mail_template_view_data['group_order_start']=$mail_template_data;
-            global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Tidiit Inc Ltd", $mail_template_view_data,'group_order_start');
+            global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Retailershangout.com", $mail_template_view_data,'group_order_start');
             //pre($data);die;
             $this->user->notification_add($data);
             
@@ -1612,7 +1612,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid user index and related order index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         $order=$this->order->get_single_order_by_id($orderId);
         $paymentGatewayAmount=0;
         $allOrderArray=array();
@@ -1635,8 +1635,8 @@ class Shopping extends REST_Controller {
         else:
             $result['contact']=$user->mobile;
         endif;
-        $result['description']="Shopping from Tidiit";
-        $result['image']="http://tidiit.com/resources/images/logo.png";
+        $result['description']="Shopping from Retailershangout";
+        $result['image']="https://www.retailershangout.com/resources/images/logo.png";
         $result['orderIdData']=  base64_encode(serialize($allOrderArray));
         $result['orderType']= 'group';
         $result['finalReturn']= 'no';
@@ -1948,12 +1948,12 @@ class Shopping extends REST_Controller {
                     $data['senderId'] = $userId;
                     $data['receiverId'] = $usr->userId;
                     $data['nType'] = 'BUYING-CLUB-ORDER-DECLINE';
-                    $data['nTitle'] = 'Buying Club order [TIDIIT-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
+                    $data['nTitle'] = 'Buying Club order [RH-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
                     $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID']=$order->orderId;
                     $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ADMIN_NAME']=$me->firstName.' '.$me->lastName;
                     $data['nMessage'] = "Hi, <br> Sorry! I can not process this Buying Club order right now.<br>";
                     $data['nMessage'] .= "";
-                    $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                    $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
 
                     $data['isRead'] = 0;
                     $data['status'] = 1;
@@ -1965,7 +1965,7 @@ class Shopping extends REST_Controller {
                     $sender_email = $me->email;
                     $mail_template_view_data=load_default_resources();
                     $mail_template_view_data['group_order_decline']=$mail_template_data;
-                    global_tidiit_mail($recv_email, "Buying Club order decline at Tidiit Inc Ltd", $mail_template_view_data,'group_order_decline',$usr->firstName.' '.$usr->lastName);
+                    global_tidiit_mail($recv_email, "Buying Club order decline at Retailershangout.com", $mail_template_view_data,'group_order_decline',$usr->firstName.' '.$usr->lastName);
                     
                     $notificationId=$this->user->notification_add($data);
                     
@@ -1986,13 +1986,13 @@ class Shopping extends REST_Controller {
             $mail_template_data=array();
             $data['senderId'] = $userId;
             $data['nType'] = 'BUYING-CLUB-ORDER-DECLINE';
-            $data['nTitle'] = 'Buying Club order [TIDIIT-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
+            $data['nTitle'] = 'Buying Club order [RH-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID']=$order->orderId;
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ADMIN_NAME']=$me->firstName.' '.$me->lastName;
             $data['nMessage'] = "Hi, <br> Sorry! I can not process this order right now.<br>";
             $data['nMessage'] .= "<a href='".$defaultResources['MainSiteBaseURL']."shopping/group-re-order-process/".base64_encode($orderId*226201)."' class='btn btn-warning btn-lg'>Re-order now</a><br><br>";
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID1']=$orderId;
-            $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+            $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
             $data['isRead'] = 0;
             $data['status'] = 1;
             $data['orderId'] = $orderId;
@@ -2006,7 +2006,7 @@ class Shopping extends REST_Controller {
             $sender_email = $me->email;
             $mail_template_view_data=load_default_resources();
             $mail_template_view_data['group_order_decline']=$mail_template_data;
-            global_tidiit_mail($recv_email, "Buying Club order decline at Tidiit Inc Ltd", $mail_template_view_data,'group_order_decline_admin',$group->admin->firstName.' '.$group->admin->lastName);
+            global_tidiit_mail($recv_email, "Buying Club order decline at Retailershangout.com", $mail_template_view_data,'group_order_decline_admin',$group->admin->firstName.' '.$group->admin->lastName);
             $notificationId=$this->user->notification_add($data);
             
             $declient_data=array();
@@ -2016,7 +2016,7 @@ class Shopping extends REST_Controller {
             $this->order->update(array('reOrder'=>1,'cancelOrderUserId'=>$userId),$orderId);
             
             /// sendin SMS to Leader
-            $smsMsg='Buying Club['.$group->groupTitle.']  member['.$usr->firstName.' '.$usr->lastName.'] has decline the invitation Tidiit order TIDIIT-OD-'.$order->orderId.'.';
+            $smsMsg='Buying Club['.$group->groupTitle.']  member['.$usr->firstName.' '.$usr->lastName.'] has decline the invitation Retailershangout Order RH-OD-'.$order->orderId.'.';
             $sms_data=array('nMessage'=>$smsMsg,'receiverMobileNumber'=>$orderInfo['group']->admin->mobile,'senderId'=>'','receiverId'=>$orderInfo["group"]->admin->userId,
             'senderMobileNumber'=>'','nType'=>$data['nType']);
             send_sms_notification($sms_data);
@@ -2087,12 +2087,12 @@ class Shopping extends REST_Controller {
                     $data['senderId'] = $userId;
                     $data['receiverId'] = $usr->userId;
                     $data['nType'] = 'BUYING-CLUB-ORDER-DECLINE';
-                    $data['nTitle'] = 'Buying Club order [TIDIIT-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
+                    $data['nTitle'] = 'Buying Club order [RH-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
                     $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID']=$order->orderId;
                     $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ADMIN_NAME']=$me->firstName.' '.$me->lastName;
                     $data['nMessage'] = "Hi, <br> Sorry! I can not process this Buying Club order right now.<br>";
                     $data['nMessage'] .= "";
-                    $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                    $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
 
                     $data['isRead'] = 0;
                     $data['status'] = 1;
@@ -2104,7 +2104,7 @@ class Shopping extends REST_Controller {
                     $sender_email = $me->email;
                     $mail_template_view_data=load_default_resources();
                     $mail_template_view_data['group_order_decline']=$mail_template_data;
-                    global_tidiit_mail($recv_email, "Buying Club order decline at Tidiit Inc Ltd", $mail_template_view_data,'group_order_decline',$usr->firstName.' '.$usr->lastName);
+                    global_tidiit_mail($recv_email, "Buying Club order decline at Retailershangout.com", $mail_template_view_data,'group_order_decline',$usr->firstName.' '.$usr->lastName);
                     
                     $this->user->notification_add($data);
                 endif;
@@ -2117,13 +2117,13 @@ class Shopping extends REST_Controller {
             $mail_template_data=array();
             $data['senderId'] = $userId;
             $data['nType'] = 'BUYING-CLUB-ORDER-DECLINE';
-            $data['nTitle'] = 'Buying Club order [TIDIIT-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
+            $data['nTitle'] = 'Buying Club order [RH-OD-'.$order->orderId.'] cancel by <b>'.$me->firstName.' '.$me->lastName.'</b>';
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID']=$order->orderId;
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ADMIN_NAME']=$me->firstName.' '.$me->lastName;
             $data['nMessage'] = "Hi, <br> Sorry! I can not process this order right now.<br>";
             $data['nMessage'] .= "<a href='".$defaultResources['MainSiteBaseURL']."shopping/group-re-order-process/".base64_encode($orderId*226201)."' class='btn btn-warning btn-lg'>Re-order now</a><br><br>";
             $mail_template_data['TEMPLATE_GROUP_ORDER_DECLINE_ORDER_ID1']=$orderId;
-            $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+            $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
             $data['isRead'] = 0;
             $data['status'] = 1;
             $data['orderId'] = $orderId;
@@ -2137,7 +2137,7 @@ class Shopping extends REST_Controller {
             $sender_email = $me->email;
             $mail_template_view_data=load_default_resources();
             $mail_template_view_data['group_order_decline']=$mail_template_data;
-            global_tidiit_mail($recv_email, "Buying Club order decline at Tidiit Inc Ltd", $mail_template_view_data,'group_order_decline_admin',$group->admin->firstName.' '.$group->admin->lastName);
+            global_tidiit_mail($recv_email, "Buying Club order decline at Retailershangout.com", $mail_template_view_data,'group_order_decline_admin',$group->admin->firstName.' '.$group->admin->lastName);
             $notificationId=$this->user->notification_add($data);
             
             $declient_data=array();
@@ -2153,7 +2153,7 @@ class Shopping extends REST_Controller {
             $push_not_data['nMessage'] = 'You have invited to Buying Club['.$group->groupTitle.'] by '.$group->admin->firstName.' '.$group->admin->lastName.'.More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'];
 
             /// sendin SMS to Leader
-            $smsMsg='Buying Club['.$group->groupTitle.']  member['.$usr->firstName.' '.$usr->lastName.'] has decline the invitation Tidiit order TIDIIT-OD-'.$order->orderId.'.';
+            $smsMsg='Buying Club['.$group->groupTitle.']  member['.$usr->firstName.' '.$usr->lastName.'] has decline the invitation Retailershangout Order RH-OD-'.$order->orderId.'.';
             $sms_data=array('nMessage'=>$smsMsg,'receiverMobileNumber'=>$orderInfo['group']->admin->mobile,'senderId'=>'','receiverId'=>$orderInfo["group"]->admin->userId,
             'senderMobileNumber'=>'','nType'=>$data['nType']);
             send_sms_notification($sms_data);
@@ -2281,7 +2281,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid user index and related order index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         $orderDetails= $this->order->details($orderId);
         $orderinfo=json_decode(json_encode(unserialize(base64_decode($orderDetails[0]->orderInfo))), true);
@@ -2343,7 +2343,7 @@ class Shopping extends REST_Controller {
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                 $data['nMessage'] .= "Order item is ".$orderinfo['pdetail']->title."<br /><br />";
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
 
                 $data['isRead'] = 0;
                 $data['status'] = 1;
@@ -2355,7 +2355,7 @@ class Shopping extends REST_Controller {
 
                 $mail_template_view_data=load_default_resources();
                 $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailers Hangout ", $mail_template_view_data,'group_order_group_member_payment');
                 $this->user->notification_add($data);
                 
                 $userFirstName=$usr->firstName;
@@ -2364,7 +2364,7 @@ class Shopping extends REST_Controller {
                 $orderQuantity=$order->productQty;
                 $groupTitle=$group->groupTitle;
                 /// sendin SMS to allmember
-                $sms_data=array('nMessage'=>$userFirstName.' '.$userlastName.' has completed payment['.$orderAmount.'] of '.$orderQuantity.' of Buying Club['.$groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
+                $sms_data=array('nMessage'=>$userFirstName.' '.$userlastName.' has completed payment['.$orderAmount.'] of '.$orderQuantity.' of Buying Club['.$groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
                 'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                 'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                 send_sms_notification($sms_data);
@@ -2376,7 +2376,7 @@ class Shopping extends REST_Controller {
         $data['nTitle'] = 'Your Buying Club['.$group->groupTitle.'] order continue by <b>'.$me->firstName.' '.$me->lastName.'</b>';
         $data['nMessage'] = "Hi, <br> I have paid Rs. ".$order->orderAmount." /- for the quantity ".$order->productQty." of this Buying Club['.$group->groupTitle.'].<br>";
         $data['nMessage'] .= 'Order item is '.$orderinfo['pdetail']->title."<br /><br/>";
-        $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+        $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
         $data['isRead'] = 0;
         $data['status'] = 1;
         $data['createDate'] = date('Y-m-d H:i:s');
@@ -2392,11 +2392,11 @@ class Shopping extends REST_Controller {
             $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
         }
         $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-        global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+        global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailers Hangout ", $mail_template_view_data,'group_order_group_member_payment');
 
         $this->user->notification_add($data);
 
-        $sms_data=array('nMessage'=>$me->firstName.' '.$me->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
+        $sms_data=array('nMessage'=>$me->firstName.' '.$me->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
                 'receiverMobileNumber'=>$group->admin->mobile,'senderId'=>'','receiverId'=>$data['receiverId'],
                 'senderMobileNumber'=>$me->mobile,'nType'=>"BUYING-CLUB-ORDER-INVITED-MEMBER-COMPLETE");
                 send_sms_notification($sms_data);
@@ -2427,7 +2427,7 @@ class Shopping extends REST_Controller {
         if($this->order->is_valid_order_by_order_id_user_id($orderId,$userId)==FALSE){
             $this->response(array('error' => 'Please provide valid user index and related order index!'), 400); return FALSE;
         }
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         $orderDetails= $this->order->details($orderId);
         $orderinfo=json_decode(json_encode(unserialize(base64_decode($orderDetails[0]->orderInfo))), true);
@@ -2487,7 +2487,7 @@ class Shopping extends REST_Controller {
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                 $data['nMessage'] .= "Order item is ".$orderinfo['pdetail']->title."<br /><br />";
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
                 $data['appSource'] = $deviceType;
                 $data['isRead'] = 0;
                 $data['status'] = 1;
@@ -2499,11 +2499,11 @@ class Shopping extends REST_Controller {
 
                 $mail_template_view_data=load_default_resources();
                 $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailers Hangout ", $mail_template_view_data,'group_order_group_member_payment');
                 $this->user->notification_add($data);
 
                 /// sendin SMS to allmember
-                $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
+                $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
                 'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                 'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                 send_sms_notification($sms_data);
@@ -2515,7 +2515,7 @@ class Shopping extends REST_Controller {
         $data['nTitle'] = 'Your Buying Club['.$group->groupTitle.'] order continue by <b>'.$me->firstName.' '.$me->lastName.'</b>';
         $data['nMessage'] = "Hi, <br> I have paid Rs. ".$order->orderAmount." /- for the quantity ".$order->productQty." of this Buying Club['.$group->groupTitle.'].<br>";
         $data['nMessage'] .= 'Order item is '.$orderinfo['pdetail']->title."<br /><br/>";
-        $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+        $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
         $data['isRead'] = 0;
         $data['status'] = 1;
         $data['createDate'] = date('Y-m-d H:i:s');
@@ -2530,11 +2530,11 @@ class Shopping extends REST_Controller {
             $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
         }
         $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-        global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+        global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailers Hangout ", $mail_template_view_data,'group_order_group_member_payment');
 
         $this->user->notification_add($data);
 
-        $sms_data=array('nMessage'=>$me->firstName.' '.$me->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
+        $sms_data=array('nMessage'=>$me->firstName.' '.$me->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResources['MainSiteBaseURL'],
                 'receiverMobileNumber'=>$group->admin->mobile,'senderId'=>'','receiverId'=>$data['receiverId'],
                 'senderMobileNumber'=>$me->mobile,'nType'=>"BUYING-CLUB-ORDER-INVITED-MEMBER-COMPLETE");
                 send_sms_notification($sms_data);
@@ -2576,7 +2576,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid user index and related order index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         $order=$this->order->get_single_order_by_id($orderId);
         $paymentGatewayAmount=0;
         $allOrderArray=array();
@@ -2598,8 +2598,8 @@ class Shopping extends REST_Controller {
         else:
             $result['contact']=$user->mobile;
         endif;
-        $result['description']="Shopping from Tidiit";
-        $result['image']="http://tidiit.com/resources/images/logo.png";
+        $result['description']="Shopping from Retailershangout";
+        $result['image']="https://www.retailershangout.com/resources/images/logo.png";
         $result['orderIdData']=  base64_encode(serialize($allOrderArray));
         $result['orderType']= 'group';
         $result['finalReturn']= 'no';
@@ -2636,7 +2636,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid user index and related order index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         $order=$this->order->get_single_order_by_id($orderId);
         $paymentGatewayAmount=0;
         $allOrderArray=array();
@@ -2656,8 +2656,8 @@ class Shopping extends REST_Controller {
         else:
             $result['contact']=$user->mobile;
         endif;
-        $result['description']="Shopping from Tidiit";
-        $result['image']="http://tidiit.com/resources/images/logo.png";
+        $result['description']="Shopping from Retailershangout";
+        $result['image']="https://www.retailershangout.com/resources/images/logo.png";
         $result['orderIdData']=  base64_encode(serialize($allOrderArray));
         $result['orderType']= strtolower($order->orderType);
         $result['finalReturn']= 'yes';
@@ -2681,7 +2681,7 @@ class Shopping extends REST_Controller {
             $this->response(array('error' => 'Please provide valid user index and related order index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         $orderDetails= $this->order->details($orderId);
         if($orderDetails[0]->groupId==0){
@@ -2730,9 +2730,9 @@ class Shopping extends REST_Controller {
             $adminMailData['orderInfoDataArr']=$orderInfoDataArr;
             $adminMailData['orderParrentId']=$order->parrentOrderID;
             $adminMailData['userFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
-            global_tidiit_mail($orderInfoDataArr['group']->admin->email, "Your  Buying Club order - TIDIIT-OD-".$order->parrentOrderID.' has placed successfully.', $adminMailData,'group_order_success',$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName);
+            global_tidiit_mail($orderInfoDataArr['group']->admin->email, "Your  Buying Club order - RH-OD-".$order->parrentOrderID.' has placed successfully.', $adminMailData,'group_order_success',$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName);
             
-            $sms_data=array('nMessage'=>'Your Tidiit Buying Club['.$orderInfoDataArr['group']->groupTitle.'] order TIDIIT-OD-'.$orderDetails[0]->orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.$adminMailData['MainSiteBaseURL'],
+            $sms_data=array('nMessage'=>'Your Retailers Hangout ['.$orderInfoDataArr['group']->groupTitle.'] order RH-OD-'.$orderDetails[0]->orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.$adminMailData['MainSiteBaseURL'],
             'receiverMobileNumber'=>$orderInfoDataArr['group']->admin->mobile,'senderId'=>'','receiverId'=>$orderInfoDataArr['group']->admin->userId,
             'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-PLACED');
             send_sms_notification($sms_data);
@@ -2740,16 +2740,16 @@ class Shopping extends REST_Controller {
             /// for seller
             $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
             $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
-            global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - TIDIIT-OD-".$order->parrentOrderID.' has placed from Tidiit Inc Ltd', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+            global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - RH-OD-".$order->parrentOrderID.' has placed from Retailershangout.com', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
             
             /// for support
-            $adminMailData['userFullName']='Tidiit Inc Support';
+            $adminMailData['userFullName']='Retailershangout Support';
             $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
             $adminMailData['buyerFullName']=$orderInfoDataArr['group']->admin->firstName.' '.$orderInfoDataArr['group']->admin->lastName;
             $this->load->model('Siteconfig_model','siteconfig');
             //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
             $supportEmail='judhisahoo@gmail.com';
-            global_tidiit_mail($supportEmail, "Buying Club order no - TIDIIT-OD-".$order->parrentOrderID.' has placed from Tidiit Inc Ltd', $adminMailData,'support_group_order_success','Tidiit Inc Support');
+            global_tidiit_mail($supportEmail, "Buying Club order no - RH-OD-".$order->parrentOrderID.' has placed from Retailershangout.com', $adminMailData,'support_group_order_success','Retailershangout Support');
             ///mail to Buyer CLub
             $this->order->update(array('status'=>2),$order->parrentOrderID);
             $allChieldOrdersData=$this->order->get_all_chield_order($order->parrentOrderID);
@@ -2772,9 +2772,9 @@ class Shopping extends REST_Controller {
                     }
                 }
                 $adminMailData['userFullName']=$userFullName;
-                global_tidiit_mail($email, "Your Buying Club Tidiit order TIDIIT-OD-".$k->orderId.' has placed successfully', $adminMailData,'group_order_success',$userFullName);
+                global_tidiit_mail($email, "Your Buying Club Retailershangout Order RH-OD-".$k->orderId.' has placed successfully', $adminMailData,'group_order_success',$userFullName);
                 
-                $sms_data=array('nMessage'=>'Your Tidiit Buying Club['.$orderInfoDataArr['group']->groupTitle.'] order TIDIIT-OD-'.$k->orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.$adminMailData['MainSiteBaseURL'],
+                $sms_data=array('nMessage'=>'Your Retailers Hangout ['.$orderInfoDataArr['group']->groupTitle.'] order RH-OD-'.$k->orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.$adminMailData['MainSiteBaseURL'],
                 'receiverMobileNumber'=>$mobileNumber,'senderId'=>'','receiverId'=>$orderDetails[0]->userId,
                 'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-PLACED');
                 send_sms_notification($sms_data);
@@ -2782,15 +2782,15 @@ class Shopping extends REST_Controller {
                 /// for seller
                 $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
                 $adminMailData['buyerFullName']=$userFullName;
-                global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - TIDIIT-OD-".$k->orderId.' has placed from Tidiit Inc Ltd', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+                global_tidiit_mail($orderDetails[0]->sellerEmail, "Buying Club order no - RH-OD-".$k->orderId.' has placed from Retailershangout.com', $adminMailData,'seller_group_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
                 
                 /// for support
-                $adminMailData['userFullName']='Tidiit Inc Support';
+                $adminMailData['userFullName']='Retailershangout Support';
                 $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
                 $adminMailData['buyerFullName']=$userFullName;
                 $this->load->model('Siteconfig_model','siteconfig');
                 $supportEmail='judhisahoo@gmail.com';
-                global_tidiit_mail($supportEmail, "Buying Club order no - TIDIIT-OD-".$k->orderId.' has placed from Tidiit Inc Ltd', $adminMailData,'support_group_order_success','Tidiit Inc Support');
+                global_tidiit_mail($supportEmail, "Buying Club order no - RH-OD-".$k->orderId.' has placed from Retailershangout.com', $adminMailData,'support_group_order_success','Retailershangout Support');
             }
         }
         return TRUE;
@@ -2805,15 +2805,15 @@ class Shopping extends REST_Controller {
         /// for seller
         $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName;
-        global_tidiit_mail($orderDetails[0]->sellerEmail, "A new order no - TIDIIT-OD-".$orderId.' has placed from Tidiit Inc Ltd', $adminMailData,'seller_single_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+        global_tidiit_mail($orderDetails[0]->sellerEmail, "A new order no - RH-OD-".$orderId.' has placed from Retailershangout.com', $adminMailData,'seller_single_order_success',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
         /// for support
-        $adminMailData['userFullName']='Tidiit Inc Support';
+        $adminMailData['userFullName']='Retailershangout Support';
         $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName;
         $this->load->model('Siteconfig_model','siteconfig');
         $supportEmail='judhisahoo@gmail.com';
-        global_tidiit_mail($supportEmail, "Order no - TIDIIT-OD-".$orderId.' has placed by '.$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName, $adminMailData,'support_single_order_success','Tidiit Inc Support');
-        $sms_data=array('nMessage'=>'Your Tidiit order TIDIIT-OD-'.$orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.$adminMailData['MainSiteBaseURL'],
+        global_tidiit_mail($supportEmail, "Order no - RH-OD-".$orderId.' has placed by '.$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName, $adminMailData,'support_single_order_success','Retailershangout Support');
+        $sms_data=array('nMessage'=>'Your Retailershangout Order RH-OD-'.$orderId.' for '.$orderInfoDataArr['pdetail']->title.' has placed successfully. More details about this notifiaction,Check '.$adminMailData['MainSiteBaseURL'],
         'receiverMobileNumber'=>$orderDetails[0]->buyerMobileNo,'senderId'=>'','receiverId'=>$orderDetails[0]->userId,
         'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-CONFIRM');
         send_sms_notification($sms_data);
@@ -2837,7 +2837,7 @@ class Shopping extends REST_Controller {
         elseif($orderDetails[0]->status>0):
             $this->response(array('error' => 'Please provide valid order index,current is not in truck.'), 400);return FALSE;
         endif;
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         
         $orderInfo= unserialize(base64_decode($orderDetails[0]->orderInfo));
         //pre($orderInfo);die;
@@ -2865,16 +2865,16 @@ class Shopping extends REST_Controller {
         $adminMailData['userFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $buyerFullName=$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName;
         $adminMailData['buyerFullName']=$buyerFullName;
-        global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment has submited for Tidiit order TIDIIT-OD-".$orderId.' before delivery', $adminMailData,'seller_single_order_success_sod_final_payment',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
+        global_tidiit_mail($orderDetails[0]->sellerEmail, "Payment has submited for Retailershangout Order RH-OD-".$orderId.' before delivery', $adminMailData,'seller_single_order_success_sod_final_payment',$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName);
 
         /// for support
-        $adminMailData['userFullName']='Tidiit Inc Support';
+        $adminMailData['userFullName']='Retailershangout Support';
         $adminMailData['sellerFullName']=$orderDetails[0]->sellerFirstName.' '.$orderDetails[0]->sellerFirstName;
         $adminMailData['buyerFullName']=$orderInfoDataArr['shipping']->firstName.' '.$orderInfoDataArr['shipping']->lastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        global_tidiit_mail($supportEmail, "Payment has submited for Tidiit Order TIDIIT-OD-".$orderId.' before delivery', $adminMailData,'support_single_order_success_sod_final_payment','Tidiit Inc Support');
+        global_tidiit_mail($supportEmail, "Payment has submited for Retailershangout Order RH-OD-".$orderId.' before delivery', $adminMailData,'support_single_order_success_sod_final_payment','Retailershangout Support');
         //die;
         
         return TRUE;
@@ -2975,7 +2975,7 @@ class Shopping extends REST_Controller {
                     $data['nMessage'] .= "Want to process the order ? <br>";
                     $data['nMessage'] .= "<a href='".$defaultResourcesData["MainSiteBaseURL"]."shopping/group-order-decline/".base64_encode($orderId*226201)."' class='btn btn-danger btn-lg'>Decline</a>  or <a href='".$defaultResourcesData['MainSiteBaseURL']."shopping/group-order-accept-process/".base64_encode($orderId*226201)."' class='btn btn-success btn-lg'>Accept</a><br>";
                     $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
-                    $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                    $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
                     $data['orderId'] =$orderId;
                     $data['productId'] =$orderinfo['priceinfo']->productId;
                     $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -2990,7 +2990,7 @@ class Shopping extends REST_Controller {
 
                     $mail_template_view_data=load_default_resources();
                     $mail_template_view_data['group_order_start']=$mail_template_data;
-                    global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Tidiit Inc Ltd", $mail_template_view_data,'group_order_start');
+                    global_tidiit_mail($recv_email, "New Buying Club Order Invitation at Retailershangout.com", $mail_template_view_data,'group_order_start');
                     $this->user->notification_add($data);
                     //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=>'sending mail and message to group member'));
                     /// sendin SMS to allmember
@@ -3018,7 +3018,7 @@ class Shopping extends REST_Controller {
                         $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                         $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                         $data['nMessage'] .= "";
-                        $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                        $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
                         $data['orderId'] =$orderId;
                         $data['productId'] =$orderinfo['priceinfo']->productId;
                         $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -3033,11 +3033,11 @@ class Shopping extends REST_Controller {
 
                         $mail_template_view_data=load_default_resources();
                         $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                        global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                        global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailers Hangout ", $mail_template_view_data,'group_order_group_member_payment');
                         $this->user->notification_add($data);
                         //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=>'sending mail and message to group member except me'));
                         /// sendin SMS to allmember
-                        $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResourcesData["MainSiteBaseURL"],
+                        $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResourcesData["MainSiteBaseURL"],
                             'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                             'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                         send_sms_notification($sms_data);
@@ -3054,11 +3054,11 @@ class Shopping extends REST_Controller {
                     $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                 }
                 $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Tidiit Inc, Ltd.", $mail_template_view_data,'group_order_group_member_payment');
+                global_tidiit_mail($recv_email,"One Buying Club member has completed his payment at Retailers Hangout ", $mail_template_view_data,'group_order_group_member_payment');
                 $this->user->notification_add($data);
                 //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=>'notification send to group admin'));
                 /// sendin SMS to allmember
-                $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order TIDIIT-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResourcesData["MainSiteBaseURL"],
+                $sms_data=array('nMessage'=>$usr->firstName.' '.$usr->lastName.' has completed payment['.$order->orderAmount.'] of '.$order->productQty.' of your Buying Club['.$group->groupTitle.'] Order RH-OD-'.$orderId.'. More details about this notifiaction,Check '.$defaultResourcesData["MainSiteBaseURL"],
                     'receiverMobileNumber'=>$usr->mobile,'senderId'=>$data['senderId'],'receiverId'=>$data['receiverId'],
                     'senderMobileNumber'=>$group->admin->mobile,'nType'=>$data['nType']);
                 send_sms_notification($sms_data);
@@ -3106,7 +3106,7 @@ class Shopping extends REST_Controller {
         $user = $rsUser[0];
         $recv_email = $user->email;
         $recv_name=$user->firstName.' '.$user->lastName;
-        $tidiitStr='TIDIIT-OD-';
+        $tidiitStr='RH-OD-';
         
         $data['senderId'] = $order->userId;
         $data['nType'] = 'BUYING-CLUB-ORDER';
@@ -3124,7 +3124,7 @@ class Shopping extends REST_Controller {
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERID']=$orderId;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERAMT']=$order->orderAmount;;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_START_ORDERQTY']=$order->productQty;
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
                 $data['orderId'] =$orderId;
                 $data['productId'] =$orderinfo['priceinfo']->productId;
                 $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -3156,7 +3156,7 @@ class Shopping extends REST_Controller {
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_AMT']=$order->orderAmount;
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
                 $data['nMessage'] .= "";
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
                 $data['orderId'] =$orderId;
                 $data['productId'] =$orderinfo['priceinfo']->productId;
                 $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -3171,7 +3171,7 @@ class Shopping extends REST_Controller {
 
                 $mail_template_view_data=load_default_resources();
                 $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-                global_tidiit_mail($recv_email,"Payment submited for Tidiit Buying Club order  before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment');
+                global_tidiit_mail($recv_email,"Payment submited for Retailers Hangout  order  before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment');
                 if($me->userId != $usr->userId):
                     $this->user->notification_add($data);
                 endif;
@@ -3189,14 +3189,14 @@ class Shopping extends REST_Controller {
                 $mail_template_data['TEMPLATE_GROUP_ORDER_GROUP_MEMBER_PAYMENT_ORDER_QTY']=$order->productQty;
             }
             $mail_template_view_data['group_order_group_member_payment']=$mail_template_data;
-            global_tidiit_mail($recv_email,"Payment has submited for Tidiit Buying Club order before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment',$leaderName);
+            global_tidiit_mail($recv_email,"Payment has submited for Retailers Hangout  order before delivery", $mail_template_view_data,'group_order_group_member_sod_final_payment',$leaderName);
             $this->user->notification_add($data);
         endif;
 
         if(!empty($logisticsData) && array_key_exists('deliveryStaffContactNo', $logisticsData)):
             $logisticMobileNo=$logisticsData['deliveryStaffContactNo'];
             if($logisticMobileNo!=""):
-                $sms=$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
+                $sms=$recv_name.' has completed the payment for Retailershangout Order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
                 /// sendin SMS to allmember
                 $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$logisticMobileNo,'senderId'=>'','receiverId'=>'',
                     'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LOGISTICS');
@@ -3205,14 +3205,14 @@ class Shopping extends REST_Controller {
         endif;
 
         /// SMS to payer
-        $sms='Thanks for the payment.We have received for Tidiit Buying Club['.$group->groupTitle.'] order '.$tidiitStr.'-'.$orderId.'.';
+        $sms='Thanks for the payment.We have received for Retailers Hangout ['.$group->groupTitle.'] order '.$tidiitStr.'-'.$orderId.'.';
         $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$user->mobile,'senderId'=>'','receiverId'=>$user->userId,
             'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-PAYER');
         send_sms_notification($sms_data);
 
         if($user->userId!=$group->admin->userId){
             /// SMS to group admin
-            $sms='Your Tidiit Buying Club['.$group->groupTitle.'] member['.$user->firstName.' '.$user->lastName.'] has completed payment for order '.$tidiitStr.'-'.$orderId.'.';
+            $sms='Your Retailers Hangout ['.$group->groupTitle.'] member['.$user->firstName.' '.$user->lastName.'] has completed payment for order '.$tidiitStr.'-'.$orderId.'.';
             $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$group->admin->mobile,'senderId'=>'','receiverId'=>$group->admin->userId,
                 'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LEADER');
             send_sms_notification($sms_data);
@@ -3221,10 +3221,10 @@ class Shopping extends REST_Controller {
         $rajorpayDataArr=$this->order->get_rajorpay_id_by_rajorpay_pament_id($razorpayPaymentId);
         $this->order->edit_payment(array('paymentType'=>'razorpay','razorpayId'=>$rajorpayDataArr[0]->razorpayId),$orderId);
         $logisticMobileNo=$logisticsData['deliveryStaffContactNo'];
-        $sms="Hi ".$logisticsData['deliveryStaffName'].'. '.$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
+        $sms="Hi ".$logisticsData['deliveryStaffName'].'. '.$recv_name.' has completed the payment for Retailershangout Order '.$tidiitStr.'-'.$orderId.' please process the delivery.';
 
         /// here send mail to logistic partner
-        $mailBody="Hi ".$logisticsData['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'-'.$orderId.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Tidiit Team.';
+        $mailBody="Hi ".$logisticsData['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'-'.$orderId.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Retailershangout Team.';
         global_tidiit_mail($logisticsData['deliveryStaffEmail'],'Tidiit payment completed for Order '.$tidiitStr.'-'.$orderId,$mailBody,'',$recv_name);
 
         $this->_sent_single_order_complete_mail_sod_final_payment($orderId);
@@ -3235,7 +3235,7 @@ class Shopping extends REST_Controller {
     
     function process_razorpay_success_single_order($orderIdArr,$razorpayPaymentId){
         $orderId=0;
-        $tidiitStrChr='TIDIIT-OD';
+        $tidiitStrChr='RH-OD';
         $tidiitStr='';
         $rajorpayDataArr=$this->order->get_rajorpay_id_by_rajorpay_pament_id($razorpayPaymentId);
         //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=>'calling process_razorpay_success_single_order fun at 3258 line === '));
@@ -3261,7 +3261,7 @@ class Shopping extends REST_Controller {
             //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=> 'add payment data to db === '));
             $mail_template_view_data=load_default_resources();
             $mail_template_view_data['single_order_success']=$mail_template_data;
-            global_tidiit_mail($recv_email, "Your Tidiit order no - TIDIIT-OD-".$v.' has placed successfully', $mail_template_view_data,'single_order_success');
+            global_tidiit_mail($recv_email, "Your Retailershangout Order no - RH-OD-".$v.' has placed successfully', $mail_template_view_data,'single_order_success');
             //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=> 'Going for sent_single_order_complete_mail function ==== '));
             $this->sent_single_order_complete_mail($v);
         endforeach;
@@ -3272,7 +3272,7 @@ class Shopping extends REST_Controller {
     
     function process_razorpay_success_single_order_final($orderIdArr,$razorpayPaymentId,$logisticsData){
         $orderId=0;
-        $tidiitStrChr='TIDIIT-OD';
+        $tidiitStrChr='RH-OD';
         $tidiitStr='';
         //Send Email message
         //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=>'select rajorpaypayment data from db'));
@@ -3306,7 +3306,7 @@ class Shopping extends REST_Controller {
             $mail_template_view_data=$this->load_default_resources();
             $mail_template_view_data['single_order_success']=$mail_template_data;
             //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=>'going to send mail to suer about payment'));
-            global_tidiit_mail($recv_email, "Payment has completed for your Tidiit order TIDIIT-OD-".$v, $mail_template_view_data,'single_order_success_sod_final_payment',$recv_name);
+            global_tidiit_mail($recv_email, "Payment has completed for your Retailershangout Order RH-OD-".$v, $mail_template_view_data,'single_order_success_sod_final_payment',$recv_name);
             //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=>'going for _sent_single_order_complete_mail_sod_final_payment fun.'));
             $this->_sent_single_order_complete_mail_sod_final_payment($v);
             
@@ -3318,7 +3318,7 @@ class Shopping extends REST_Controller {
             $logisticMobileNo=$logisticsData['deliveryStaffContactNo'];
             if($logisticMobileNo!=""):
                 //send_sms_notification(array('receiverMobileNumber'=>'9556644964', 'nMessage'=>'going to send SMS to delivery staff for delivery'));
-                $sms=$recv_name.' has completed the payment for Tidiit order '.$tidiitStr.' please process the delivery.';
+                $sms=$recv_name.' has completed the payment for Retailershangout Order '.$tidiitStr.' please process the delivery.';
                 /// sendin SMS to allmember
                 $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$logisticMobileNo,'senderId'=>'','receiverId'=>'',
                     'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-LOGISTICS');
@@ -3331,14 +3331,14 @@ class Shopping extends REST_Controller {
         endif;
 
         /// SMS to payer
-        $sms='Thanks for the payment.We have received for Tidiit order '.$tidiitStr.'.';
+        $sms='Thanks for the payment.We have received for Retailershangout Order '.$tidiitStr.'.';
         $sms_data=array('nMessage'=>$sms,'receiverMobileNumber'=>$user->mobile,'senderId'=>'','receiverId'=>$user->userId,
             'senderMobileNumber'=>'','nType'=>'SINGLE-ORDER-FINAL-PAYMENT-BEFORE-DELIVERY-PAYER');
         send_sms_notification($sms_data);
 
         /// here send mail to logistic partner
-        $mailBody="Hi ".$logisticsData['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Tidiit Team.';
-        global_tidiit_mail($logisticsData['deliveryStaffEmail'],'Tidiit payment submited  for Order '.$tidiitStr,$mailBody,'',$recv_name);
+        $mailBody="Hi ".$logisticsData['deliveryStaffName'].",<br /> <b>$recv_name</b> has completed Tidiit payment for Order <b>".$tidiitStr.'</b><br /><br /> Pleasee process the delivery for the above order.<br /><br />Thanks<br>Retailershangout Team.';
+        global_tidiit_mail($logisticsData['deliveryStaffEmail'],'Retailers Hangout payment submited  for Order '.$tidiitStr,$mailBody,'',$recv_name);
         $result=array();
         $result['message']='Thanks for the payment before order is Out for delivery';
         success_response_after_post_get($result);

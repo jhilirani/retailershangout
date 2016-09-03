@@ -37,7 +37,7 @@ class Logistics extends REST_Controller {
             $this->response(array('error' => $isValideDefaultData['message']), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         //$countryShortName='IN';
         if($countryShortName==FALSE){
             //$this->response(array('error' => 'Please provide valid latitude and longitude!'), 400); return FALSE;
@@ -321,7 +321,7 @@ class Logistics extends REST_Controller {
             endif;
         }
         if(empty($upload_files) || count($upload_files)<2){
-            $this->response(array('error' =>'You must upload 2 photo for tidiit order delivery proof.'), 400); return FALSE;
+            $this->response(array('error' =>'You must upload 2 photo for Retailershangout Order delivery proof.'), 400); return FALSE;
         }
         $dataArr['photo1']=$upload_files[0];
         $dataArr['photo2']=$upload_files[1];
@@ -421,9 +421,9 @@ class Logistics extends REST_Controller {
         $orderInfo=unserialize(base64_decode($order->orderInfo));
         /// sendin SMS to Buyer
         if($moveType=='clientPickup'){
-            $smsMsg='Your item['.$orderInfo['pdetail']->title.'] for Tidiit order TIDIIT-OD-'.$order->orderId.' has pickup from seller location at '.$formatedAddress.'.';
+            $smsMsg='Your item['.$orderInfo['pdetail']->title.'] for Retailershangout Order RH-OD-'.$order->orderId.' has pickup from seller location at '.$formatedAddress.'.';
         }else{
-            $smsMsg='Your item['.$orderInfo['pdetail']->title.'] for Tidiit order TIDIIT-OD-'.$order->orderId.' has '.$moveType.' to a vehicle for next movement at '.$formatedAddress.'.';
+            $smsMsg='Your item['.$orderInfo['pdetail']->title.'] for Retailershangout Order RH-OD-'.$order->orderId.' has '.$moveType.' to a vehicle for next movement at '.$formatedAddress.'.';
         }
         $sms_data=array('nMessage'=>$smsMsg,'receiverMobileNumber'=>$order->buyerMobileNo,'senderId'=>'','receiverId'=>$order->userId,
         'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-'.  strtoupper($moveType).'-MOVEMENT-UPDATE');
@@ -434,9 +434,9 @@ class Logistics extends REST_Controller {
             if($order->userId!=$orderInfo["group"]->admin->userId):
                 /// sendin SMS to Leader
                 if($moveType=='clientPickup'){
-                    $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Tidiit order TIDIIT-OD-'.$order->orderId.' item has  pickup from seller location at '.$formatedAddress.'.';
+                    $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Retailershangout Order RH-OD-'.$order->orderId.' item has  pickup from seller location at '.$formatedAddress.'.';
                 }else{
-                    $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Tidiit order TIDIIT-OD-'.$order->orderId.' item has '.$moveType.' to a vehicle for next movement at '.$formatedAddress.' .';
+                    $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Retailershangout Order RH-OD-'.$order->orderId.' item has '.$moveType.' to a vehicle for next movement at '.$formatedAddress.' .';
                 }
                 $sms_data=array('nMessage'=>$smsMsg,'receiverMobileNumber'=>$orderInfo['group']->admin->mobile,'senderId'=>'','receiverId'=>$orderInfo["group"]->admin->userId,
                 'senderMobileNumber'=>'','nType'=>'BUYING-CLUB-ORDER-'.  strtoupper($moveType).'-MOVEMENT-UPDATE');
@@ -499,30 +499,30 @@ class Logistics extends REST_Controller {
         $mail_template_view_data['isPaid']=$order->isPaid;
         $mail_template_view_data['orderDetails']=$orderDetails;
         $buyerFullName=$order->buyerFirstName.' '.$order->buyerLastName;
-        global_tidiit_mail($order->buyerEmail, "Pre-alert to your Tidiit Buying Club order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'group_order_out_for_delivery_pre_alert',$buyerFullName);
+        global_tidiit_mail($order->buyerEmail, "Pre-alert to your Retailers Hangout  order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'group_order_out_for_delivery_pre_alert',$buyerFullName);
         
         /// mail for group leader
         $mail_template_view_data['buyerFullName']=$buyerFullName;
         if($order->parrentOrderID>0):
             $mail_template_view_data['leaderFullName']=$orderInfo['group']->admin->firstName.' '.$orderInfo['group']->admin->lastName;
-            global_tidiit_mail($orderInfo['group']->admin->email, "Pre-alert to your Tidiit Buying Club Member order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'group_order_out_for_delivery_pre_alert_leader',$buyerFullName);    
+            global_tidiit_mail($orderInfo['group']->admin->email, "Pre-alert to your Retailers Hangout  Member order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'group_order_out_for_delivery_pre_alert_leader',$buyerFullName);    
         endif;
         
         /// for seller
         $mail_template_view_data['orderInfoDataArr']=unserialize(base64_decode($order->orderInfo));
         $sellerFullName=$order->sellerFirstName.' '.$order->sellerFirstName;
         $mail_template_view_data['sellerFullName']=$sellerFullName;
-        global_tidiit_mail($order->sellerEmail, "Pre-alert for Tidiit Buying Club order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'seller_group_order_out_for_delivery_pre_alert',$sellerFullName);
+        global_tidiit_mail($order->sellerEmail, "Pre-alert for Retailers Hangout  order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'seller_group_order_out_for_delivery_pre_alert',$sellerFullName);
         
-        $mail_template_view_data['supportFullName']='Tidiit Inc Support';
+        $mail_template_view_data['supportFullName']='Retailershangout Support';
         $mail_template_view_data['sellerFullName']=$order->sellerFirstName.' '.$order->sellerLastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        global_tidiit_mail($supportEmail, "Pre-alert Tidiit Buying Club for Order no - TIDIIT-OD-".$order->orderId.' before delivery ', $mail_template_view_data,'support_group_order_out_for_delivery_pre_alert','Tidiit Inc Support');
+        global_tidiit_mail($supportEmail, "Pre-alert Retailers Hangout  for Order no - RH-OD-".$order->orderId.' before delivery ', $mail_template_view_data,'support_group_order_out_for_delivery_pre_alert','Retailershangout Support');
         
         /// sendin SMS to Buyer
-        $smsMsg='Your Tidiit order TIDIIT-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
+        $smsMsg='Your Retailershangout Order RH-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
         if($order->isPaid==0):
             $smsMsg.="AS you had selected Settlement on Delivery method,please submit the payment,So delivery people will delivery your item.";
         endif;
@@ -532,7 +532,7 @@ class Logistics extends REST_Controller {
         
         if($order->userId!=$orderInfo["group"]->admin->userId):
             /// sendin SMS to Leader
-            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Tidiit order TIDIIT-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
+            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Retailershangout Order RH-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
             if($order->isPaid==0):
                 $smsMsg.="$buyerFullName had selected Settlement on Delivery method,please follow with him/her to submit the payment,So delivery people will delivery your item.";
             endif;
@@ -560,7 +560,7 @@ class Logistics extends REST_Controller {
         $mail_template_view_data['deliveryStaffEmail']=$outForDeliveryDataArr['deliveryStaffEmail'];
         $mail_template_view_data['isPaid']=$order->isPaid;
         $buyerFullName=$order->buyerFirstName.' '.$order->buyerLastName;
-        global_tidiit_mail($order->buyerEmail, "Pre-alert to your Tidiit order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'single_order_out_for_delivery_pre_alert',$buyerFullName);
+        global_tidiit_mail($order->buyerEmail, "Pre-alert to your Retailershangout Order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'single_order_out_for_delivery_pre_alert',$buyerFullName);
         
         
         $mail_template_view_data['orderInfoDataArr']=unserialize(base64_decode($order->orderInfo));
@@ -568,18 +568,18 @@ class Logistics extends REST_Controller {
         /// for seller
         $mail_template_view_data['userFullName']=$order->sellerFirstName.' '.$order->sellerFirstName;
         $mail_template_view_data['buyerFullName']=$buyerFullName;
-        global_tidiit_mail($order->sellerEmail, "Pre-alert for order no - TIDIIT-OD-".$order->orderId.' before delivery', $mail_template_view_data,'seller_single_order_out_for_delivery_pre_alert',$order->sellerFirstName.' '.$order->sellerFirstName);
+        global_tidiit_mail($order->sellerEmail, "Pre-alert for order no - RH-OD-".$order->orderId.' before delivery', $mail_template_view_data,'seller_single_order_out_for_delivery_pre_alert',$order->sellerFirstName.' '.$order->sellerFirstName);
         
         
-        $mail_template_view_data['userFullName']='Tidiit Inc Support';
+        $mail_template_view_data['userFullName']='Retailershangout Support';
         $mail_template_view_data['sellerFullName']=$order->sellerFirstName.' '.$order->sellerLastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        global_tidiit_mail($supportEmail, "Pre-alert for Order no - TIDIIT-OD-".$order->orderId.' before delivery ', $mail_template_view_data,'support_single_order_out_for_delivery_pre_alert','Tidiit Inc Support');
+        global_tidiit_mail($supportEmail, "Pre-alert for Order no - RH-OD-".$order->orderId.' before delivery ', $mail_template_view_data,'support_single_order_out_for_delivery_pre_alert','Retailershangout Support');
         
         /// sendin SMS to allmember
-        $smsMsg='Tidiit order TIDIIT-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
+        $smsMsg='Retailershangout Order RH-OD-'.$order->orderId.' will delivered by '.$outForDeliveryDataArr['outForDeliveryDays'].' days.';
         if($order->isPaid==0):
             $smsMsg.="AS you had selected Settlement on Delivery method,please submit the payment,So delivery people will delivery your item.";
         endif;
@@ -606,24 +606,24 @@ class Logistics extends REST_Controller {
         $mail_template_view_data['deliveryStaffEmail']=$outForDeliveryDataArr['deliveryStaffEmail'];
         $mail_template_view_data['isPaid']=$order->isPaid;
         $buyerFullName=$order->buyerFirstName.' '.$order->buyerLastName;
-        global_tidiit_mail($order->buyerEmail, "Your Tidiit order no - TIDIIT-OD-".$order->orderId.' is ready now to Out For Delivery', $mail_template_view_data,'single_order_out_for_delivery',$buyerFullName);
+        global_tidiit_mail($order->buyerEmail, "Your Retailershangout Order no - RH-OD-".$order->orderId.' is ready now to Out For Delivery', $mail_template_view_data,'single_order_out_for_delivery',$buyerFullName);
         
         /// for seller
         $mail_template_view_data['orderInfoDataArr']=unserialize(base64_decode($order->orderInfo));
         $mail_template_view_data['orderDetails']=$orderDetails;
         $mail_template_view_data['userFullName']=$order->sellerFirstName.' '.$order->sellerFirstName;
         $mail_template_view_data['buyerFullName']=$buyerFullName;
-        global_tidiit_mail($order->sellerEmail, "Tidiit order no - TIDIIT-OD-".$order->orderId.' is ready to Out For Delivery', $mail_template_view_data,'seller_single_order_out_for_delivery',$order->sellerFirstName.' '.$order->sellerFirstName);
+        global_tidiit_mail($order->sellerEmail, "Retailershangout Order no - RH-OD-".$order->orderId.' is ready to Out For Delivery', $mail_template_view_data,'seller_single_order_out_for_delivery',$order->sellerFirstName.' '.$order->sellerFirstName);
         
         
-        $mail_template_view_data['userFullName']='Tidiit Inc Support';
+        $mail_template_view_data['userFullName']='Retailershangout Support';
         $mail_template_view_data['sellerFullName']=$order->sellerFirstName.' '.$order->sellerLastName;
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        global_tidiit_mail($supportEmail, "Tidiit Order no - TIDIIT-OD-".$order->orderId.' is ready to Out For Delivery ', $mail_template_view_data,'support_single_order_out_for_delivery','Tidiit Inc Support');
+        global_tidiit_mail($supportEmail, "Retailershangout Order no - RH-OD-".$order->orderId.' is ready to Out For Delivery ', $mail_template_view_data,'support_single_order_out_for_delivery','Retailershangout Support');
         
-        $smsMsg='Tidiit order TIDIIT-OD-'.$order->orderId.' is ready to Out For Delivery.';
+        $smsMsg='Retailershangout Order RH-OD-'.$order->orderId.' is ready to Out For Delivery.';
         if($order->isPaid==0):
             $smsMsg.="AS you had selected Settlement on Delivery method,please submit the payment,So delivery people will deliver your item at your door step.";
         endif;
@@ -650,29 +650,29 @@ class Logistics extends REST_Controller {
         $mail_template_view_data['isPaid']=$order->isPaid;
         $mail_template_view_data['orderDetails']=$orderDetails;
         $buyerFullName=$order->buyerFirstName.' '.$order->buyerLastName;
-        global_tidiit_mail($order->buyerEmail, "Your Tidiit Buying Club order no - TIDIIT-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'group_order_out_for_delivery',$buyerFullName);
+        global_tidiit_mail($order->buyerEmail, "Your Retailers Hangout  order no - RH-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'group_order_out_for_delivery',$buyerFullName);
         
         /// mail for group leader
         $mail_template_view_data['buyerFullName']=$buyerFullName;
         if($order->parrentOrderID>0):
             $mail_template_view_data['leaderFullName']=$orderInfo['group']->admin->firstName.' '.$orderInfo['group']->admin->lastName;
-            global_tidiit_mail($orderInfo['group']->admin->email, "Your Tidiit Buying Club Member order no - TIDIIT-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'group_order_out_for_delivery_leader',$buyerFullName);    
+            global_tidiit_mail($orderInfo['group']->admin->email, "Your Retailers Hangout  Member order no - RH-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'group_order_out_for_delivery_leader',$buyerFullName);    
         endif;
         
         /// for seller
         $mail_template_view_data['orderInfoDataArr']=unserialize(base64_decode($order->orderInfo));
         $sellerFullName=$order->sellerFirstName.' '.$order->sellerFirstName;
         $mail_template_view_data['sellerFullName']=$sellerFullName;
-        global_tidiit_mail($order->sellerEmail, "Tidiit Buying Club order no - TIDIIT-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'seller_group_order_out_for_delivery',$sellerFullName);
+        global_tidiit_mail($order->sellerEmail, "Retailers Hangout  order no - RH-OD-".$order->orderId.' is ready for Out For Delivery', $mail_template_view_data,'seller_group_order_out_for_delivery',$sellerFullName);
         
-        $mail_template_view_data['supportFullName']='Tidiit Inc Support';
+        $mail_template_view_data['supportFullName']='Retailershangout Support';
         $mail_template_view_data['sellerFullName']=$order->sellerFirstName.' '.$order->sellerLastName;
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        global_tidiit_mail($supportEmail, "Tidiit Buying Club for Order no - TIDIIT-OD-".$order->orderId.' is ready for Out For Delivery ', $mail_template_view_data,'support_group_order_out_for_delivery','Tidiit Inc Support');
+        global_tidiit_mail($supportEmail, "Retailers Hangout  for Order no - RH-OD-".$order->orderId.' is ready for Out For Delivery ', $mail_template_view_data,'support_group_order_out_for_delivery','Retailershangout Support');
         
         /// sendin SMS to Buyer
-        $smsMsg='Your Tidiit order TIDIIT-OD-'.$order->orderId.' is ready to Out For Delivery.';
+        $smsMsg='Your Retailershangout Order RH-OD-'.$order->orderId.' is ready to Out For Delivery.';
         if($order->isPaid==0):
             $smsMsg.="AS you had selected Settlement on Delivery method,please submit the payment,So delivery people will delivery your item.";
         endif;
@@ -682,7 +682,7 @@ class Logistics extends REST_Controller {
         
         if($order->userId!=$orderInfo["group"]->admin->userId):
             /// sendin SMS to Leader
-            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Tidiit order TIDIIT-OD-'.$order->orderId.' is ready to Out For Delivery.';
+            $smsMsg='Your Buying Club['.$orderInfo['group']->groupTitle.']  member Retailershangout Order RH-OD-'.$order->orderId.' is ready to Out For Delivery.';
             if($order->isPaid==0):
                 $smsMsg.="$buyerFullName had selected Settlement on Delivery method,please follow with him/her to submit the payment,So delivery people will delivery your item.";
             endif;

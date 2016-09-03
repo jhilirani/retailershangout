@@ -69,7 +69,6 @@ class Appdata extends REST_Controller {
         if($isValideDefaultData['type']=='fail'){
             $this->response(array('error' => $isValideDefaultData['message']), 400); return FALSE;
         }
-        $this->response(array('error' => "App is under developed"), 400); return FALSE;
         $result = array();
         $slider1=$this->banner->get_home_slider(1,TRUE);
         //$slider2=$this->banner->get_home_slider(2,TRUE);
@@ -118,9 +117,9 @@ class Appdata extends REST_Controller {
             $this->response(array('error' => $isValideDefaultData['message']), 400); return FALSE;
         }
         
-        if(strtoupper(get_counry_code_from_lat_long($latitude,$longitude)) !='IN'){
+        /*if(strtoupper(get_country_code_from_lat_long($latitude,$longitude)) !='IN'){
             $this->response(array('error' => 'Invalid username or password,please try again.'), 400); return FALSE;
-        }
+        }*/
         
         if($userName!="" && $password!=""){
             $rs=$this->user->check_login_data($userName,$password,'buyer');
@@ -176,9 +175,9 @@ class Appdata extends REST_Controller {
         $defaultDataArr=array('UDID'=>$UDID,'deviceType'=>$deviceType,'deviceToken'=>$deviceToken,'latitude'=>$latitude,'longitude'=>$longitude);
         $isValideDefaultData=  $this->check_default_data($defaultDataArr);
         
-        if(strtoupper(get_counry_code_from_lat_long($latitude,$longitude)) !='IN'){
+        /*if(strtoupper(get_country_code_from_lat_long($latitude,$longitude)) !='IN'){
             $this->response(array('error' => 'Invalid username or password,please try again.'), 400); return FALSE;
-        }
+        }*/
         
         if($isValideDefaultData['type']=='fail'){
             $this->response(array('error' => $isValideDefaultData['message']), 400); return FALSE;
@@ -207,7 +206,7 @@ class Appdata extends REST_Controller {
 
             $mail_template_view_data=load_default_resources();
             $mail_template_view_data['create_user']=$mail_template_data;
-            global_tidiit_mail($email, "Your account at Tidiit Inc. Ltd.", $mail_template_view_data,'user_create',$firstName.' '.$lastName);
+            global_tidiit_mail($email, "Your account at Retailershangout.com", $mail_template_view_data,'user_create',$firstName.' '.$lastName);
             
             $parram=array('userId'=>$userId,'message'=>'You have registered successfully, you will get separte mail for regisration details.');
             success_response_after_post_get($parram);
@@ -378,7 +377,7 @@ class Appdata extends REST_Controller {
             $userShippingDataDetails[0]=array();
             $userShippingDataDetails[0]['firstName']="";
             $userShippingDataDetails[0]['lastName']="";
-            $userShippingDataDetails[0]['countryId']="";
+            $userShippingDataDetails[0]['countryId']=99;
             $userShippingDataDetails[0]['cityId']="";
             $userShippingDataDetails[0]['zipId']="";
             $userShippingDataDetails[0]['localityId']="";
@@ -386,6 +385,8 @@ class Appdata extends REST_Controller {
             $userShippingDataDetails[0]['address']="";
             $userShippingDataDetails[0]['contactNo']="";
             $userShippingDataDetails[0]['landmark']="";
+        }else{
+            $userShippingDataDetails[0]['countryId']=99;
         }
         if($userShippingDataDetails[0]['countryId']!=""){
             $result['cityDataArr']=  $this->Country->get_all_city1($userShippingDataDetails[0]['countryId'],TRUE);
@@ -544,9 +545,9 @@ class Appdata extends REST_Controller {
         $defaultDataArr=array('UDID'=>$UDID,'deviceType'=>$deviceType,'deviceToken'=>$deviceToken,'latitude'=>$latitude,'longitude'=>$longitude);
         $isValideDefaultData=  $this->check_default_data($defaultDataArr);
         
-        if(strtoupper(get_counry_code_from_lat_long($latitude,$longitude)) !='IN'){
+        /*if(strtoupper(get_country_code_from_lat_long($latitude,$longitude)) !='IN'){
             $this->response(array('error' => 'Invalid username or password,please try again.'), 400); return FALSE;
-        }
+        }*/
         
         if($isValideDefaultData['type']=='fail'){
             $this->response(array('error' => $isValideDefaultData['message']), 400); return FALSE;
@@ -563,7 +564,7 @@ class Appdata extends REST_Controller {
 
             $mail_template_view_data=load_default_resources();
             $mail_template_view_data['retribe_user_password']=$mail_template_data;
-            global_tidiit_mail($DataArr[0]->email, "Your password at Tidiit Inc. Ltd.", $mail_template_view_data,'retribe_user_password',$DataArr[0]->firstName.' '.$DataArr[0]->lastName);
+            global_tidiit_mail($DataArr[0]->email, "Your password at Retailershangout.com", $mail_template_view_data,'retribe_user_password',$DataArr[0]->firstName.' '.$DataArr[0]->lastName);
             $result = array();
             $result['message']="Your password has send by your registered email.";
             success_response_after_post_get($result);
@@ -1268,7 +1269,7 @@ class Appdata extends REST_Controller {
                 $data['senderId'] = $adminId;
                 $data['receiverId'] = $usr->userId;
                 $data['nType'] = 'BUYING-CLUB-ORDER';
-                $data['nTitle'] = 'Buying Club Re-order [TIDIIT-OD'.$order->orderId.'] running by <b>'.$group->admin->firstName.' '.$group->admin->lastName.'</b>';
+                $data['nTitle'] = 'Buying Club Re-order [RH-OD'.$order->orderId.'] running by <b>'.$group->admin->firstName.' '.$group->admin->lastName.'</b>';
                 $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_ORDER_ID']=$order->orderId;
                 $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_ADMIN_NAME']=$group->admin->firstName.' '.$group->admin->lastName;
                 $data['nMessage'] = "Hi, <br> You have requested to buy Buying Club order product.<br>";
@@ -1277,7 +1278,7 @@ class Appdata extends REST_Controller {
                 $data['nMessage'] .= "Want to process the order ? <br>";
                 $data['nMessage'] .= "<a href='".$mail_template_view_data['MainSiteBaseURL']."shopping/group-order-decline/".base64_encode($orderId*226201)."' class='btn btn-danger btn-lg'>Decline</a>  or <a href='".$mail_template_view_data['MainSiteBaseURL']."shopping/group-re-order-accept-process/".base64_encode($orderId*226201)."/".base64_encode(100)."' class='btn btn-success btn-lg'>Accept</a><br>";
                 $mail_template_data['TEMPLATE_GROUP_RE_ORDER_START_ORDER_ID1']=$orderId;
-                $data['nMessage'] .= "Thanks <br> Tidiit Team.";
+                $data['nMessage'] .= "Thanks <br> Retailershangout Team.";
                 $data['orderId'] =$orderId;
                 $data['productId'] =$orderinfo['priceinfo']->productId;
                 $data['productPriceId'] =$orderinfo['priceinfo']->productPriceId;
@@ -1296,7 +1297,7 @@ class Appdata extends REST_Controller {
                 /// firing mail
 
                 $mail_template_view_data['group_order_re_start']=$mail_template_data;
-                global_tidiit_mail($recv_email, "Buying Club Order Re-Invitation at Tidiit Inc Ltd", $mail_template_view_data,'group_order_re_start');
+                global_tidiit_mail($recv_email, "Buying Club Order Re-Invitation at Retailershangout.com", $mail_template_view_data,'group_order_re_start');
 
                 $this->user->notification_add($data);
                 
@@ -1312,7 +1313,7 @@ class Appdata extends REST_Controller {
                 $notify['adminContactNo'] = $adminDataArr[0]->contactNo;
                 $notify['appSource'] = $deviceType;
                 $notify['orderId'] = $orderId;
-                $notify['nMessage'] = 'Buying Club Re-order [TIDIIT-OD'.$order->orderId.'] running by <b>'.$group->admin->firstName.' '.$group->admin->lastName.'</b>';;;
+                $notify['nMessage'] = 'Buying Club Re-order [RH-OD'.$order->orderId.'] running by <b>'.$group->admin->firstName.' '.$group->admin->lastName.'</b>';;;
                  
                $this->send_notification($notify);
             endforeach;
@@ -1598,9 +1599,9 @@ class Appdata extends REST_Controller {
         
         $defaultDataArr=array('UDID'=>$UDID,'deviceType'=>$deviceType,'deviceToken'=>$deviceToken,'latitude'=>$latitude,'longitude'=>$longitude);
         $isValideDefaultData=  $this->check_default_data($defaultDataArr);
-        if(strtoupper(get_counry_code_from_lat_long($latitude,$longitude)) !='IN'){
+        /*if(strtoupper(get_country_code_from_lat_long($latitude,$longitude)) !='IN'){
             $this->response(array('error' => 'Invalid username or password,please try again.'), 400); return FALSE;
-        }
+        }*/
         if($isValideDefaultData['type']=='fail'){
             $this->response(array('error' => $isValideDefaultData['message']), 400); return FALSE;
         }
@@ -1703,7 +1704,7 @@ class Appdata extends REST_Controller {
             $this->response(array('error' => 'Please provide valid reason for cancelation of the selected order!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         //$countryShortName='IN';
         if($countryShortName==FALSE){
             $this->response(array('error' => 'Please provide valid latitude and longitude!'), 400); return FALSE;
@@ -1714,7 +1715,7 @@ class Appdata extends REST_Controller {
         $this->product->update_product_quantity($order->productId,$order->productQty,'+');
         
         $this->single_order_cancel_mail($order,$reason,$comments);
-        $sms_data_msg='Your cancelation request for Tidiit Order TIDIIT-OD-'.$orderId.' has placed successfully.';
+        $sms_data_msg='Your cancelation request for Retailershangout Order RH-OD-'.$orderId.' has placed successfully.';
         if($reason != "Other Reasons"){
             $sms_data_msg .='Cancelation request due to "'.$reason.'".';
         }else{
@@ -1767,9 +1768,9 @@ class Appdata extends REST_Controller {
         
         $defaultDataArr=array('UDID'=>$UDID,'deviceType'=>$deviceType,'deviceToken'=>$deviceToken,'latitude'=>$latitude,'longitude'=>$longitude);
         $isValideDefaultData=  $this->check_default_data($defaultDataArr);
-        if(strtoupper(get_counry_code_from_lat_long($latitude,$longitude)) !='IN'){
+        /*if(strtoupper(get_country_code_from_lat_long($latitude,$longitude)) !='IN'){
             $this->response(array('error' => 'Invalid username or password,please try again.'), 400); return FALSE;
-        }
+        }*/
         if($isValideDefaultData['type']=='fail'){
             $this->response(array('error' => $isValideDefaultData['message']), 400); return FALSE;
         }
@@ -1955,17 +1956,17 @@ class Appdata extends REST_Controller {
         $adminMailData['buyerFullName']=$buyerFullName;
         
         // for buyer
-        global_tidiit_mail($orderDetails[0]->buyerEmail,'Your Tidiit order TIDIIT-OD-'.$order->orderId.' has canceled successfully',$adminMailData,'single_order_canceled',$buyerFullName);
+        global_tidiit_mail($orderDetails[0]->buyerEmail,'Your Retailershangout Order RH-OD-'.$order->orderId.' has canceled successfully',$adminMailData,'single_order_canceled',$buyerFullName);
                 
         /// for seller
-        global_tidiit_mail($orderDetails[0]->sellerEmail, "Tidiit order TIDIIT-OD-".$order->orderId.' has canceled by '.$buyerFullName, $adminMailData,'seller_single_order_canceled',$sellerFullName);
+        global_tidiit_mail($orderDetails[0]->sellerEmail, "Retailershangout Order RH-OD-".$order->orderId.' has canceled by '.$buyerFullName, $adminMailData,'seller_single_order_canceled',$sellerFullName);
 
         /// for support
-        $adminMailData['userFullName']='Tidiit Inc Support';
+        $adminMailData['userFullName']='Retailershangout Support';
         $this->load->model('Siteconfig_model','siteconfig');
         //$supportEmail=$this->siteconfig->get_value_by_name('MARKETING_SUPPORT_EMAIL');
         $supportEmail='judhisahoo@gmail.com';
-        global_tidiit_mail($supportEmail, "Tidiit Order TIDIIT-OD-".$order->orderId.' has canceled by '.$buyerFullName, $adminMailData,'support_single_order_canceled','Tidiit Inc Support');
+        global_tidiit_mail($supportEmail, "Retailershangout Order RH-OD-".$order->orderId.' has canceled by '.$buyerFullName, $adminMailData,'support_single_order_canceled','Retailershangout Support');
         return TRUE;
     }
     
@@ -2027,7 +2028,7 @@ class Appdata extends REST_Controller {
             $this->response(array('error' => 'Please provide valid wish list index!'), 400); return FALSE;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($latitude, $longitude);
+        $countryShortName=  get_country_code_from_lat_long($latitude, $longitude);
         if($countryShortName){
             ///
         }
@@ -2080,7 +2081,7 @@ class Appdata extends REST_Controller {
             return $validateArr;
         }
         
-        $countryShortName=  get_counry_code_from_lat_long($dataArr['latitude'], $dataArr['longitude']);
+        $countryShortName=  get_country_code_from_lat_long($dataArr['latitude'], $dataArr['longitude']);
         //die($countryShortName);
         if($countryShortName==FALSE){
             $validateArr['type']='fail';

@@ -507,7 +507,7 @@ class MY_Controller extends CI_Controller {
             'wordwrap' => TRUE
         );
         $this->load->library('email', $config);
-        $this->email->from("no-reply@tidiit.com", 'Tidiit System Administrator');
+        $this->email->from("no-reply@tidiit.com", 'Retailershangout System Administrator');
         if($toName!="")
             $this->email->to($to);
         else

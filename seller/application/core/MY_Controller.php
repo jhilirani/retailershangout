@@ -186,7 +186,7 @@ class MY_Controller extends CI_Controller {
         }
         //echo $message;die;
         $this->load->library('email');
-        $this->email->from("no-reply@tidiit.com", 'Tidiit System Administrator');
+        $this->email->from("no-reply@tidiit.com", 'Retailershangout System Administrator');
         if($toName!="")
             $this->email->to($to,$toName);
         else

@@ -369,7 +369,7 @@ WHERE c.categoryId =".$categoryId;
      */
     public function get_children_categories_products_app($categoryId, $offset = null, $limit = null, $cond,$latitude,$longitude) { 
         
-        $this->_currentUserCountryCode=get_counry_code_from_lat_long($latitude,$longitude);
+        $this->_currentUserCountryCode=get_country_code_from_lat_long($latitude,$longitude);
         
         $pcatsId = $this->get_children_categories_id($categoryId);
         $pcatsId[] = $categoryId;
@@ -588,7 +588,7 @@ WHERE c.categoryId =".$categoryId;
      * @return type
      */
     public function get_brand_products_app($brandId, $offset = null, $limit = null, $cond,$latitude,$longitude) {
-        $this->_currentUserCountryCode=get_counry_code_from_lat_long($latitude,$longitude);
+        $this->_currentUserCountryCode=get_country_code_from_lat_long($latitude,$longitude);
         $group_by = ' GROUP BY p.productId';
         $join_query = "";
 
@@ -1052,7 +1052,7 @@ WHERE c.categoryId =".$categoryId;
      * @return type
      */
     public function get_search_products_app($offset = null, $limit = null, $cond,$latitude,$longitude) {
-        $this->_currentUserCountryCode=get_counry_code_from_lat_long($latitude,$longitude);
+        $this->_currentUserCountryCode=get_country_code_from_lat_long($latitude,$longitude);
 
         $group_by = ' GROUP BY p.productId';
         $join_query = "";

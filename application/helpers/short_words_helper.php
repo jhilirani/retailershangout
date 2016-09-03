@@ -16,7 +16,6 @@ if ( ! function_exists('short_words')){
     }
 }
 
-
 if ( ! function_exists('my_seo_freindly_url')){
     function my_seo_freindly_url($String){
             $ChangedStr = preg_replace('/\%/',' percentage',$String);
@@ -41,7 +40,6 @@ if ( ! function_exists('check_exists_BPO')){
             return false;
     }
 }
-
 
 if ( ! function_exists('pre')){
     function pre($var){ //die('rrr');
@@ -124,7 +122,6 @@ if ( ! function_exists('title_more_string')){
         return $str;
     }
 }
-
 
 if ( ! function_exists('return_current_country_code')){
     function return_current_country_code(){
@@ -256,7 +253,6 @@ if ( ! function_exists('send_sms_notification')):
   }  
 endif;
 
-
 if ( ! function_exists('get_full_address_from_lat_long')):
     function get_full_address_from_lat_long($lat,$long){
         $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false";
@@ -268,8 +264,8 @@ if ( ! function_exists('get_full_address_from_lat_long')):
     }
 endif;
 
-if ( ! function_exists('get_counry_code_from_lat_long')):
-    function get_counry_code_from_lat_long($lat,$long){
+if ( ! function_exists('get_country_code_from_lat_long')):
+    function get_country_code_from_lat_long($lat,$long){
         return 'IN';
         //("country", $jsondata["results"][0]["address_components"]);
         /*$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$long&sensor=false";
@@ -355,7 +351,6 @@ if( !function_exists('send_push_notification')){
         }
     }
 }
-
 
 if(!function_exists('send_normal_push_notification')){
     function send_normal_push_notification($data){

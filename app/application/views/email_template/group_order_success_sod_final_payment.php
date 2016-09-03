@@ -67,7 +67,7 @@
                                 <tr>
                                   <td width="40%" style="padding-left:20px;text-align:center;" valign="middle" align="center">
 								  <a style="text-decoration:none;" target="_blank" href="#<?php echo $MainSiteBaseURL.'product/details/';?>">
-								  <img border="0" src="<?php echo $SiteProductImageURL. $orderInfoDataArr['pimage']->image;?>">
+								  <img border="0" src="<?php echo $SiteProductImageURL. $orderInfoDataArr['pimage']->image;?>" alt="<?php echo $orderInfoDataArr['pdetail']->title;?>" title="<?php echo $orderInfoDataArr['pdetail']->title;?>" style="display: block;" height="100" width="100">
 								  </a> 
 								  </td>
                                   <td width="60%" align="center" valign="top" style="padding:12px 15px 0 10px;vertical-align:top;min-width:100px;"><p style="padding:0;"> <a style="text-decoration:none;color:#565656;" target="_blank" href="#"> <span style="color:#565656;font-size:13px;"><?php echo $orderInfoDataArr['pdetail']->title;?></span> </a> </p></td>

@@ -125,7 +125,8 @@ class Shopping extends MY_Controller{
         $data['totalQty'] = $prod_price_info->qty;
         $data['priceInfo'] = $prod_price_info;
         $data['userMenuActive']=7;
-        $data['countryDataArr'] = $this->Country->get_all1();
+        //$data['countryDataArr'] = $this->Country->get_all1();
+        $data['cityDataArr']=  $this->Country->get_all_city1(99);
         $data['myGroups']=$my_groups;
         $data['user']=$user;
         $data['userMenu']=  $this->load->view('my/my_menu',$data,TRUE);
@@ -173,7 +174,8 @@ class Shopping extends MY_Controller{
         $data['totalQty'] = $prod_price_info->qty;
         $data['priceInfo'] = $prod_price_info;
         $data['userMenuActive']=7;
-        $data['countryDataArr']=$this->Country->get_all1();
+        //$data['countryDataArr']=$this->Country->get_all1();
+        $data['cityDataArr']=  $this->Country->get_all_city1(99);
         $data['myGroups'] = $my_groups;
         $data['user'] = $user;
         $data['userMenu']=  $this->load->view('my/my_menu',$data,TRUE);
@@ -525,7 +527,8 @@ class Shopping extends MY_Controller{
         if($userShippingDataDetails[0]->localityId!=""){
             $data['localityDataArr']=  $this->Country->get_all_locality($userShippingDataDetails[0]->zipId);
         }
-        $data['countryDataArr']=$this->Country->get_all1();
+        //$data['countryDataArr']=$this->Country->get_all1();
+        $data['cityDataArr']=  $this->Country->get_all_city1(99);
         $data['userShippingDataDetails']=$userShippingDataDetails[0];
 
 
@@ -1090,7 +1093,8 @@ class Shopping extends MY_Controller{
             $data['localityDataArr']=  $this->Country->get_all_locality($userShippingDataDetails[0]->zipId);
         }
         
-        $data['countryDataArr']=$this->Country->get_all1();
+        //$data['countryDataArr']=$this->Country->get_all1();
+        $data['cityDataArr']=  $this->Country->get_all_city1(99);
         $data['userShippingDataDetails']=$userShippingDataDetails[0];
 
         $data['userMenuActive']=7;
@@ -1535,7 +1539,9 @@ class Shopping extends MY_Controller{
         else:
             $orderIdStr=$_SESSION['PaymentData']['orders'];
         endif;
-        $newOrderIdStr=$orderIdStr.mt_rand (10,99);
+        $orderIdStr=  base64_decode($orderIdStr);
+        $newOrderIdStr=$orderIdStr.mt_rand (10001,99999);
+        //echo $newOrderIdStr;die;
         $data['orderIdStr']=$newOrderIdStr;
         $data['userMenu']=  $this->load->view('my/my_menu',$data,TRUE);
         $data['orderId']=$orderIdArr[0];
@@ -2164,7 +2170,7 @@ class Shopping extends MY_Controller{
             $deliveryStaffEmail=trim($this->input->post('deliveryStaffEmail',TRUE));
             $deliveryStaffContactNo=trim($this->input->post('deliveryStaffContactNo',TRUE));
             $deliveryStaffName=trim($this->input->post('deliveryStaffName',TRUE));
-            $paymentOption=trim($this->input->post('paymentOption',TRUE));
+            $paymentOption=trim($this->input->post('paymentoption',TRUE));
 
             $order=$this->Order_model->get_single_order_by_id($orderId);
             $prod_price_info = $this->Product_model->get_products_price_details_by_id($order->productPriceId);
@@ -2185,7 +2191,11 @@ class Shopping extends MY_Controller{
                 $paymentDataArr = array('orders'=>$orderId,'orderType'=>'group','paymentGatewayAmount'=>$order->orderAmount,'orderInfo'=>$orderinfo,'group'=>$group,'pevorder'=>$order,'aProductQty'=>$a[0]->productQty,'prod_price_info'=>$prod_price_info,'order'=>$order,'cartId'=>'','final_return'=>'yes','logisticsData'=>$logisticsData);
             endif;
             $_SESSION['PaymentData'] = $paymentDataArr;
-            $this->_mpesa_process(array($orderId));
+            if($paymentOption=='payment_razorpay'){
+                $this->_razorpay_process(array($orderId));
+            }else if($paymentOption=='mpesa'){
+                $this->_mpesa_process(array($orderId));
+            }
         endif;
     }
 

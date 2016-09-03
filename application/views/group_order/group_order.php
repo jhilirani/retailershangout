@@ -160,7 +160,7 @@ echo $html_heading; echo $header;?>
               </div>
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">Search Hangout member by below filters </legend>
-                    <div class="form-group">
+                    <?php /*<div class="form-group">
                         <label for="locality" class="col-sm-3 control-label">Select Country :</label>
                         <div class="col-sm-7">
                             <select name="countryId" class="form-control nova heght_cntrl" id="countryId">
@@ -170,12 +170,16 @@ echo $html_heading; echo $header;?>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    </div>
+                    </div> */?>
+                    <input type="hidden" name="countryId" id="countryId" value="99" />
                     <div class="form-group">
                         <label for="locality" class="col-sm-3 control-label">Select City :</label>
                         <div class="cityElementPara col-sm-7">
                             <select name="cityId" class="form-control nova heght_cntrl" id="cityId">
-                                <option>Select City</option>
+                                <option value="">Select City</option>
+                                <?php foreach ($cityDataArr As $k) { ?>
+                                <option value="<?php echo $k->cityId; ?>"><?php echo $k->city; ?></option>
+                                <?php } ?> 
                             </select>
                         </div>
                     </div>

@@ -494,9 +494,9 @@ if(!function_exists('send_normal_push_notification')){
             if($regIds!=FALSE){
                 $regIdArr=array();
                 foreach($regIds AS $k){
-                    @mail('judhisahoo@gmail.com','making ready for push notification for reg id '.$k->registrationId,'making ready for push notification for reg id '.$k->registrationId);
+                    //@mail('judhisahoo@gmail.com','making ready for push notification for reg id '.$k->registrationId,'making ready for push notification for reg id '.$k->registrationId);
                     $regIdArr[]=$k->registrationId;
-                    @mail('judhisahoo@gmail.com','reg id '.$k->registrationId.' ready for push notification','reg id '.$k->registrationId.' ready for push notification');
+                    //@mail('judhisahoo@gmail.com','reg id '.$k->registrationId.' ready for push notification','reg id '.$k->registrationId.' ready for push notification');
                 }
                 $fields=array('registration_ids'=>$regIdArr,'data' =>array('message'=>$data['nMessage']));
                 if(send_gsm_message($fields)==TRUE){

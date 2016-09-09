@@ -15,7 +15,7 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        <p><i class="fa fa-sort-desc"></i> Group Leader Details</p>
+                                        <p><i class="fa fa-sort-desc"></i> Hangout Leader Details</p>
                                      <table class="table">
                                         <thead>
                                         <tr class="info">
@@ -33,7 +33,7 @@
                                         </tbody>
                                     </table>
 
-                                     <p><i class="fa fa-sort-desc"></i> Group Members</p>
+                                     <p><i class="fa fa-sort-desc"></i> Hangout Members</p>
                                         <table class="table table-bordered table-hover">
                                             <thead>
                                             <tr class="danger">

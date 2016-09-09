@@ -52,7 +52,7 @@ $disc = isset($order->discountAmount)?$order->discountAmount:0;
     <table style="border:1px solid #000; width:100%; font-size:13px;" cellpadding="5" cellspacing="0">
         <tr>
             <td style="width:40%; vertical-align:middle; line-height: 17px; text-align: left;">
-                <strong>Order ID: </strong>TIDIIT-OD-<?php echo $order->orderId;?><br>
+                <strong>Order ID: </strong>RH-OD-<?php echo $order->orderId;?><br>
                 <strong>Order Date: </strong><?php echo date("Y-m-d", strtotime($order->orderDate));?><br>
                 <strong>Invoice Date: </strong><?php echo date("Y-m-d", strtotime($order->orderDate));?><br>
                 <strong>VAT/TIN: </strong><?=$ws['vatNumber']?><br>
@@ -132,7 +132,7 @@ $disc = isset($order->discountAmount)?$order->discountAmount:0;
         <tbody>
         <tr>
             <td style="width: 100%;">
-                <strong>Returns Policy:</strong> At Tidiit we try to deliver perfectly each and every time. But in the off-chance that you need to return the item, please do so with the <strong>original Brand
+                <strong>Returns Policy:</strong> At retailershangout we try to deliver perfectly each and every time. But in the off-chance that you need to return the item, please do so with the <strong>original Brand
                 box/price tag, original packing and invoice</strong> without which it will be really difficult for us to act on your request. Please help us in helping you. Terms and conditions apply.<br><br>
                 <p style="font-size: 10px; font-style: italic;">The goods sold as part of this shipment are intended for end user consumption / retail sale and not for re-sale.
                 Regd. office: <?=$ws['companyName']?>, <?=$ws['address1']?>, <?=$ws['address2']?>, <?=$ws['city']?>, <?=$ws['stateName']?>, <?=$ws['countryName']?> - <?=$ws['zip']?></p>

@@ -8,7 +8,7 @@ $orderinfo = unserialize(base64_decode($order->orderInfo));
 ?>
 <div style="font-size:12px; font-family:arial, verdana, sans-serif;">
 
-    <h2>TIDIIT-OD-<?php echo $order->orderId;?></h2>
+    <h2>RH-OD-<?php echo $order->orderId;?></h2>
 
     <table style="border:1px solid #000; width:100%; font-size:13px;" cellpadding="5" cellspacing="0">
         <tr>
@@ -98,7 +98,7 @@ $orderinfo = unserialize(base64_decode($order->orderInfo));
     <table border="1" style="width:100%; margin-top:10px; border-color:#000; font-size:13px; border-collapse:collapse;" cellpadding="5" cellspacing="0">
         <tbody>
         <tr>
-            <td style="width: 100%;">Ordered Through &nbsp;&nbsp;<span style="font-size: 16px; font-weight: bold;">Tidiit</span>&nbsp;&nbsp;<img src="<?php echo SiteImagesURL;?>logo.png" alt="" style="width: 65px;"></td>
+            <td style="width: 100%;">Ordered Through &nbsp;&nbsp;<span style="font-size: 16px; font-weight: bold;">Retailershangout</span>&nbsp;&nbsp;<img src="<?php echo SiteImagesURL;?>logo.png" alt="" style="width: 65px;"></td>
         </tr>
         </tbody>
     </table>

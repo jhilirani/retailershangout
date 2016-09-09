@@ -131,7 +131,7 @@
     //$("#actionDrop").disableSelection();
     $('.deleteProduct').on('click',function(){
         var productid = $(this).data('productid');
-        myJsMain.commonFunction.tidiitConfirm("Tidiit Product Delete Confirmation",'Are you sure to delete this product ?',myJsMain.baseURL+'product/delete/'+productid,0);
+        myJsMain.commonFunction.tidiitConfirm("Retailershangout Product Delete Confirmation",'Are you sure to delete this product ?',myJsMain.baseURL+'product/delete/'+productid,0);
     });
     
     $('.changeProductStatus').on('click',function(){

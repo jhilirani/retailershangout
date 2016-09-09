@@ -74,7 +74,7 @@ class Ajax extends MY_Controller{
                 
                 $mail_template_view_data=$this->load_default_resources();
                 $mail_template_view_data['retribe_user_password']=$mail_template_data;
-                $this->_global_tidiit_mail($DataArr[0]->email, "Your password at Tidiit Inc. Ltd.", $mail_template_view_data,'retribe_user_password',$DataArr[0]->firstName.' '.$DataArr[0]->lastName);
+                $this->_global_tidiit_mail($DataArr[0]->email, "Your password at Dailyplaza Online Pvt Ltd", $mail_template_view_data,'retribe_user_password',$DataArr[0]->firstName.' '.$DataArr[0]->lastName);
                 echo json_encode(array('result'=>'good','msg'=>'Your password has been sent to your register email address.'));die; 
             }else{
                 echo json_encode(array('result'=>'bad','msg'=>'Please check your "email" and try again.'));die;     
@@ -160,11 +160,11 @@ class Ajax extends MY_Controller{
                 
                 $mail_template_view_data=$this->load_default_resources();
                 $mail_template_view_data['create_user']=$mail_template_data;
-                $this->_global_tidiit_mail($email, "Your account at Tidiit Inc. Ltd.", $mail_template_view_data,'user_create',$firstName.' '.$lastName);
+                $this->_global_tidiit_mail($email, "Your account at Dailyplaza Online Pvt Ltd", $mail_template_view_data,'user_create',$firstName.' '.$lastName);
                 
                 $this->session->set_userdata('FE_SESSION_VAR_TYPE','seller');
                 
-                echo json_encode(array('result'=>'good','url'=>BASE_URL.'index/home/','msg'=>'You have successfully register your account with "Tidiit Inc Ltd.Your login information will be sent to registered email account.'));die; 
+                echo json_encode(array('result'=>'good','url'=>BASE_URL.'index/home/','msg'=>'You have successfully register your account with "Dailyplaza Online Pvt LtdYour login information will be sent to registered email account.'));die; 
             }else{
                 echo json_encode(array('result'=>'bad','msg'=>'Please check your user anme and password and try again.'));die;     
             }

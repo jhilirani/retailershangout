@@ -751,7 +751,7 @@ $priceRangeSettingsDataArr = $priceRangeSettingsArr[$productPageType];
     });
 
     function productAddFormCallback() {
-        myJsMain.commonFunction.tidiitAlert('Tidiit System Message', resultData.msg, 200);
+        myJsMain.commonFunction.tidiitAlert('Retailershangout System Message', resultData.msg, 200);
         if (resultData.result == 'good') {
             location.href = myJsMain.baseURL + 'product/viewlist';
         }

@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Group Details of Group Id :<?php echo $groupId;?>, Group Title : <?php echo $group->groupTitle;?> </h4>
+        <h4 class="modal-title" id="myModalLabel">Hangout Details of Hangout Id :<?php echo $groupId;?>, Group Title : <?php echo $group->groupTitle;?> </h4>
       </div>
         <form action="#" method="post" name="add_groups" class="form-horizontal" id="add_groups"> 
             <div class="modal-body">

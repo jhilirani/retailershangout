@@ -107,7 +107,8 @@ class MY_location_track
             }else{
                 if($json->status="success"){
                 //echo $json->countryCode;die;
-                    $this->CI->session->set_userdata('FE_SESSION_USER_LOCATION_VAR',$json->countryCode);
+                    //$this->CI->session->set_userdata('FE_SESSION_USER_LOCATION_VAR',$json->countryCode);
+                    $this->CI->session->set_userdata('FE_SESSION_USER_LOCATION_VAR','IN');
                 }else{
                     $this->CI->session->set_userdata('FE_SESSION_USER_LOCATION_VAR','IN');
                 }

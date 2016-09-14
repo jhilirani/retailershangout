@@ -2092,8 +2092,10 @@ class Appdata extends REST_Controller {
     }
     
     function testing_push_notification_post(){
+        $GOOGLE_API_KEY="";
         $regId=$this->post('regId');
         $message=$this->post('message');
+        $GOOGLE_API_KEY=$this->post('server_key');
         
         $fields=array();
         $regIdArr=array();
@@ -2106,7 +2108,8 @@ class Appdata extends REST_Controller {
         );
         $this->load->config('product');
         //@mail('judhisahoo@gmail.com','make ready for GoogleGSMKEY for message to GSM server ','make ready for GoogleGSMKEY for message to GSM server ');
-        $GOOGLE_API_KEY=$this->config->item('GoogleGSMKEY');
+        if($GOOGLE_API_KEY=="")
+            $GOOGLE_API_KEY=$this->config->item('GoogleGSMKEY');
         @mail('judhisahoo@gmail.com','GSM API Key is '.$GOOGLE_API_KEY,'GSM API Key is '.$GOOGLE_API_KEY);
         //$url = 'https://android.googleapis.com/gcm/send';
         $url = 'https://fcm.googleapis.com/fcm/send';

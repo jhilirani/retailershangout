@@ -451,17 +451,31 @@ if( !function_exists('send_push_notification')){
                 $apiData=array('message'=>$data['nMessage'],'userId'=>$data['receiverId']);
                 $regIdArr=array();
                 foreach($regIds AS $k){
-                    $regIdArr[]=$k->registrationId;
+                    $sendNotificationFlag=FALSE;
+                    //$regIdArr[]=$k->registrationId;
+                    $fields=array($k->registrationId,$data['nMessage']);
+                    if($data['nType']=="BUYING-CLUB-ADD" || $data['nType']=="BUYING-CLUB-MODIFY" || $data['nType']=="BUYING-CLUB-MODIFY-NEW" || $data['nType']=="BUYING-CLUB-MODIFY-DELETE"){
+                        //$apiData['notificationType']=$data['nType'];
+                        $sendNotificationFlag=TRUE;
+                    }else if($data['nType']=="BUYING-CLUB-ORDER-DECLINE"){
+                        $apiData['notificationId']=$data['notificationId'];
+                        $sendNotificationFlag=TRUE;
+                    }else if($data['nType']=="BUYING-CLUB-ORDER"){
+                        $apiData['notificationId']=$data['notificationId'];
+                        $sendNotificationFlag=TRUE;
+                    }
+                    $apiData['tagStr']=$data['nType'];
+                    if($sendNotificationFlag==TRUE){
+                        if(send_gsm_message($fields)==TRUE){
+                            foreach($regIds as $kk){
+                                $dataArr[]=array('messsage'=>$data['nMessage'],'registrationNo'=>$kk->registrationId,'deviceType'=>'android','sendTime'=>date('Y-m-d H:i:s'),'userId'=>$data['receiverId']);
+                            }
+                            $CI->user->save_push_notification_history($dataArr);
+                        }
+                    }
                 }
-                $fields=array('registration_ids'=>$regIdArr);
-                if($data['nType']=="BUYING-CLUB-ADD" || $data['nType']=="BUYING-CLUB-MODIFY" || $data['nType']=="BUYING-CLUB-MODIFY-NEW" || $data['nType']=="BUYING-CLUB-MODIFY-DELETE"){
-                    //$apiData['notificationType']=$data['nType'];
-                }else if($data['nType']=="BUYING-CLUB-ORDER-DECLINE"){
-                    $apiData['notificationId']=$data['notificationId'];
-                }else if($data['nType']=="BUYING-CLUB-ORDER"){
-                    $apiData['notificationId']=$data['notificationId'];
-                }
-                $apiData['tagStr']=$data['nType'];
+                //$fields=array('registration_ids'=>$regIdArr);
+                
             }else{
                 return FALSE;
             }
@@ -494,16 +508,23 @@ if(!function_exists('send_normal_push_notification')){
             if($regIds!=FALSE){
                 $regIdArr=array();
                 foreach($regIds AS $k){
-                    //@mail('judhisahoo@gmail.com','making ready for push notification for reg id '.$k->registrationId,'making ready for push notification for reg id '.$k->registrationId);
-                    $regIdArr[]=$k->registrationId;
-                    //@mail('judhisahoo@gmail.com','reg id '.$k->registrationId.' ready for push notification','reg id '.$k->registrationId.' ready for push notification');
-                }
-                $fields=array('registration_ids'=>$regIdArr,'data' =>array('message'=>$data['nMessage']));
+                    //$regIdArr[]=$k->registrationId;
+                    $fields=array($k->registrationId,$data['nMessage']);
+                    if(send_gsm_message($fields)==TRUE){
+                        foreach($regIds as $kk){
+                            $dataArr[]=array('messsage'=>$data['nMessage'],'registrationNo'=>$kk->registrationId,'deviceType'=>'android','sendTime'=>date('Y-m-d H:i:s'),'userId'=>$data['receiverId']);
+                        }
+                        $CI->user->save_push_notification_history($dataArr);
+                    }
+                //}
+                //$fields=array('registration_ids'=>$regIdArr,'data' =>array('message'=>$data['nMessage']));
+                /*$fields=array($regIdArr,$data['nMessage']);
                 if(send_gsm_message($fields)==TRUE){
                     foreach($regIds as $k){
                         $dataArr[]=array('messsage'=>$data['nMessage'],'registrationNo'=>$k->registrationId,'deviceType'=>'android','sendTime'=>date('Y-m-d H:i:s'),'userId'=>$data['receiverId']);
                     }
                     $CI->user->save_push_notification_history($dataArr);
+                }*/
                 }
             }else{
                 return FALSE;
@@ -513,13 +534,21 @@ if(!function_exists('send_normal_push_notification')){
 }
 
 if( !function_exists('send_gsm_message')){
-    function send_gsm_message($fields){
+    //function send_gsm_message($fields){
+    function send_gsm_message($fields_data){
         $CI=& get_instance();
         $CI->load->config('product');
         //@mail('judhisahoo@gmail.com','make ready for GoogleGSMKEY for message to GSM server ','make ready for GoogleGSMKEY for message to GSM server ');
         $GOOGLE_API_KEY=$CI->config->item('GoogleGSMKEY');
         //@mail('judhisahoo@gmail.com','GSM API Key is '.$GOOGLE_API_KEY,'GSM API Key is '.$GOOGLE_API_KEY);
-        $url = 'https://android.googleapis.com/gcm/send';
+        //$url = 'https://android.googleapis.com/gcm/send';
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        
+        $fields= array(
+            'to' => $fields_data[0],
+            'notification' => array('title' => 'Retailershangout Notification', 'body' => 'That is all we want'),
+            'data' => array('message' => $fields_data[1])
+        );
 
         $headers = array(
             'Authorization: key=' .$GOOGLE_API_KEY ,
@@ -537,16 +566,20 @@ if( !function_exists('send_gsm_message')){
 
         // Disabling SSL Certificate support temporarly
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 ); 
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
 
         // Execute post
         $result = curl_exec($ch);
         // Close connection
         curl_close($ch);
-        if ($result === FALSE) {
-            //@mail('judhisahoo@gmail.com','Google GSM server return fail','Google GSM server return fail');
+        $jsonObject=  json_decode($result);
+        if(isset($jsonObject->success) && $jsonObject->success == 1){
+        //if ($result === FALSE) {
             //die('Curl failed: ' . curl_error($ch));
-            return FALSE;
+            //return FALSE;
+            return TRUE;
         }else{
             //@mail('judhisahoo@gmail.com','Google GSM server return success','Google GSM server return success');
             return TRUE;

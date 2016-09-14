@@ -376,14 +376,23 @@ if(!function_exists('send_normal_push_notification')){
             if($regIds!=FALSE){
                 $regIdArr=array();
                 foreach($regIds AS $k){
-                    $regIdArr[]=$k->registrationId;
-                }
-                $fields=array('registration_ids'=>$regIdArr,'data' =>array('message'=>$data['nMessage']));
+                    //$regIdArr[]=$k->registrationId;
+                    $fields=array($k->registrationId,$data['nMessage']);
+                    if(send_gsm_message($fields)==TRUE){
+                        foreach($regIds as $kk){
+                            $dataArr[]=array('messsage'=>$data['nMessage'],'registrationNo'=>$kk->registrationId,'deviceType'=>'android','sendTime'=>date('Y-m-d H:i:s'),'userId'=>$data['receiverId']);
+                        }
+                        $CI->user->save_push_notification_history($dataArr);
+                    }
+                //}
+                //$fields=array('registration_ids'=>$regIdArr,'data' =>array('message'=>$data['nMessage']));
+                /*$fields=array($regIdArr,$data['nMessage']);
                 if(send_gsm_message($fields)==TRUE){
                     foreach($regIds as $k){
                         $dataArr[]=array('messsage'=>$data['nMessage'],'registrationNo'=>$k->registrationId,'deviceType'=>'android','sendTime'=>date('Y-m-d H:i:s'),'userId'=>$data['receiverId']);
                     }
                     $CI->user->save_push_notification_history($dataArr);
+                }*/
                 }
             }else{
                 return FALSE;
@@ -393,11 +402,18 @@ if(!function_exists('send_normal_push_notification')){
 }
 
 if( !function_exists('send_gsm_message')){
-    function send_gsm_message($fields){
+    function send_gsm_message($fields_data){
         $CI=& get_instance();
         $CI->load->config('product');
         $GOOGLE_API_KEY=$CI->config->item('GoogleGSMKEY');
-        $url = 'https://android.googleapis.com/gcm/send';
+        //$url = 'https://android.googleapis.com/gcm/send';
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        
+        $fields= array(
+            'to' => $fields_data[0],
+            'notification' => array('title' => 'Retailershangout Notification', 'body' => 'That is all we want'),
+            'data' => array('message' => $fields_data[1])
+        );
 
         $headers = array(
             'Authorization: key=' .$GOOGLE_API_KEY ,
@@ -414,17 +430,22 @@ if( !function_exists('send_gsm_message')){
 
         // Disabling SSL Certificate support temporarly
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 ); 
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
 
         // Execute post
         $result = curl_exec($ch);
         // Close connection
         curl_close($ch);
-        if ($result === FALSE) {
+        $jsonObject=  json_decode($result);
+        if(isset($jsonObject->success) && $jsonObject->success == 1){
+        //if ($result === FALSE) {
             //die('Curl failed: ' . curl_error($ch));
-            return FALSE;
-        }else{
+            //return FALSE;
             return TRUE;
+        }else{
+            return FALSE;
         }
     }
 }

@@ -2133,8 +2133,7 @@ class Appdata extends REST_Controller {
 
         // Execute post
         $result = curl_exec($ch);
-        // Close connection
-        curl_close($ch);
+        
         //$result=array();
         $jsonObject=  json_decode($result);
         if(isset($jsonObject->success) && $jsonObject->success == 1){
@@ -2145,6 +2144,8 @@ class Appdata extends REST_Controller {
             //die('Curl failed: ' . curl_error($ch));
             $result['message']=curl_error($ch);
         }
+        // Close connection
+        curl_close($ch);
         success_response_after_post_get($result);
     }
 }

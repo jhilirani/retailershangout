@@ -2107,7 +2107,7 @@ class Appdata extends REST_Controller {
         send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=> 'comming for PN'));
         $fields= array(
             'to' => $regId,
-            'notification' => array('title' => 'Retailershangout Notification Testing', 'body' => 'That is all we want'),
+            'notification' => array('title' => 'Retailershangout Notification Testing', 'body' => $message),
             'data' => array('message' => $message)
         );
         send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=> 'NOW API key '.$GOOGLE_API_KEY));

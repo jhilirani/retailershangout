@@ -2104,19 +2104,19 @@ class Appdata extends REST_Controller {
         $regIdArr=array();
         $regIdArr[]=$regId;
         //$fields=array('registration_ids'=>$regIdArr,'data' =>array('message'=>$message));
-        send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=> 'comming for PN'));
+        //send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=> 'comming for PN'));
         $fields= array(
             'to' => $regId,
             'notification' => array('title' => 'Retailershangout Notification Testing', 'body' => $message),
             'data' => array('message' => $message)
         );
-        send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=> 'NOW API key '.$GOOGLE_API_KEY));
+        //send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=> 'NOW API key '.$GOOGLE_API_KEY));
         $this->load->config('product');
         //@mail('judhisahoo@gmail.com','make ready for GoogleGSMKEY for message to GSM server ','make ready for GoogleGSMKEY for message to GSM server ');
         if($GOOGLE_API_KEY=="")
             $GOOGLE_API_KEY=$this->config->item('GoogleGSMKEY');
         //@mail('judhisahoo@gmail.com','GSM API Key is '.$GOOGLE_API_KEY,'GSM API Key is '.$GOOGLE_API_KEY);
-        send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=>'GSM API Key is '.$GOOGLE_API_KEY,'GSM API Key is '.$GOOGLE_API_KEY));
+        //send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=>'GSM API Key is '.$GOOGLE_API_KEY,'GSM API Key is '.$GOOGLE_API_KEY));
         //$url = 'https://android.googleapis.com/gcm/send';
         $url = 'https://fcm.googleapis.com/fcm/send';
 
@@ -2125,11 +2125,11 @@ class Appdata extends REST_Controller {
             'Content-Type: application/json'
         );
         //@mail('judhisahoo@gmail.com','Opening conection for google GSM server ','Opening conection for google GSM server ');
-        send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=>'Opening conection for google GSM server '));
+        //send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=>'Opening conection for google GSM server '));
         // Open connection
         $ch = curl_init();
         //@mail('judhisahoo@gmail.com','reg ids are - '.json_encode($fields),'reg ids are - '.json_encode($fields));
-        send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=>'reg ids are - '.json_encode($fields)));
+        //send_sms_notification(array('receiverMobileNumber'=>$mobile_no, 'nMessage'=>'reg ids are - '.json_encode($fields)));
         // Set the url, number of POST vars, POST data
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, true);

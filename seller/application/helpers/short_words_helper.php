@@ -217,4 +217,52 @@ if ( ! function_exists('send_sms_notification')):
   }  
 endif;
 
+if( !function_exists('send_gsm_message')){
+    function send_gsm_message($fields_data){
+        $CI=& get_instance();
+        $CI->load->config('product');
+        $GOOGLE_API_KEY=$CI->config->item('GoogleGSMKEY');
+        //$url = 'https://android.googleapis.com/gcm/send';
+        $url = 'https://fcm.googleapis.com/fcm/send';
+        
+        $fields= array(
+            'to' => $fields_data[0],
+            'notification' => array('title' => 'Retailershangout Notification', 'body' => $fields_data[1]),
+            'data' => array('message' => $fields_data[1])
+        );
+
+        $headers = array(
+            'Authorization: key=' .$GOOGLE_API_KEY ,
+            'Content-Type: application/json'
+        );
+        // Open connection
+        $ch = curl_init();
+
+        // Set the url, number of POST vars, POST data
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Disabling SSL Certificate support temporarly
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+        curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4 ); 
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+
+        // Execute post
+        $result = curl_exec($ch);
+        // Close connection
+        curl_close($ch);
+        $jsonObject=  json_decode($result);
+        if(isset($jsonObject->success) && $jsonObject->success == 1){
+        //if ($result === FALSE) {
+            //die('Curl failed: ' . curl_error($ch));
+            //return FALSE;
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+}
 ?>

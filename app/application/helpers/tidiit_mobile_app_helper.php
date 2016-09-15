@@ -546,7 +546,7 @@ if( !function_exists('send_gsm_message')){
         
         $fields= array(
             'to' => $fields_data[0],
-            'notification' => array('title' => 'Retailershangout Notification', 'body' => 'That is all we want'),
+            'notification' => array('title' => 'Retailershangout Notification', 'body' => $fields_data[1]),
             'data' => array('message' => $fields_data[1])
         );
 

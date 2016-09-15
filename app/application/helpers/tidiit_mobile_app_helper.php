@@ -466,7 +466,7 @@ if( !function_exists('send_push_notification')){
                     }
                     $apiData['tagStr']=$data['nType'];
                     if($sendNotificationFlag==TRUE){
-                        if(send_gsm_message($fields)==TRUE){
+                        if(send_gsm_message($fields,$data['nType'])==TRUE){
                             foreach($regIds as $kk){
                                 $dataArr[]=array('messsage'=>$data['nMessage'],'registrationNo'=>$kk->registrationId,'deviceType'=>'android','sendTime'=>date('Y-m-d H:i:s'),'userId'=>$data['receiverId']);
                             }
@@ -535,7 +535,7 @@ if(!function_exists('send_normal_push_notification')){
 
 if( !function_exists('send_gsm_message')){
     //function send_gsm_message($fields){
-    function send_gsm_message($fields_data){
+    function send_gsm_message($fields_data,$action_data=""){
         $CI=& get_instance();
         $CI->load->config('product');
         //@mail('judhisahoo@gmail.com','make ready for GoogleGSMKEY for message to GSM server ','make ready for GoogleGSMKEY for message to GSM server ');
@@ -547,7 +547,7 @@ if( !function_exists('send_gsm_message')){
         $fields= array(
             'to' => $fields_data[0],
             'notification' => array('title' => 'Retailershangout Notification', 'body' => $fields_data[1]),
-            'data' => array('message' => $fields_data[1])
+            'data' => array('show_screen' => $action_data)
         );
 
         $headers = array(

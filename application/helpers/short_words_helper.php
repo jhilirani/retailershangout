@@ -333,17 +333,33 @@ if( !function_exists('send_push_notification')){
                 $apiData=array('message'=>$data['nMessage'],'userId'=>$data['receiverId']);
                 $regIdArr=array();
                 foreach($regIds AS $k){
-                    $regIdArr[]=$k->registrationId;
-                }
-                $fields=array('registration_ids'=>$regIdArr);
-                if($data['nType']=="BUYING-CLUB-ADD" || $data['nType']=="BUYING-CLUB-MODIFY" || $data['nType']=="BUYING-CLUB-MODIFY-NEW" || $data['nType']=="BUYING-CLUB-MODIFY-DELETE"){
-                    $apiData['notificationType']=$data['nType'];
+                    $sendNotificationFlag=FALSE;
+                    //$regIdArr[]=$k->registrationId;
+                    $fields=array($k->registrationId,$data['nMessage']);   
+                    if($data['nType']=="BUYING-CLUB-ADD" || $data['nType']=="BUYING-CLUB-MODIFY" || $data['nType']=="BUYING-CLUB-MODIFY-NEW" || $data['nType']=="BUYING-CLUB-MODIFY-DELETE"){
+                        $apiData['notificationType']=$data['nType'];
+                        $apiData['tagStr']=$data['nType'];
+                        $sendNotificationFlag=TRUE;
+                    }else if($data['nType']=="BUYING-CLUB-ORDER-DECLINE"){
+                        $apiData['orderId']=$data['orderId'];
+                        $sendNotificationFlag=TRUE;
+                    }else if($data['nType']=="BUYING-CLUB-ORDER"){
+                        $apiData['orderId']=$data['orderId'];
+                        $sendNotificationFlag=TRUE;
+                    }
+                    
                     $apiData['tagStr']=$data['nType'];
-                }else if($data['nType']=="BUYING-CLUB-ORDER-DECLINE"){
-                    $apiData['orderId']=$data['orderId'];
-                }else if($data['nType']=="BUYING-CLUB-ORDER"){
-                    $apiData['orderId']=$data['orderId'];
+                    if($sendNotificationFlag==TRUE){
+                        if(send_gsm_message($fields,$data['nType'])==TRUE){
+                            foreach($regIds as $kk){
+                                $dataArr[]=array('messsage'=>$data['nMessage'],'registrationNo'=>$kk->registrationId,'deviceType'=>'android','sendTime'=>date('Y-m-d H:i:s'),'userId'=>$data['receiverId']);
+                            }
+                            $CI->user->save_push_notification_history($dataArr);
+                        }
+                    }
                 }
+                
+                
             }else{
                 return FALSE;
             }
@@ -402,7 +418,7 @@ if(!function_exists('send_normal_push_notification')){
 }
 
 if( !function_exists('send_gsm_message')){
-    function send_gsm_message($fields_data){
+    function send_gsm_message($fields_data,$action_data=""){
         $CI=& get_instance();
         $CI->load->config('product');
         $GOOGLE_API_KEY=$CI->config->item('GoogleGSMKEY');
@@ -412,7 +428,7 @@ if( !function_exists('send_gsm_message')){
         $fields= array(
             'to' => $fields_data[0],
             'notification' => array('title' => 'Retailershangout Notification', 'body' => $fields_data[1]),
-            'data' => array('message' => $fields_data[1])
+            'data' => array('show_screen' => $action_data)
         );
 
         $headers = array(

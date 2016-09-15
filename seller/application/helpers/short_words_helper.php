@@ -218,7 +218,7 @@ if ( ! function_exists('send_sms_notification')):
 endif;
 
 if( !function_exists('send_gsm_message')){
-    function send_gsm_message($fields_data){
+    function send_gsm_message($fields_data,$action_data=""){
         $CI=& get_instance();
         $CI->load->config('product');
         $GOOGLE_API_KEY=$CI->config->item('GoogleGSMKEY');
@@ -228,7 +228,7 @@ if( !function_exists('send_gsm_message')){
         $fields= array(
             'to' => $fields_data[0],
             'notification' => array('title' => 'Retailershangout Notification', 'body' => $fields_data[1]),
-            'data' => array('message' => $fields_data[1])
+            'data' => array('show_screen' => $action_data)
         );
 
         $headers = array(

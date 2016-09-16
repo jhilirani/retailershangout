@@ -2164,10 +2164,15 @@ class Appdata extends REST_Controller {
     
     function save_token_for_firbase_post(){
         $token=$this->post('token');
+        if($token==""){
+            $this->response(array('error' => 'Token value should not be blank'), 400);
+        }
         $existCheck=$this->db->query("SELECT * FROM `firbase_token` WHERE `token`='".$token."'")->result();
         if(count($existCheck)==0){
             $this->db->insert('firbase_token',array('token'=>$token));
         }
-        return TRUE;
+        $result=array();
+        $result['message']="Token saved successfully";
+        success_response_after_post_get($result);
     }
 }

@@ -2161,4 +2161,13 @@ class Appdata extends REST_Controller {
         curl_close($ch);
         success_response_after_post_get($result);
     }
+    
+    function save_token_for_firbase_post(){
+        $token=$this->post('token');
+        $existCheck=$this->db->query("SELECT * FROM `firbase_token` WHERE `token`='".$token."'")->result();
+        if(count($existCheck)==0){
+            $this->db->insert('firbase_token',array('token'=>$token));
+        }
+        return TRUE;
+    }
 }

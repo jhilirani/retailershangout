@@ -63,6 +63,7 @@ class Appdata extends REST_Controller {
         $longitude=$this->get('longitude');
         $this->load->model('Banner_model','banner');
         $this->load->model('Brand_model','brand');
+        $this->response(array('error' => 'Invalie app'), 400); return FALSE;
         $defaultDataArr=array('UDID'=>$UDID,'deviceType'=>$deviceType,'deviceToken'=>$deviceToken,'latitude'=>$latitude,'longitude'=>$longitude);
         $isValideDefaultData=  $this->check_default_data($defaultDataArr);
 

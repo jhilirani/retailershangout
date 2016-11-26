@@ -9,9 +9,9 @@ class Category extends MY_Controller{
     }
     
     function details($name,$idStr){
-        if(strtoupper(trim($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')))!='IN'){
+        /*if(strtoupper(trim($this->session->userdata('FE_SESSION_USER_LOCATION_VAR')))!='IN'){
             redirect(BASE_URL);
-        }
+        }*/
         //echo '<pre>';
         //$cats = $this->Category_model->get_site_categories();
         //print_r($cats);die;

@@ -107,12 +107,13 @@ class Product_model extends CI_Model {
                 $Region             =  $this->input->get_post('SearchFilterRegion',TRUE);
                 $IsNew             =  $this->input->get_post('SearchFilterIsNew',TRUE);
 
-                $this->db->select('p.*,pi.Image,co.CountryName,c.CategoryName,c.isAddToCart')->from('product p');
+                //$this->db->select('p.*,pi.Image,co.CountryName,c.CategoryName,c.isAddToCart')->from('product p');
+                $this->db->select('p.*,pi.Image,c.CategoryName,c.isAddToCart')->from('product p');
                 $this->db->join('product_image pi','p.productId=pi.productId');
                 $this->db->join('product_seller ps','p.productId=ps.productId');
-                $this->db->join('product_country pc','p.productId=pc.productId');
+                //$this->db->join('product_country pc','p.productId=pc.productId');
                 $this->db->join('category c','p.categoryId=c.categoryId');
-                $this->db->join('country co','pc.CountryID=co.CountryID');
+                //$this->db->join('country co','pc.CountryID=co.CountryID');
                 $this->db->where('c.Status','1');
                 $this->db->where('ps.userId',$userId);
                 
@@ -130,9 +131,9 @@ class Product_model extends CI_Model {
                     $this->db->where('p.categoryId',$categoryId);
                 }
                 
-                if($Region!=""){
+                /*if($Region!=""){
                     $this->db->where('pc.CountryID',$Region);
-                }
+                }*/
                 
                 if($IsNew!=""){
                     $this->db->where('p.isNew',$IsNew);
@@ -564,8 +565,9 @@ class Product_model extends CI_Model {
                 . " FROM product AS p JOIN product_image AS pi ON(pi.productId=p.productId) "
                 . " JOIN product_category AS pc ON(pc.productId=p.productId) JOIN category AS c ON(pc.categoryId=c.categoryId) "
                 . " JOIN product_seller AS ps ON(p.productId=ps.productId) JOIN user AS u ON(ps.userId=u.userId) "
-                . " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
-                . " WHERE co.countryCode='".$this->_currentUserCountryCode."' AND p.status=1 AND p.isNew = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
+                //. " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
+                //. " WHERE  p.status=1 AND p.isNew = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
+                . " WHERE p.status=1 AND p.isNew = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
         if($app==TRUE)
             return $this->db->query($sql)->result_array();
         else
@@ -580,8 +582,9 @@ class Product_model extends CI_Model {
             . " FROM product AS p JOIN product_image AS pi ON(pi.productId=p.productId) "
             . " JOIN product_category AS pc ON(pc.productId=p.productId) JOIN category AS c ON(pc.categoryId=c.categoryId)  "
             . " JOIN product_seller AS ps ON(p.productId=ps.productId) JOIN user AS u ON(ps.userId=u.userId) "
-            . " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
-            . " WHERE co.countryCode='".$this->_currentUserCountryCode."' AND p.status=1 AND p.popular = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
+            //. " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
+            //. " WHERE co.countryCode='".$this->_currentUserCountryCode."' AND  p.status=1 AND p.popular = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
+            . " WHERE p.status=1 AND p.popular = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
         if($app==TRUE)
             return $this->db->query($sql)->result_array();
         else
@@ -596,8 +599,8 @@ class Product_model extends CI_Model {
             . " FROM product AS p JOIN product_image AS pi ON(pi.productId=p.productId) "
             . " JOIN product_category AS pc ON(pc.productId=p.productId) JOIN category AS c ON(pc.categoryId=c.categoryId)  "
             . " JOIN product_seller AS ps ON(p.productId=ps.productId) JOIN user AS u ON(ps.userId=u.userId) "
-            . " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "    
-            . " WHERE co.countryCode='".$this->_currentUserCountryCode."' AND p.status=1 AND p.featured = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
+            //. " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "    
+            . " WHERE  p.status=1 AND p.featured = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC LIMIT 0,$noOfItem";
         if($app==TRUE)
             return $this->db->query($sql)->result_array();
         else
@@ -680,8 +683,8 @@ class Product_model extends CI_Model {
                 . " FROM product AS p JOIN product_image AS pi ON(pi.productId=p.productId) "
                 . " JOIN product_category AS pc ON(pc.productId=p.productId) JOIN category AS c ON(pc.categoryId=c.categoryId) "
                 . " JOIN product_seller AS ps ON(p.productId=ps.productId) JOIN user AS u ON(ps.userId=u.userId) "
-                . " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
-                . " WHERE co.countryCode='".$this->_currentUserCountryCode."' AND p.status=1 AND p.isNew = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC";
+                //. " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
+                . " WHERE  p.status=1 AND p.isNew = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC";
         return $this->db->query($sql)->result_array();
     }
     
@@ -691,8 +694,8 @@ class Product_model extends CI_Model {
             . " FROM product AS p JOIN product_image AS pi ON(pi.productId=p.productId) "
             . " JOIN product_category AS pc ON(pc.productId=p.productId) JOIN category AS c ON(pc.categoryId=c.categoryId)  "
             . " JOIN product_seller AS ps ON(p.productId=ps.productId) JOIN user AS u ON(ps.userId=u.userId) "
-            . " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
-            . " WHERE co.countryCode='".$this->_currentUserCountryCode."' AND p.status=1 AND p.popular = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC";
+            //. " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "
+            . " WHERE  p.status=1 AND p.popular = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC";
         return $this->db->query($sql)->result_array();
     }
 
@@ -703,8 +706,8 @@ class Product_model extends CI_Model {
             . " FROM product AS p JOIN product_image AS pi ON(pi.productId=p.productId) "
             . " JOIN product_category AS pc ON(pc.productId=p.productId) JOIN category AS c ON(pc.categoryId=c.categoryId)  "
             . " JOIN product_seller AS ps ON(p.productId=ps.productId) JOIN user AS u ON(ps.userId=u.userId) "
-            . " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "    
-            . " WHERE co.countryCode='".$this->_currentUserCountryCode."' AND p.status=1 AND p.featured = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC";
+            //. " JOIN billing_address AS ba ON(u.userId=ba.userId) JOIN country AS co ON(ba.countryId=co.countryId) "    
+            . " WHERE  p.status=1 AND p.featured = 1 AND c.status=1 GROUP BY pi.productId ORDER BY p.productId DESC,p.updateTime DESC";
         return $this->db->query($sql)->result_array();
     }
     

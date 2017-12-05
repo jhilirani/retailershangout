@@ -765,8 +765,7 @@ body:not(.sidebar-left-mini) #menu .nav-header {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e', endColorstr='#ffec971f', GradientType=0);
 }
-.box.inverse .dropdown-menu > li > a:hover,
-.box.inverse .dropdown-menu > li > a:focus {
+.box.inverse .dropdown-menu > li > a:hover{
   background-image: -webkit-linear-gradient(top, #333333 0%, #222222 100%);
   background-image: -o-linear-gradient(top, #333333 0%, #222222 100%);
   background-image: linear-gradient(to bottom, #333333 0%, #222222 100%);

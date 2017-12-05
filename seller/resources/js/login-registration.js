@@ -28,10 +28,9 @@ myJsMain.login=function(){
     function loginFormCallback(resultData){
         myJsMain.commonFunction.hidePleaseWait();
         if(resultData.result=='bad'){
-            myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+            myJsMain.commonFunction.retailershangoutAlert('Retailershagout System Message',resultData.msg);
         }else if(resultData.result=='good'){
             location.href=resultData.url;
-            //myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.url,200);
         }
     }
     
@@ -66,7 +65,7 @@ myJsMain.forgot_password=function(){
         // this is just to show product list page
     function forggotPasswordFormCallback(resultData){
         myJsMain.commonFunction.hidePleaseWait();
-        myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+        myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg);
     }
     
     
@@ -148,7 +147,7 @@ myJsMain.registration=function(){
         // this is just to show product list page
     function registrationFormCallback(resultData){
         myJsMain.commonFunction.hidePleaseWait();
-        myJsMain.commonFunction.tidiitAlert('Tidiit System Message',resultData.msg,200);
+        myJsMain.commonFunction.retailershangoutAlert('Retailershangout System Message',resultData.msg);
         if(resultData.result=='good'){
             location.href=resultData.url;
         }

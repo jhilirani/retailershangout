@@ -8,8 +8,10 @@
     <meta name="msapplication-TileImage" content="assets/images/metis-tile.png" />-->
     <link href="<?php echo SiteCSSURL?>jquery-ui.css" rel="stylesheet" type="text/css">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="<?php echo SiteCSSURL;?>bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo SiteCSSURL;?>font-awesome.min.css">
+    <?php /*<link rel="stylesheet" href="<?php echo SiteCSSURL;?>bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo SiteCSSURL;?>font-awesome.min.css">*/?>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo SiteCSSURL;?>animate.min.css">
     
     <!-- metisMenu stylesheet -->
@@ -37,10 +39,19 @@
     <script src="<?php echo SiteJSURL;?>jquery.min.js"></script>
     <script src="<?php echo SiteJSURL;?>jquery-ui.min.js"></script>
     <!--Bootstrap -->
-    <script src="<?php echo SiteJSURL;?>bootstrap.min.js"></script>
+    <!--<script src="<?php echo SiteJSURL;?>bootstrap.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="<?php echo SiteJSURL;?>jquery.validate.min.js"></script>
     <script src="<?php echo SiteJSURL;?>common.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <style>
+        .navbar-inverse{background-color:#FFF;}
+        .navbar-nav li>a:hover {
+            color: #fff !important;
+            background-image: none !important;
+            background-color: #000 !important;
+         }
+    </style>
   </head>
   <script>
       $(document).ready(function(){

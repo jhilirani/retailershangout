@@ -205,7 +205,7 @@ class MY_Controller extends CI_Controller {
         $data['SiteResourcesURL']=$this->config->item('SiteResourcesURL');
         $data['MainSiteBaseURL']=BASE_URL;
         $data['MainSiteImagesURL']=$this->config->item('SiteImagesURL');
-        $data['SiteProductImageURL']=DETAILS_PAGE_SMALL_IMG;
+        //$data['SiteProductImageURL']=DETAILS_PAGE_SMALL_IMG;
         return $data;
     }
 }

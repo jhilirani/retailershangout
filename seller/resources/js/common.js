@@ -28,44 +28,32 @@ myJsMain.commonFunction = {
         // Call our callback, but using our own instance as the context
         callback.call(this, data);
     },
-    tidiitAlert:function(boxTitle,alertMessaage,height){
-        if(height==0){
-            height=175;
-        }
-        $('#dialog-confirm-message-text').text(alertMessaage);
-        //alert(alertMessaage);
-        $( "#dialog-confirm" ).dialog({
-            resizable: false,
-            height:height,
-            width:450,
-            modal: true,
+    retailershangoutAlert:function(boxTitle,alertMessaage){
+        var msg='<p><i class="fa fa-exclamation-triangle fa-2x fa-fw"></i> '+alertMessaage+'</p>';
+        bootbox.alert({
             title:boxTitle,
-            dialogClass: 'success-dialog',
-            buttons: {
-                OK: function() {
-                    $( this ).dialog( "close" );
-                }
-            }
-        });//alert(alertMessaage);
+            message: alertMessaage
+        });
     },
-    tidiitConfirm:function(boxTitle,confirmMessaage,actionUrlWithData,height){
-        if(height==0){
-            height=175;
-        }
-        $('#dialog-confirm-message-text').text(confirmMessaage);
-        $( "#dialog-confirm" ).dialog({
-            resizable: false,
-            height:height,
-            width:450,
-            modal: true,
+    retailershangoutConfirm:function(boxTitle,confirmMessaage,actionUrlWithData){
+        bootbox.confirm({
             title:boxTitle,
-            dialogClass: 'success-dialog',
+            message: confirmMessaage,
             buttons: {
-                "OK": function() {
-                    location.href=actionUrlWithData;
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
                 },
-                Cancel: function() {
-                    $( this ).dialog( "close" );
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if(result){
+                    //alert(actionUrlWithData);
+                    //location.href=actionUrlWithData;                    
+                    window.location.href=actionUrlWithData;
                 }
             }
         });

@@ -23,7 +23,7 @@
             <div class="col-xs-12 col-sm-6 col-md-3">
                 <div style="font-weight: bold;"><?php echo $k->title;?></div>
                 <?php if($k->brandImage==""){$src=SiteImagesURL.'no-image.png';}else{$src=SiteResourcesURL.'brand/original/'.$k->brandImage;}?>
-                <img src="<?php echo $src;?>" alt="<?php echo $k->title;?>" title="<?php echo $k->title;?>" />
+                <img src="<?php echo $src;?>" alt="<?php echo $k->title;?>" title="<?php echo $k->title;?>" style="max-width: 100px;max-height: 100px;"  />
             </div>
             <?php endforeach;?>
         </div>

@@ -60,7 +60,7 @@
             <div class="container">
                 <ul class="nav navbar-nav">
                     <li class="active hidden-xs"><a href="<?php echo BASE_URL;?>"><i class="fa fa-home"></i></a></li>
-                    <li><a href="<?php echo BASE_URL.'new-arrivals';?>">New Arrivals <span class="menu-label hot-menu hidden-xs">hot</span></a></li>
+                    <li><a href="#<?php //echo BASE_URL.'new-arrivals';?>">New Arrivals <span class="menu-label hot-menu hidden-xs">hot</span></a></li>
                     <li><a href="<?php echo BASE_URL.'brand-zone';?>">Brand Zone</a></li>
                     <li><a href="<?php echo BASE_URL.'content/retailershangout-payment-policy/MjA=';?>">Payment Policy</a></li>
                     <li><a href="<?php echo BASE_URL.'customer-service';?>">Customer Service</a></li>

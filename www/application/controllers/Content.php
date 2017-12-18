@@ -30,7 +30,7 @@ class Content extends MY_Controller{
             }else{
                 $data=$this->_get_tobe_login_template($SEODataArr);
             }
-            
+            //pre($contentDetails);die;
             $data['contentDetails']=$contentDetails;
             
             $data['feedback']=$this->load->view('feedback',$data,TRUE);

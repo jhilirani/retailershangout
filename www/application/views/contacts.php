@@ -16,16 +16,18 @@
 <div class="bodyContent">
     <div class='container'>
         <div class='row'>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <h3 class="pageTitle">Brand zone</h3><hr class="hr hr-primary">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <h3 class="pageTitle">Contact Us</h3><hr class="hr hr-primary">
+                <div>
+                    <h4>Business Address</h4>
+                    <div>
+                        <b>Retailerhangout Pvt Ltd</b><br>
+                        Sectoor-9,CDA,Cuttack<br>
+                        Orissa<br>
+                        Email : retailershangout@gmail.com
+                    </div>
+                </div>
             </div>
-            <?php foreach($brandZoneArr AS $k):?>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div style="font-weight: bold;"><?php echo $k->title;?></div>
-                <?php if($k->brandImage==""){$src=SiteImagesURL.'no-image.png';}else{$src=SiteResourcesURL.'brand/original/'.$k->brandImage;}?>
-                <img src="<?php echo $src;?>" alt="<?php echo $k->title;?>" title="<?php echo $k->title;?>" />
-            </div>
-            <?php endforeach;?>
         </div>
     </div>
 </div>

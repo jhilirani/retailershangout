@@ -17,15 +17,11 @@
     <div class='container'>
         <div class='row'>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <h3 class="pageTitle">Brand zone</h3><hr class="hr hr-primary">
+                <h3 class="pageTitle"><?php echo $contentDetails[0]->title;?></h3><hr class="hr hr-primary">
+                <div>
+                    <?php echo $contentDetails[0]->body;?>
+                </div>
             </div>
-            <?php foreach($brandZoneArr AS $k):?>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <div style="font-weight: bold;"><?php echo $k->title;?></div>
-                <?php if($k->brandImage==""){$src=SiteImagesURL.'no-image.png';}else{$src=SiteResourcesURL.'brand/original/'.$k->brandImage;}?>
-                <img src="<?php echo $src;?>" alt="<?php echo $k->title;?>" title="<?php echo $k->title;?>" />
-            </div>
-            <?php endforeach;?>
         </div>
     </div>
 </div>

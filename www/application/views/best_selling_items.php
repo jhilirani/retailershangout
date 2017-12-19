@@ -1,3 +1,30 @@
+<style type="text/css">
+    .best-seller .product-image{
+    padding: 5px;
+}
+.best-seller .item{
+    border: 1px #ddd solid;
+    margin-left: 3px;
+}
+.best-seller .product-image .image {
+    border: 1px solid #ddd;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+.product-image .image .img-thumbnail.small-image{
+    border: none;
+    height: 70px;
+}
+.best-product .product:first-child{
+    margin: 10px;
+}
+.name-ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
 <div class="section">
     <h3 class="section-title">Best Selling Item</h3>
     <div class="sidebar-widget-body outer-top-xs">
@@ -16,7 +43,7 @@
                                             <?php else :?>
                                             <a href="<?php echo BASE_URL.'product/details/'.base64_encode($k->productId);?>" data-lightbox="image-1" data-title="<?php echo $k->title;?>">
                                             <?php endif;?>
-                                                <img data-echo="<?php echo HOME_LISTING.$k->image;?>" src="<?php echo HOME_LISTING.$k->image;?>" alt="<?php echo $k->title;?>" title="<?php echo $k->title;?>" class="img-responsive img-thumbnail">
+                                                <img data-echo="<?php echo HOME_LISTING.$k->image;?>" src="<?php echo HOME_LISTING.$k->image;?>" alt="<?php echo $k->title;?>" title="<?php echo $k->title;?>" class="img-responsive img-thumbnail small-image">
                                                 <div class="zoom-overlay"></div>
                                             </a>
                                         </div>
@@ -28,7 +55,7 @@
                                 </div> <!-- /.col -->
                                 <div class="col col-xs-8">
                                     <div class="product-info">
-                                        <h3 class="name">
+                                        <h3 class="name name-ellipsis">
                                             <?php if($k->qty<$k->minQty):?>
                                         <a href="javascript:void(0);" title="<?php echo $k->title;?>">
                                         <?php else:?>

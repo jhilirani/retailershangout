@@ -19,7 +19,7 @@
             <div class="col-xs-12 col-sm-12 col-md-3 sidebar filters">
                 <span class="cross visible-xs visible-sm">&times;</span>
                 <div class="side-menu animateDropdown">
-                    <?php echo $main_category_menu; ?>
+                    <?php //echo $main_category_menu; ?>
                     <div class="sidebar-module-container">
                         <div class="sidebar-filter">
                             <div class="sidebar-widget">
@@ -27,261 +27,57 @@
                                 <div class="sidebar-widget-body m-t-20">
                                     <div class="price-range-holder">
                                         <span class="min-max">
-                                            <span class="pull-left"><i class="fa fa-inr"></i> 10,000.00</span>
-                                            <span class="pull-right"><i class="fa fa-inr"></i> 99,000.00</span>
+                                            <span class="pull-left"><i class="fa fa-inr"></i> <?=$range[0]?></span>
+                                            <span class="pull-right"><i class="fa fa-inr"></i> <?=$range[1]?></span>
                                         </span>
                                         <input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;">
-                                        <div class="slider slider-horizontal" id=""><div class="slider-track"><div class="slider-track-low" style="left: 0px; width: 0%;"></div><div class="slider-selection" style="left: 0%; width: 100%;"></div><div class="slider-track-high" style="right: 0px; width: 0%;"></div></div><div class="tooltip tooltip-main top" role="presentation" style="left: 50%; margin-left: -47.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">10000 : 99000</div></div><div class="tooltip tooltip-min top" role="presentation" style="left: 0%; margin-left: -25.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">10000</div></div><div class="tooltip tooltip-max top" role="presentation" style="left: 100%; margin-left: -25.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">99000</div></div><div class="slider-handle min-slider-handle" role="slider" aria-valuemin="10000" aria-valuemax="99000" aria-valuenow="10000" style="left: 0%;" tabindex="0"></div><div class="slider-handle max-slider-handle" role="slider" aria-valuemin="10000" aria-valuemax="99000" aria-valuenow="99000" style="left: 100%;" tabindex="0"></div></div><input type="text" class="price-slider" value="10000,99000" style="display: none;" data-value="10000,99000">
+                                        <div class="slider slider-horizontal" id=""><div class="slider-track"><div class="slider-track-low" style="left: 0px; width: 0%;"></div><div class="slider-selection" style="left: 0%; width: 100%;"></div><div class="slider-track-high" style="right: 0px; width: 0%;"></div></div><div class="tooltip tooltip-main top" role="presentation" style="left: 50%; margin-left: -47.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner"><?=$range[0]?> : <?=$range[1]?></div></div><div class="tooltip tooltip-min top" role="presentation" style="left: 0%; margin-left: -25.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner"><?=$range[0]?></div></div><div class="tooltip tooltip-max top" role="presentation" style="left: 100%; margin-left: -25.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner"><?=$range[0]?></div></div><div class="slider-handle min-slider-handle" role="slider" aria-valuemin="<?=$range[0]?>" aria-valuemax="<?=$range[1]?>" aria-valuenow="<?=$range[0]?>" style="left: 0%;" tabindex="0"></div><div class="slider-handle max-slider-handle" role="slider" aria-valuemin="<?=$range[0]?>" aria-valuemax="<?=$range[1]?>" aria-valuenow="<?=$range[0]?>" style="left: 100%;" tabindex="0"></div></div><input type="text" class="price-slider" value="<?=$range[0]?>,<?=$range[1]?>" style="display: none;" data-value="<?=$range[0]?>,<?=$range[1]?>">
                                     </div>
                                     <!-- /.price-range-holder -->
                                 </div>
                                 <!-- /.sidebar-widget-body -->
                             </div>
+                            <?php if(isset($products['brands']) && $products['brands']):?>
                             <div class="sidebar-widget">
                                 <h3 class="section-title">Brands</h3>
                                 <div class="sidebar-widget-body m-t-10">
                                     <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Apple</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Samsung</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Micromax</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Nokia</label></div></li>
+                                        <?php foreach($products['brands'] as $bkey => $brnd):?>
+                                        <li><div class="checkbox"><label><input type="checkbox" class="brandsort" name="" id="" value="<?=$brnd?>" <?php if(in_array($brnd, $brand)):?>checked="checked" <?php endif;?>><?=$brnd?></label></div></li>
+                                        <?php endforeach;?>
                                     </ul>
                                 </div>
                                 <!-- /.sidebar-widget-body -->
                             </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Box Content</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Headset</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Charger</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Warranty Card</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> USB Cable</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> User Manual</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Ear Phones</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 3Juice Jar</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Plastic Spoon</label></div></li>
-                                    </ul>
-                                    <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
+                            <?php unset($products['brands']);endif; ?>
+                            <?php if(isset($options) && $options): //print_r($options); 
+                                foreach($options as $opkey => $opval):?>
+                                <div class="sidebar-widget">
+                                    <h3 class="section-title"><?=$opval['name']?></h3>
+                                    <div class="sidebar-widget-body m-t-10">
+                                        <ul class="list-inline">
+                                            <?php
+                                            foreach($opval['value'] as $ovkey => $oval):
+                                                $listval = $oval;
+                                                if($opval['name'] == "Color"):
+                                                    $colors = explode("||", $oval);
+                                                    $listval = $colors[0];
+                                                endif;
+                                                $checked = "";
+                                                $qc = $opval['id'].'@'.trim($listval);
+                                                if(in_array($qc, $query)):
+                                                    $checked = " checked";
+                                                endif;
+                                            ?>
+                                            <li><div class="checkbox"><label><input type="checkbox" name="<?=$opval['type']?>" class="optionsort" data-name="<?=$opkey?>" value="<?=$opval['id']?>@<?=trim($listval)?>" <?=$checked?>><?=$listval?></label></div></li>
+                                            <?php endforeach;?>
+                                        </ul>
+                                        <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
+                                    </div>
+                                    <!-- /.sidebar-widget-body -->
                                 </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">No. of Sims</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 1</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 2</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 3</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 4</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Colors</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Red</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Blue</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Gray</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Orange</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Black</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> White</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Silver</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Operating System</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Android</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> iPhone</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Blackberry</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Windows</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Multi-Language Support</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Yes</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> No</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Rear Camera</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 1.3MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 2MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 3MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 4MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 5MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 8MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 10MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 12MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 13MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 14MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 15MP</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Front Camera</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 1.3MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 2MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 3MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 4MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 5MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 8MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 10MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 12MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 13MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 14MP</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 15MP</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Flash</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Yes</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> No</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Connectivity</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> GSM</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> CDMA</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 3G/WCDMA</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 4G/LTE</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Processor Cores</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Duo Core</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Celeron</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Xeon</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Processor Brand</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Asus</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Intel</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> AMD</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">RAM</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 256 MB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 512 MB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 1 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 2 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 4 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 8 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 10 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 12 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 16 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 32 GB</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Internal Memory</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 2 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 4 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 8 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 16 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 32 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 64 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 128 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 250 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 512 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 1 TB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 2 TB</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Expandable Memory</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 4 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 8 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 16 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 32 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 64 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 128 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 250 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 512 GB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 1 TB</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 2 TB</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Battery Type</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Intex</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Micromax</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Samsung</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> LG</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Karbon</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Gionee</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Lenovo</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> BackBerry</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Huawei</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> Sagetel</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
-                            <div class="sidebar-widget">
-                                <h3 class="section-title">Warranty Duration</h3>
-                                <div class="sidebar-widget-body m-t-10">
-                                    <ul class="list-inline">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 6 Months</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 12 Months</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 18 Months</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="" id=""> 24 Months</label></div></li>
-                                    </ul>
-                                </div>
-                                <!-- /.sidebar-widget-body -->
-                            </div>
+                            <?php endforeach;
+                            endif;?>        
                         </div>
                     </div>
                 </div>
@@ -290,7 +86,7 @@
                 <div id="category" class="category-carousel hidden-xs">
                     <div class="item">
                         <div class="image">
-                            <img src="_/images/banners/cat-banner-1.jpg" alt="" class="img-responsive">
+                            <img src="<?php SiteImagesURL;?>banners/cat-banner-1.jpg" alt="" class="img-responsive">
                         </div>
                     </div>
                 </div>
@@ -314,10 +110,9 @@
                                             Position <span class="caret"></span>
                                             </button>
                                             <ul role="menu" class="dropdown-menu">
-                                                <li role="presentation"><a href="#">position</a></li>
-                                                <li role="presentation"><a href="#">Price:Lowest first</a></li>
-                                                <li role="presentation"><a href="#">Price:HIghest first</a></li>
-                                                <li role="presentation"><a href="#">Product Name:A to Z</a></li>
+                                                <li role="presentation"><a href="javascript//" data-content="popular" <?php if($sort == "popular"):?>class="active" <?php endif;?>>Popularity</a></li>
+                                                <li role="presentation"><a href="javascript//" data-content="lowestPrice" <?php if($sort == "lowestPrice"):?>class="active" <?php endif;?>>Price</a></li>
+                                                <li role="presentation"><a href="javascript//" data-content="isNew" <?php if($sort == "isNew"):?>class="active" <?php endif;?>>Price:HIghest</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -350,1357 +145,108 @@
                         <div class="tab-pane active" id="grid-container">
                             <div class="category-product">
                                 <div class="row">
+                                    <?php if(isset($products['products']) && $products['products']):?>
+                                    <?php foreach($products['products'] as $pkey => $pro):?>
                                     <div class="col-sm-3 col-md-4 col-xs-6">
                                         <div class="products">
                                             <div class="product">
                                                 <div class="product-image">
                                                     <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c1.jpg" alt="" class="img-responsive"></a>
+                                                        <?php if($pro->qty < $pro->minQty):?>
+                                                        <a href="javascript://">
+                                                        <?php else: ?>
+                                                            <a href="<?=BASE_URL.'product/details/'.base64_encode($pro->productId);?>">
+                                                        <?php endif;?>        
+                                                            <img src="<?=HOME_LISTING.$pro->pImage;?>" data-echo="<?=HOME_LISTING.$pro->pImage;?>" alt="<?=$pro->title;?>" class="img-responsive"></a>
                                                     </div>
                                                     <!-- /.image -->
                                                     <div class="tag new"><span>new</span></div>
                                                 </div>
                                                 <!-- /.product-image -->
                                                 <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
+                                                    <h3 class="name">
+                                                        <?php if($pro->qty < $pro->minQty):?>
+                                                        <a href="javascript://">
+                                                        <?php else :?>
+                                                        <a href="<?=BASE_URL.'product/details/'.base64_encode($pro->productId);?>"><?=$pro->title;?></a>
+                                                        <?php endif;?>
+                                                    </h3>
+                                                    <?php if($pro->qty < $pro->minQty):?>
+                                                    <div class="description">Out of Stock</div>
+                                                    <?php endif;?>
                                                     <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
+                                                        <span class="price"><?php echo $currencySymbol.' '.$pro->lowestPrice.' - '.$currencySymbol.' '.$pro->heighestPrice;?></span>
                                                     </div>
                                                     <!-- /.product-price -->
                                                 </div>
                                                 <!-- /.product-info -->
+                                                <?php if($pro->qty < $pro->minQty):?>
+                                                <!--Out of Stock -->
+                                                <?php else:?>
                                                 <div class="cart clearfix animate-effect">
                                                     <div class="action">
                                                         <ul class="list-unstyled">
                                                             <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+                                                                <button class="btn btn-primary icon goProductDetails" data-toggle="dropdown" type="button" data-producturl="<?=BASE_URL.'product/details/'.base64_encode($pro->productId);?>">
                                                                 <i class="fa fa-truck"></i>
                                                                 </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
+                                                                <a class="btn btn-primary goProductDetails" href="javascript:void(0);" title="Wishlist" data-producturl="<?=BASE_URL.'product/details/'.base64_encode($pro->productId);?>">Add to Truck</a>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                     <!-- /.action -->
                                                 </div>
                                                 <!-- /.cart -->
+                                                <?php endif;?>
                                             </div>
                                             <!-- /.product -->
                                         </div>
                                         <!-- /.products -->
                                     </div>
                                     <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c5.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Nokia</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c6.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Nokia</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c4.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c2.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c1.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c6.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c5.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c3.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c1.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c2.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c3.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c4.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Apple Iphone 5s 32GB</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c5.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Nokia</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c6.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Nokia</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c4.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c2.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c1.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c6.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c5.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c3.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c1.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c2.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c3.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c4.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Apple Iphone 5s 32GB</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c5.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Nokia</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c6.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Nokia</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c4.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c2.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c1.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c6.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag new"><span>new</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Sony Ericson Vaga</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c5.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag sale"><span>sale</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
-                                    <div class="col-sm-3 col-md-4 col-xs-6">
-                                        <div class="products">
-                                            <div class="product">
-                                                <div class="product-image">
-                                                    <div class="image">
-                                                        <a href="singleProduct.php"><img src="_/images/blank.gif" data-echo="_/images/products/c3.jpg" alt="" class="img-responsive"></a>
-                                                    </div>
-                                                    <!-- /.image -->
-                                                    <div class="tag hot"><span>hot</span></div>
-                                                </div>
-                                                <!-- /.product-image -->
-                                                <div class="product-info text-left">
-                                                    <h3 class="name"><a href="singleProduct.php">Samsung Galaxy S4</a></h3>
-                                                    <div class="description"></div>
-                                                    <div class="product-price">
-                                                        <span class="price"><i class="fa fa-inr"></i> 10,000 - <i class="fa fa-inr"></i> 99000 </span>
-                                                    </div>
-                                                    <!-- /.product-price -->
-                                                </div>
-                                                <!-- /.product-info -->
-                                                <div class="cart clearfix animate-effect">
-                                                    <div class="action">
-                                                        <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <!-- /.action -->
-                                                </div>
-                                                <!-- /.cart -->
-                                            </div>
-                                            <!-- /.product -->
-                                        </div>
-                                        <!-- /.products -->
-                                    </div>
-                                    <!-- /.item -->
+                                    <?php endforeach;?>
+                                    <?php else:?>
+                                    <div class="alert alert-danger" role="alert"><h3><i class="fa fa-exclamation-triangle"></i> &nbsp; &nbsp; Oops! No products found as per your wish!</h3></div>
+                                    <?php endif;?>
                                 </div>
                                 <!-- /.row -->
                             </div> <!-- /.category-product -->
                         </div>
                         <div class="tab-pane" id="list-container">
                             <div class="category-product">
+                                <?php if(isset($products['products']) && $products['products']):?>
+                                <?php foreach($products['products'] as $pkey => $pro):?>
                                 <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
                                     <div class="products">
                                         <div class="product-list product">
                                             <div class="row product-list-row">
                                                 <div class="col col-sm-4 col-lg-3">
                                                     <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/3.jpg" alt=""> </div>
+                                                        <div class="image"> <img src="<?=HOME_LISTING.$pro->pImage;?>" class="img-responsive" alt="<?php echo $pro->title;?>"> </div>
                                                     </div>
                                                     <!-- /.product-image --> 
                                                 </div>
                                                 <!-- /.col -->
                                                 <div class="col col-sm-8 col-lg-9">
                                                     <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
+                                                        <h3 class="name">
+                                                            <?php if($pro->qty < $pro->minQty):?>
+                                                        <a href="javascript://">
+                                                        <?php else: ?>
+                                                            <a href="<?=BASE_URL.'product/details/'.base64_encode($pro->productId);?>">
+                                                        <?php endif;?>        
+                                                                <?=$pro->title;?></a></h3>
+                                                        <div class="product-price"> <span class="price"><?php echo $currencySymbol.' '.$pro->lowestPrice.' - '.$currencySymbol.' '.$pro->heighestPrice;?></span> </div>
                                                         <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
+                                                        <div class="description m-t-10"><?php echo $pro->shortDescription;?>
                                                         <div class="cart clearfix animate-effect">
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                             <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+                                                                <button class="btn btn-primary icon goProductDetails" data-toggle="dropdown" type="button" data-producturl="<?=BASE_URL.'product/details/'.base64_encode($pro->productId);?>">
                                                                 <i class="fa fa-truck"></i>
                                                                 </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
+                                                                <a class="btn btn-primary goProductDetails" href="javascript:void(0);" title="Wishlist" data-producturl="<?=BASE_URL.'product/details/'.base64_encode($pro->productId);?>">Add to Truck</a>
                                                             </li>
                                                         </ul>
                                                             </div>
@@ -1720,490 +266,10 @@
                                     <!-- /.products --> 
                                 </div>
                                 <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/4.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag sale"><span>sale</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/5.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag hot"><span>hot</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/6.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag hot"><span>hot</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/7.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag sale"><span>sale</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/8.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag new"><span>new</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/9.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag new"><span>new</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/10.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag sale"><span>sale</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/11.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag hot"><span>hot</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/12.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag new"><span>new</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/13.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag sale"><span>sale</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner -->
-                                <div class="category-product-inner" style="visibility: visible; animation-name: fadeInUp;">
-                                    <div class="products">
-                                        <div class="product-list product">
-                                            <div class="row product-list-row">
-                                                <div class="col col-sm-4 col-lg-3">
-                                                    <div class="product-image">
-                                                        <div class="image"> <img src="_/images/products/14.jpg" alt=""> </div>
-                                                    </div>
-                                                    <!-- /.product-image --> 
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col col-sm-8 col-lg-9">
-                                                    <div class="product-info">
-                                                        <h3 class="name"><a href="#">Floral Print Buttoned</a></h3>
-                                                        <div class="product-price"> <span class="price"><i class='fa fa-inr'></i> 45099 - <i class='fa fa-inr'></i> 80000</span> </div>
-                                                        <!-- /.product-price -->
-                                                        <div class="description m-t-10">Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget, lacinia id purus. Suspendisse posuere arcu diam, id accumsan eros pharetra ac. Nulla enim risus, facilisis bibendum gravida eget.</div>
-                                                        <div class="cart clearfix animate-effect">
-                                                            <div class="action">
-                                                                <ul class="list-unstyled">
-                                                            <li class="add-cart-button btn-group">
-                                                                <button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-                                                                <i class="fa fa-truck"></i>
-                                                                </button>
-                                                                <a class="btn btn-primary" href="" title="Wishlist">Add to Truck</a>
-                                                            </li>
-                                                        </ul>
-                                                            </div>
-                                                            <!-- /.action --> 
-                                                        </div>
-                                                        <!-- /.cart --> 
-                                                    </div>
-                                                    <!-- /.product-info --> 
-                                                </div>
-                                                <!-- /.col --> 
-                                            </div>
-                                            <!-- /.product-list-row -->
-                                            <div class="tag hot"><span>hot</span></div>
-                                        </div>
-                                        <!-- /.product-list --> 
-                                    </div>
-                                    <!-- /.products --> 
-                                </div>
-                                <!-- /.category-product-inner --> 
+                                <?php endforeach;?>
+                                <?php else:?>
+                                <div class="alert alert-danger" role="alert"><h3><i class="fa fa-exclamation-triangle"></i> &nbsp; &nbsp; Oops! No products found as per your wish!</h3></div>
+                                <?php endif;?>
                             </div>
                             <!-- /.category-product --> 
                         </div>
@@ -2229,7 +295,7 @@
                 </div>
             </div><!-- /.col -->
         </div><!-- /.row -->
-        <div id="brands-carousel" class="logo-slider">
+        <?php /*<div id="brands-carousel" class="logo-slider">
             <h3 class="section-title">Our Brands</h3>
             <div class="logo-slider-inner">
                 <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
@@ -2297,7 +363,14 @@
                 <!-- /.owl-carousel #logo-slider -->
             </div>
             <!-- /.logo-slider-inner -->
-        </div>
+        </div>*/?>
     </div>
 </div>
 <?php echo$footer; ?>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.goProductDetails').on('click',function(){
+        location.href=$(this).data('producturl');
+    });
+});
+</script>

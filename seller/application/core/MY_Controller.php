@@ -13,7 +13,8 @@ class MY_Controller extends CI_Controller {
             $userLocation=$this->session->userdata('FE_SESSION_USER_LOCATION_VAR');
             if($userLocation==""){
                 $cIP=$this->input->ip_address();
-                $this->session->set_userdata('FE_SESSION_USER_LOCATION_VAR',file_get_contents("http://ipinfo.io/$cIP/country"));
+                //$this->session->set_userdata('FE_SESSION_USER_LOCATION_VAR',file_get_contents("http://ipinfo.io/$cIP/country"));
+                $this->session->set_userdata('FE_SESSION_USER_LOCATION_VAR','IN');
             }
 	}
 	

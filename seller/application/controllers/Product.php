@@ -485,6 +485,7 @@ class Product extends MY_Controller{
                         else:
                              // Code After Files Upload Success GOES HERE
                             $currgImgNo=substr($fieldname,3);
+                            
                             $oldUploadedFileName=$this->input->post('oldImgFile'.$currgImgNo,TRUE);
                             $this->Product_model->remove_product_by_file($oldUploadedFileName,$productId);
                             $this->delete_product_file($oldUploadedFileName);
@@ -847,7 +848,16 @@ class Product extends MY_Controller{
                                    <div class="col-sm-1" style="padding:0;"></div>
                                    <div class="col-sm-2" style="padding:0;"><button class="removePriceRow" type="button" alt="<?php echo $price_row;?>">Remove Row</button></div>
                            </div>
-                   </div>					
+                   </div>
+                   <div class="col-sm-12" style="padding:0;height: 5px;"></div>
+                   <div class="col-sm-12 form-group field required field" style="padding:0;">
+                        <div class="col-sm-6" style="padding:0;"><label
+                                for="gstTax_<?php echo $price_row;?>">GST Charges <?php echo $price_row;?></label></div>
+                        <div class="col-sm-6" style="padding:0;"><input
+                                type="text" class="form-control" id="gstTax_<?php echo $price_row;?>"
+                                placeholder="GST value" value="<?php echo $v->gstTax;?>" name="gstTax_<?php echo $price_row;?>"
+                                style="width:auto;"></div>
+                    </div>
            <?php
         }
         $retView=ob_get_contents();
@@ -1053,6 +1063,7 @@ class Product extends MY_Controller{
         $this->load->model('User_model');
         $productPriceArr=$this->Product_model->get_products_price($productId);
         $productImageArr=$this->Product_model->get_products_images($productId);
+        //pre($productPriceArr); die;
         //pre($productImageArr); //die;
         $productDetails=$this->Product_model->details($productId);
         $allTagArr=$this->Product_model->get_tag_by_product_id($productId);
@@ -1061,7 +1072,9 @@ class Product extends MY_Controller{
         $data['detail']=$details;
         $data['bulkQty']=$productPriceArr[0]->qty;
         $data['bulkPrice']=$productPriceArr[0]->price;
+        $data['bulkGstTax']=$productPriceArr[0]->gstTax;
         $data['totalPriceRowAdded']=count($productPriceArr);
+        //pre($data);die;
         $data['productPriceView']=  $this->get_price_data_for_edit($productPriceArr,'mobile');
         $data['brandArr']=$this->Brand_model->get_all();
         $data['tag']=$allTagArr->productTag;
@@ -1099,6 +1112,7 @@ class Product extends MY_Controller{
                 array('field'   => 'minQty','label'   => 'Minimum Quantity','rules'   => 'trim|required|xss_clean'),
                 array('field'   => 'bulkQty','label'   => 'First Quantity Range','rules'   => 'trim|required|xss_clean'),
                 array('field'   => 'price','label'   => 'First Price Range','rules'   => 'trim|required|xss_clean'),
+                array('field'   => 'gstTax','label'   => 'First GST Tax','rules'   => 'trim|required|xss_clean'),
             );
 
 
@@ -1115,8 +1129,9 @@ class Product extends MY_Controller{
             $weightClass=$this->input->post('weightClass',TRUE);
             $bulkQty=$this->input->post('bulkQty',TRUE);
             $price=$this->input->post('price',TRUE);
+            $gstTax=$this->input->post('gstTax',TRUE);
             $total_price_row_added=$this->input->post('total_price_row_added',TRUE);
-
+            //pre($this->input->post());die;
             //$status=$this->input->post('status',TRUE);
             $this->form_validation->set_rules($config);
             if($this->form_validation->run() == FALSE):
@@ -1125,7 +1140,7 @@ class Product extends MY_Controller{
                 redirect(BASE_URL.'product/edit_product/'.$enc_pro_id);
             else:
                 $priceArr=array();
-                $lowestPrice=$price;
+                /*$lowestPrice=$price;
                 $priceArr[]=array('qty'=>$bulkQty,'price'=>$price);
                 for($i=1;$i<$total_price_row_added;$i++){
                     $bulkQty=$this->input->post('bulkQty_'.$i,TRUE);
@@ -1144,10 +1159,29 @@ class Product extends MY_Controller{
                         $priceArr[]=array('qty'=>$bulkQty,'price'=>$fPrice,'shippingCharges'=>$shippingCharges,'tidiitCommissions'=>$tidiitCommissions);
                     }else{
                         $priceArr[]=array('qty'=>$bulkQty,'price'=>$price);
+                    }    
+                }*/
+                $priceArr=array();
+                $lowestPrice=$price;
+                $priceArr[]=array('qty'=>$bulkQty,'price'=>$price,'gstTax'=>$gstTax);
+                //$priceArr[]=array('qty'=>25,'price'=>15000,'gstTax'=>3000);
+                for($i=1;$i<$total_price_row_added;$i++){
+                    $bulkQty=$this->input->post('bulkQty_'.$i,TRUE);
+                    $price=$this->input->post('price_'.$i,TRUE);
+                    $gstTax=$this->input->post('gstTax_'.$i,TRUE);
+
+                    if($bulkQty=="" || $price==""){
+                        //echo $i.' == $bulkQty= '.$bulkQty.'  === $price '.$price;die;
+                        $this->session->set_flashdata('Message','Please fill the price and relted quanity');
+                        redirect(BASE_URL.'product/edit_product/'.($productId*999999));
                     }
-                    
+                    //$shippingPrice=$this->calculate_shiiping_price($bulkQty,$weight);
+                    //$tidiitCommissions=  $this->get_tidiit_commission($productId);
+                    //$fPrice=$price+($bulkQty*$shippingPrice)+$tidiitCommissions;
+                    //$priceArr[]=array('qty'=>$bulkQty,'price'=>$fPrice,'shippingCharges'=>($bulkQty*$shippingPrice),'tidiitCommissions'=>$tidiitCommissions);
+                    $priceArr[]=array('qty'=>$bulkQty,'price'=>$price,'gstTax'=>$gstTax);
                 }
-                usort($priceArr, 'sortingProductPriceArr');
+                //usort($priceArr, 'sortingProductPriceArr');
                 $newPriceArr=array();
                 foreach ($priceArr AS $k):
                     $k['productId']=$productId;

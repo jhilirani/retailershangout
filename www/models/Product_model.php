@@ -616,10 +616,14 @@ class Product_model extends CI_Model {
     }
     
     function get_products_price($produtcId,$app=false){
-        if($app)
-            return $this->db->from($this->_table_price)->where('productId',$produtcId)->order_by('qty','asc')->get()->result_array();
-        else    
-            return $this->db->from($this->_table_price)->where('productId',$produtcId)->order_by('qty','asc')->get()->result();
+        if($app){
+            $rs=$this->db->from($this->_table_price)->where('productId',$produtcId)->order_by('qty','asc')->get()->result_array();
+            return $rs;
+        }else{
+            $rs=$this->db->from($this->_table_price)->where('productId',$produtcId)->order_by('qty','asc')->get()->result();
+            //echo $this->db->last_query();die;
+            return $rs;
+        }    
     }
     
     function get_products_price_details_by_id($productPriceId,$app=false){

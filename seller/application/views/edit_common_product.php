@@ -276,7 +276,7 @@ $priceRangeSettingsDataArr=$priceRangeSettingsArr[$productPageType];
                                 <div class="col-sm-6"  style="padding:0;">
                                     <select class="" id="bulkQty" name="bulkQty" style="width:auto;">
                                           <option value="default">Select</option>
-                                          <?php for($i=$priceRangeSettingsDataArr['start'];$i<$priceRangeSettingsDataArr['end'];$i+=5){?>
+                                          <?php for($i=$priceRangeSettingsDataArr['start'];$i<$priceRangeSettingsDataArr['end'];$i+=$priceRangeSettingsDataArr['consistencyNo']){?>
                                           <option value="<?php echo $i;?>" <?php if($i==$bulkQty){?>selected<?php }?>><?php echo $i;?></option>
                                           <?php }?>
                                     </select>
@@ -286,6 +286,16 @@ $priceRangeSettingsDataArr=$priceRangeSettingsArr[$productPageType];
                             <div class="col-sm-12 form-group field required field"  style="padding:0;">
                                 <div class="col-sm-6" style="padding:0;"><label for="price">Price</label></div>
                                 <div class="col-sm-6" style="padding:0;"><input type="text" class="form-control" id="price" placeholder="Price" value="<?php echo $bulkPrice;?>" name="price"  style="width:auto;"></div>
+                            </div>
+                            <div class="col-sm-12" style="padding:0;height: 5px;"></div>
+                            <div class="col-sm-12 form-group field required field"
+                                 style="padding:0;">
+                                <div class="col-sm-6" style="padding:0;"><label
+                                        for="gstTax">GST Charges</label></div>
+                                <div class="col-sm-6" style="padding:0;"><input
+                                        type="text" class="form-control" id="gstTax"
+                                        placeholder="GST value" value="<?php echo $bulkGstTax;?>" name="gstTax"
+                                        style="width:auto;"></div>
                             </div>
                         </div>
                         <div class="col-sm-12 more_price_quantity_for_product"  style="padding:0;">
@@ -675,8 +685,7 @@ function addPrice() {
 	tabRow = '';
         //tabRow += '';
         //tabRow += '<div class="col-sm-12"  style="padding:0;"></div>';
-        tabRow += '<div class="col-sm-12"  style="padding:0;margin-top:5px;" id="remove_price_quantity_for_product_'+price_row+'">';
-
+        tabRow += '<div class="col-sm-12"  style="padding:0;margin-top:5px;" id="remove_price_quantity_for_product_' + price_row + '">';
         tabRow += '<div class="col-sm-12" style="padding:0;">';
         tabRow += '<div class="col-sm-6" style="padding:0;"><label style="margin-top:8px;" for="bulkQty_' + price_row + '">Quantity ' + price_row + '</label></div>';
         tabRow += '<div class="col-sm-6"  style="padding:0;">';
@@ -686,15 +695,23 @@ function addPrice() {
         tabRow += '</select>';
         tabRow += '</div>';
         tabRow += '</div>';
-
         tabRow += '<div class="col-sm-12"  style="padding:0;height: 5px;"></div>';
         tabRow += '<div class="col-sm-12" style="padding:0;">';
+        tabRow += '<div class="col-sm-12" style="padding:0;">';
+
         tabRow += '<div class="col-sm-6" style="padding:0;"><label for="price_' + price_row + '">Price ' + price_row + '</label></div>';
         tabRow += '<div class="col-sm-3" style="padding:0;"><input type="text" class="form-control required" id="price_' + price_row + '" placeholder="Price" value="" name="price_' + price_row + '"  style="width:auto;"></div>';
-        tabRow += '<div class="col-sm-1" style="padding:0;"></div>';
+
+        tabRow += '</div>';
+        tabRow += '</div>';
+        tabRow += '<div class="col-sm-12"  style="padding:0;height: 5px;"></div>';
+        tabRow += '<div class="col-sm-12" style="padding:0;">';
+        tabRow += '<div class="col-sm-6" style="padding:0;"><label for="gstTax_' + price_row + '">GST Charges ' + price_row + '</label></div>';
+        tabRow += '<div class="col-sm-3" style="padding:0;"><input type="text" class="form-control required" id="gstTax_' + price_row + '" placeholder="GST" value="" name="gstTax_' + price_row + '"  style="width:auto;"></div>';
         tabRow += '<div class="col-sm-2" style="padding:0;"><button class="removePriceRow" type="button" alt="' + price_row + '">Remove Row</button></div>';
         tabRow += '</div>';
         tabRow += '</div>';
+
         //alert(tabRow);
         jQuery('#total_price_row_added').val(price_row+1);
         //alert(tabRow);
